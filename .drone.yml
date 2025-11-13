@@ -66,8 +66,10 @@ steps:
   - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
   - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
   volumes:
-    - name: akida_chip
-      path: /dev/akida0
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
 
 - name: build
   image: *image
@@ -76,8 +78,10 @@ steps:
   - pip install -r requirements.txt
   - sphinx-build -D plot_gallery=1 -b html ./doc ./build
   volumes:
-    - name: akida_chip
-      path: /dev/akida0
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
 
 - name: update_gh_pages
   image: bender:5000/drone/git:linux
@@ -120,12 +124,15 @@ steps:
   - git push origin gh-pages
 
 volumes:
-- name: akida_chip
+- name: fpga
   host:
-    path: /dev/akida0
+    path: /dev/xdma/card0
+- name: fpga-user
+  host:
+    path: /dev/xdma0_user
 
 node:
-  hw: gpu-nsoc_v2
+  hw: fpga-v2-6-nodes-bittware
 
 depends_on:
   - check-style
@@ -154,15 +161,17 @@ steps:
   commands:
   - printenv DRONE_STAGE_MACHINE
 
-- name: check device and GPU
+- name: check Akida device
   image: *image
   privileged: true
   commands:
   - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
   - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
   volumes:
-    - name: akida_chip
-      path: /dev/akida0
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
 
 - name: build
   image: *image
@@ -172,13 +181,18 @@ steps:
   - pip install --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local --pre -U onnx2akida
   - sphinx-build -D plot_gallery=1 -b html ./doc ./build
   volumes:
-    - name: akida_chip
-      path: /dev/akida0
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
 
 volumes:
-- name: akida_chip
+- name: fpga
   host:
-    path: /dev/akida0
+    path: /dev/xdma/card0
+- name: fpga-user
+  host:
+    path: /dev/xdma0_user
 
 node:
-  hw: gpu-nsoc_v2
+  hw: fpga-v2-6-nodes-bittware
