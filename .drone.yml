@@ -1,0 +1,198 @@
+kind: pipeline
+name: check-style
+
+trigger:
+  ref:
+    include:
+    - refs/pull/**
+    - refs/tags/**
+    - refs/heads/main
+
+platform:
+  os: linux
+  arch: amd64
+
+defs:
+  image: &image bender:5000/doc_build:b5ce744
+
+steps:
+- name: report host name
+  image: *image
+  commands:
+  - printenv DRONE_STAGE_MACHINE
+
+- name: flake8
+  image: *image
+  commands:
+  - flake8 --ignore E402,E501 examples/
+  # refer to https://flake8.pycqa.org/en/2.6.0/warnings.html for error codes
+  # E402: module level import not at top of file
+  # E501: line too long
+
+- name: link checks
+  image: *image
+  commands:
+  - pip install -r requirements.txt
+  - sphinx-build -D plot_gallery=0 -b html ./doc ./build -b linkcheck
+
+---
+kind: pipeline
+name: build-doc
+
+trigger:
+  ref:
+    include:
+    - refs/pull/**
+    - refs/tags/**
+    - refs/heads/main
+
+platform:
+  os: linux
+  arch: amd64
+
+defs:
+  image: &image bender:5000/doc_build:b5ce744
+
+steps:
+- name: report host name
+  image: *image
+  commands:
+  - printenv DRONE_STAGE_MACHINE
+
+- name: check Akida device
+  image: *image
+  privileged: true
+  commands:
+  - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
+  - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
+  volumes:
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
+
+- name: build
+  image: *image
+  privileged: true
+  commands:
+  - pip install -r requirements.txt
+  - sphinx-build -D plot_gallery=1 -b html ./doc ./build
+  volumes:
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
+
+- name: update_gh_pages
+  image: bender:5000/drone/git:linux
+  when:
+    ref:
+      exclude:
+      - refs/pull/**
+    cron:
+      exclude:
+      - nightly
+  commands:
+  - git fetch
+  - git checkout gh-pages
+  - git clean -xf
+  - cd beta/
+  - rm -rf _* examples/ api_reference/ user_guide/
+  - rm *.html *.inv *.js
+  - cp -R ../build/* .
+  - rm -Rf doc/ build/
+  - rm -rf _sources/
+  - git add .
+  - git diff --quiet && git diff --staged --quiet || git commit -am "Automated - Push to beta"
+  - git push origin gh-pages
+
+- name: promote_beta_to_prod
+  image: bender:5000/drone/git:linux
+  when:
+    ref:
+      include:
+      - refs/tags/**
+    event:
+      - tag
+  commands:
+  - git fetch
+  - git checkout gh-pages
+  - git clean -xf
+  - cp -r beta/* .
+  - git add .
+  - git diff --quiet && git diff --staged --quiet || git commit -am 'Automated - Promote beta to prod [tag:${DRONE_TAG}]'
+  - git push origin gh-pages
+
+volumes:
+- name: fpga
+  host:
+    path: /dev/xdma/card0
+- name: fpga-user
+  host:
+    path: /dev/xdma0_user
+
+node:
+  hw: fpga-v2-6-nodes-bittware
+
+depends_on:
+  - check-style
+
+---
+
+# This pipeline runs examples using the latest internal RC versions of
+# onnx2akida, available on bender2
+kind: pipeline
+name: run-examples-latest-versions
+
+trigger:
+  cron:
+    - nightly
+
+platform:
+  os: linux
+  arch: amd64
+
+defs:
+  image: &image bender:5000/doc_build:b5ce744
+
+steps:
+- name: report host name
+  image: *image
+  commands:
+  - printenv DRONE_STAGE_MACHINE
+
+- name: check Akida device
+  image: *image
+  privileged: true
+  commands:
+  - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
+  - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
+  volumes:
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
+
+- name: build
+  image: *image
+  privileged: true
+  commands:
+  - pip install -r requirements.txt
+  - pip install --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local --pre -U onnx2akida
+  - sphinx-build -D plot_gallery=1 -b html ./doc ./build
+  volumes:
+  - name: fpga
+    path: /dev/xdma/card0
+  - name: fpga-user
+    path: /dev/xdma0_user
+
+volumes:
+- name: fpga
+  host:
+    path: /dev/xdma/card0
+- name: fpga-user
+  host:
+    path: /dev/xdma0_user
+
+node:
+  hw: fpga-v2-6-nodes-bittware
