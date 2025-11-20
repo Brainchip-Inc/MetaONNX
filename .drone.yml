@@ -33,6 +33,8 @@ steps:
   image: *image
   commands:
   - pip install -r requirements.txt
+  # TODO: Remove next line when onnx2akida 0.6.0 is released
+  - pip install --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local --pre -U onnx2akida
   - sphinx-build -D plot_gallery=0 -b html ./doc ./build -b linkcheck
 
 ---
@@ -76,6 +78,8 @@ steps:
   privileged: true
   commands:
   - pip install -r requirements.txt
+  # TODO: Remove next line when onnx2akida 0.6.0 is released
+  - pip install --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local --pre -U onnx2akida
   - sphinx-build -D plot_gallery=1 -b html ./doc ./build
   volumes:
   - name: fpga
