@@ -6,6 +6,7 @@ Overview
    :maxdepth: 2
 
    self
+   Installation <./installation.rst>
    API reference <./api_reference/api_reference.rst>
    Examples <./examples/index.rst>
    Support <https://support.brainchip.com/portal/home>
