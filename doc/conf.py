@@ -129,12 +129,7 @@ ultimate_replacements = {
 # Forbidden for url)
 linkcheck_ignore = [
     "./.*", "../.*",
-    "https://machinelearningmastery.com/object-recognition-with-deep-learning/",
-    "https://www.sciencedirect.com/science/article/pii/S0893608018300108"
 ]
-
-# Ignore some anchors on github pages because checklink cannot resolve them
-linkcheck_anchors_ignore = ["model", "confusion-matrix", "how-does-this-model-work"]
 
 # Timeout for link checking in seconds
 linkcheck_timeout = 20
