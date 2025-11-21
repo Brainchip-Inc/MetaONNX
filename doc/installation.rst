@@ -5,19 +5,23 @@ Supported configurations
 ------------------------
 
 * **Operating systems:**
-    * Windows 10, Windows 11
     * Any Linux variant compatible with `manylinux 2.28 <https://github.com/pypa/manylinux>`_ (Ubuntu 22.04, Ubuntu 24.04, ...)
 * **Python versions:** 3.10 to 3.12
 * **cnn2snn version:** 2.18.1
+* **onnxruntime version:** 1.19.2
 
 Quick installation
 ------------------
 
-The onnx2akida python package can be setup with Python's pip package manager:
+MetaONNX relies on **onnx2akida** python package that can be setup with
+python's pip package manager:
 
 .. code-block:: bash
 
     pip install onnx2akida=={ONNX2AKIDA_VERSION}
+
+MetaONNX is also built on top of Brainchip usual set of tool included
+in `MetaTF <https://doc.brainchipinc.com/>`_, that is QuantizeML, CNN2SNN and Akida.
 
 .. note::
     We recommend using virtual environment such as `Conda <https://conda.io/docs/>`_.
@@ -38,6 +42,9 @@ The onnx2akida python package can be setup with Python's pip package manager:
 
       python3.11 -m venv onnx2akida_venv
       source onnx2akida_venv/bin/activate
+
+    .. code-block:: bash
+        TODO: Add ORT and AkidaEP installation instructions
 
 Running examples
 ----------------
