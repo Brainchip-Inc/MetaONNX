@@ -121,6 +121,7 @@ def ultimateReplace(app, docname, source):
 
 ultimate_replacements = {
     "{ONNX2AKIDA_VERSION}": onnx2akida,
+    "{PIP_FREEZE}": pip_freeze
 }
 
 # -- Link checks -----------------------------------------------------
