@@ -107,6 +107,7 @@ html_js_files = ['leadlander_tag.js']
 from importlib.metadata import version as importlib_version
 
 onnx2akida = importlib_version('onnx2akida')
+metatf = importlib_version('akida')
 
 from pip._internal.operations.freeze import freeze
 pip_freeze = ', '.join([str(i) for i in freeze(local_only=True)])
@@ -121,7 +122,8 @@ def ultimateReplace(app, docname, source):
 
 ultimate_replacements = {
     "{ONNX2AKIDA_VERSION}": onnx2akida,
-    "{PIP_FREEZE}": pip_freeze
+    "{PIP_FREEZE}": pip_freeze,
+    "{METATF_VERSION}": metatf
 }
 
 # -- Link checks -----------------------------------------------------
