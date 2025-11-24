@@ -48,7 +48,7 @@ via the `pip` command. The framework provides:
    * **device estimation tools** - determines the minimum Akida hardware configuration
      required for a given model,
 
-   * and **developer-friendly APIs** - Python API and CLI tools (`onnx2akida`,
+   * **developer-friendly APIs** - Python API and CLI tools (`onnx2akida`,
      `onnx2akida-device`) integrated with ONNX Runtime for seamless deployment workflows.
 
 
@@ -78,7 +78,7 @@ hardware and CPU. This architecture enables:
      supported operations while maintaining accuracy with CPU execution for unsupported
      layers, minimizing data transfer overhead,
 
-   * and **seamless integration** - generated hybrid models use standard ONNX format with
+   * **seamless integration** - generated hybrid models use standard ONNX format with
      custom `AkidaOp`` nodes, allowing integration with existing ONNX-based pipelines
      and embedded systems.
 
