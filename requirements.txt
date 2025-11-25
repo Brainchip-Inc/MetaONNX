@@ -1,2 +1,6 @@
+# examples dependencies
+optimum[exporters]<2.0.0
+timm
+
 # onnx2akida package
 onnx2akida ~= 0.6.0
