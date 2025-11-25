@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computation times &mdash; MetaONNX Examples  documentation</title>
+  <title>Installation &mdash; MetaONNX Examples  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
@@ -27,7 +27,9 @@
       <script src="_static/leadlander_tag.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User guide" href="user_guide/user_guide.html" />
+    <link rel="prev" title="Overview" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,12 +52,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#supported-configurations">Supported configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#quick-installation">Quick installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#running-examples">Running examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-examples">Running examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide.html">User guide</a><ul>
@@ -121,7 +123,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Computation times</li>
+      <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -130,42 +132,75 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="computation-times">
-<span id="sphx-glr-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Link to this heading"></a></h1>
-<p><strong>00:00.000</strong> total execution time for 1 file <strong>from all galleries</strong>:</p>
-<div class="docutils container">
-<style scoped>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
-</style>
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-<script type="text/javascript" class="init">
-$(document).ready( function () {
-    $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
-} );
-</script><table class="table table-striped sg-datatable docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Example</p></th>
-<th class="head"><p>Time</p></th>
-<th class="head"><p>Mem (MB)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="examples/general/plot_0_global_workflow.html#sphx-glr-examples-general-plot-0-global-workflow-py"><span class="std std-ref">Global onnx2akida workflow</span></a> (<code class="docutils literal notranslate"><span class="pre">../examples/general/plot_0_global_workflow.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0</p></td>
-</tr>
-</tbody>
-</table>
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="supported-configurations">
+<h2>Supported configurations<a class="headerlink" href="#supported-configurations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Operating systems:</strong></dt><dd><ul>
+<li><p>Any Linux variant compatible with <a class="reference external" href="https://github.com/pypa/manylinux">manylinux 2.28</a> (Ubuntu 22.04, Ubuntu 24.04, …)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Python versions:</strong> 3.10 to 3.12</p></li>
+<li><p><strong>cnn2snn version:</strong> 2.18.1</p></li>
+<li><p><strong>onnxruntime version:</strong> 1.19.2</p></li>
+</ul>
+</section>
+<section id="quick-installation">
+<h2>Quick installation<a class="headerlink" href="#quick-installation" title="Link to this heading"></a></h2>
+<p>MetaONNX relies on <strong>onnx2akida</strong> python package that can be setup with
+python’s pip package manager:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">onnx2akida</span><span class="o">==</span><span class="m">0</span>.6.0rc28
+</pre></div>
 </div>
+<p>MetaONNX is also built on top of Brainchip usual set of tool included
+in <a class="reference external" href="https://doc.brainchipinc.com/">MetaTF</a>, that is QuantizeML, CNN2SNN and Akida. The current
+MetaTF version used is 2.18.2rc44.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend using virtual environment such as <a class="reference external" href="https://conda.io/docs/">Conda</a>.
+Please note that the python version must be explicitly specified when creating a
+conda environment. The specification must be for one of the supported python
+versions listed above.</p>
+<p>Using Conda:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>onnx2akida_venv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+conda<span class="w"> </span>activate<span class="w"> </span>onnx2akida_venv
+</pre></div>
+</div>
+<p>Using python venv:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>onnx2akida_venv
+<span class="nb">source</span><span class="w"> </span>onnx2akida_venv/bin/activate
+</pre></div>
+</div>
+</div>
+</section>
+<section id="running-examples">
+<h2>Running examples<a class="headerlink" href="#running-examples" title="Link to this heading"></a></h2>
+<p>The onnx2akida tutorials can be downloaded from the <a class="reference external" href="./examples/index.html">examples</a>
+section as python scripts or Jupyter Notebooks. Dependencies needed to replay
+the examples can be installed using the <a class="reference download internal" download="" href="_downloads/0792bc3dc7b01941f86b4f993c20ab5f/requirements.txt"><code class="xref download docutils literal notranslate"><span class="pre">requirements.txt</span></code></a>
+file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please refer to <a class="reference external" href="https://jupyter.org/">this link</a> for Jupyter Notebook installation
+and configuration.</p>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user_guide/user_guide.html" class="btn btn-neutral float-right" title="User guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
