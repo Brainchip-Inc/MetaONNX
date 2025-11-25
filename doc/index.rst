@@ -11,7 +11,7 @@ Overview
    API reference <./api_reference/api_reference.rst>
    Examples <./examples/index.rst>
    Changelog <./changelog.rst>
-   Support <https://support.brainchip.com/portal/home>
+   Support <https://developer.brainchip.com/support/>
    ./license.rst
 
 The MetaONNX Framework
