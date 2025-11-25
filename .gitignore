@@ -22,3 +22,4 @@ venv/
 
 # Others
 *.onnx
+*.bin
