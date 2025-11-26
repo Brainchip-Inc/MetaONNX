@@ -1,4 +1,2 @@
 # onnx2akida package
---index-url http://bender2.brainchipinc.local:81/
---trusted-host bender2.brainchipinc.local
-onnx2akida
+onnx2akida ~= 0.6.0
