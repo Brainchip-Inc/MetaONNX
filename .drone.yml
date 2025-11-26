@@ -61,12 +61,13 @@ steps:
   commands:
   - printenv DRONE_STAGE_MACHINE
 
-- name: check Akida device
+- name: check Akida device and GPU
   image: *image
   privileged: true
   commands:
   - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
   - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
+  - python -c "import tensorflow as tf; assert len(tf.config.list_physical_devices('GPU'))"
   volumes:
   - name: fpga
     path: /dev/xdma/card0
@@ -165,12 +166,13 @@ steps:
   commands:
   - printenv DRONE_STAGE_MACHINE
 
-- name: check Akida device
+- name: check Akida device and GPU
   image: *image
   privileged: true
   commands:
   - pip install akida --index-url http://bender2.brainchipinc.local:81/ --trusted-host bender2.brainchipinc.local
   - python -c "import akida; assert len(akida.devices()), 'Device not found.'"
+  - python -c "import tensorflow as tf; assert len(tf.config.list_physical_devices('GPU'))"
   volumes:
   - name: fpga
     path: /dev/xdma/card0
