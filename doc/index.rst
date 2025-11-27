@@ -29,9 +29,8 @@ Akida-accelerated and CPU-executed subgraphs, and generating heterogeneous infer
 models that maximize hardware utilization while ensuring complete model execution.
 
 
-MetaONNX consists of the **onnx2akida** Python package and the **onnxruntime-akida**
-execution provider, both installed from the `PyPI <https://pypi.org/>`_ repository
-via the `pip` command. The framework provides:
+MetaONNX is based on the **onnx2akida** Python package installed from the `PyPI
+<https://pypi.org/>`_ repository via the `pip` command. The framework provides:
 
    * **ONNX model ingestion** - accepts any valid ONNX model as input, regardless of
      operator support on Akida hardware,
@@ -39,7 +38,7 @@ via the `pip` command. The framework provides:
    * **automatic graph partitioning** - analyzes the model graph and intelligently
      partitions it into subgraphs for optimal execution on Akida hardware and CPU,
 
-   * **Akida Execution Provider** - a core component that identifies and assigns
+   * **AkidaOp library** - a core component that identifies and assigns
      supported neural network operators to the Akida 2nd Generation hardware,
 
    * **CPU fallback execution** - ensures operators not supported by Akida can be
@@ -66,22 +65,6 @@ Akida platform without being constrained by hardware-specific operator limitatio
    :align: center
 
    MetaONNX execution flow
-
-The **Akida Execution Provider** functions as a custom provider within
-the ONNX Runtime framework, orchestrating heterogeneous execution between Akida
-hardware and CPU. This architecture enables:
-
-   * **universal model support** - execute any ONNX model, even those with operators
-     not supported by Akida, by automatically managing CPU fallback execution,
-
-   * **optimized performance** - leverage Akida's neuromorphic architecture for
-     supported operations while maintaining accuracy with CPU execution for unsupported
-     layers, minimizing data transfer overhead,
-
-   * **seamless integration** - generated hybrid models use standard ONNX format with
-     custom `AkidaOp`` nodes, allowing integration with existing ONNX-based pipelines
-     and embedded systems.
-
 
 The MetaONNX examples
 ---------------------

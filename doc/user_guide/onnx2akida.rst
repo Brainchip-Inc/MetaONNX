@@ -70,7 +70,7 @@ effectively building into a fully ONNX node based model.
    infer_model = hybrid_model.generate_inference_model(dirpath=".")
 
 The ``dirpath`` argument specifies the folder where Akida submodel binaries will be stored.
-The resulting hybrid ONNX model is compatible with ONNXRuntime with AkidaExecutionProvider for inference.
+The resulting hybrid ONNX model is compatible with ONNXRuntime for inference.
 
 .. note::
     The global workflow described here is detailed in the dedicated examples available in

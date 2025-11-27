@@ -44,9 +44,6 @@ MetaTF version used is {METATF_VERSION}.
       python3.11 -m venv onnx2akida_venv
       source onnx2akida_venv/bin/activate
 
-    .. code-block:: bash
-        TODO: Add ORT and AkidaEP installation instructions
-
 Running examples
 ----------------
 
