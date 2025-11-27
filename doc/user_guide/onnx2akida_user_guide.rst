@@ -1,5 +1,5 @@
-onnx2akida toolkit
-==================
+User guide
+==========
 
 Overview
 --------

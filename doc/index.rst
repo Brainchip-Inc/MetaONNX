@@ -7,8 +7,8 @@ Overview
 
    self
    Installation <./installation.rst>
-   User guide <./user_guide/user_guide.rst>
-   API reference <./api_reference/api_reference.rst>
+   User guide <./user_guide/onnx2akida_user_guide.rst>
+   API reference <./api_reference/onnx2akida_apis.rst>
    Examples <./examples/index.rst>
    Changelog <./changelog.rst>
    Support <https://developer.brainchip.com/support/>

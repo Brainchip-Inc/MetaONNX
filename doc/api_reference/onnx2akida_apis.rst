@@ -1,6 +1,6 @@
 
-ONNX2AKIDA API
-==============
+API reference
+=============
 
 .. automodule:: onnx2akida
 
