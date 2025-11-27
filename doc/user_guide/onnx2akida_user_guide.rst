@@ -72,6 +72,16 @@ effectively building into a fully ONNX node based model.
 The ``dirpath`` argument specifies the folder where Akida submodel binaries will be stored.
 The resulting hybrid ONNX model is compatible with ONNXRuntime for inference.
 
+Inference is then performed using the `AkidaInferenceSession
+<../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession>`__ class:
+
+.. code-block:: python
+
+   from onnx2akida.inference import AkidaInferenceSession
+
+   sess = AkidaInferenceSession(infer_model.SerializeToString())
+   outputs = sess.run(...)
+
 .. note::
     The global workflow described here is detailed in the dedicated examples available in
     `onnx2akida examples <../examples/>`_ section.
