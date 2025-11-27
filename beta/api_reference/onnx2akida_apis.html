@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONNX2AKIDA API &mdash; MetaONNX Examples  documentation</title>
+  <title>API reference &mdash; MetaONNX Examples  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="MetaONNX examples" href="../examples/index.html" />
-    <link rel="prev" title="API reference" href="api_reference.html" /> 
+    <link rel="prev" title="User guide" href="../user_guide/onnx2akida_user_guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,36 +60,51 @@
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#running-examples">Running examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../user_guide/user_guide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida.html">onnx2akida toolkit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida.html#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida.html#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida.html#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/onnx2akida.html#onnx2akida-cli">onnx2akida CLI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/onnx2akida.html#onnx2akida-device-cli">onnx2akida-device CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#onnx2akida-device-cli">onnx2akida-device CLI</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="api_reference.html">API reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">onnx2akida</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#compatibility">Compatibility</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hybridmodel">HybridModel</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#pipeline">Pipeline</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -105,7 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="https://support.brainchip.com/portal/home">Support</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -123,8 +138,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="api_reference.html">API reference</a></li>
-      <li class="breadcrumb-item active">ONNX2AKIDA API</li>
+      <li class="breadcrumb-item active">API reference</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -134,7 +148,7 @@
            <div itemprop="articleBody">
              
   <section id="module-onnx2akida">
-<span id="onnx2akida-api"></span><h1>ONNX2AKIDA API<a class="headerlink" href="#module-onnx2akida" title="Link to this heading"></a></h1>
+<span id="api-reference"></span><h1>API reference<a class="headerlink" href="#module-onnx2akida" title="Link to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="onnx2akida.convert">
 <span class="sig-prename descclassname"><span class="pre">onnx2akida.</span></span><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uint8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_experimental</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_hwpr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sram_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimal_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_num_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">36</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/convert.html#convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.convert" title="Link to this definition"></a></dt>
@@ -574,13 +588,35 @@ the base device. Used when <cite>device</cite> is None. Defaults to 36.</p></li>
 </dd></dl>
 
 </section>
+<section id="inference">
+<h2>Inference<a class="headerlink" href="#inference" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="onnx2akida.inference.AkidaInferenceSession">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">onnx2akida.inference.</span></span><span class="sig-name descname"><span class="pre">AkidaInferenceSession</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sess_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">providers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/inference/inference.html#AkidaInferenceSession"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.inference.AkidaInferenceSession" title="Link to this definition"></a></dt>
+<dd><p>A wrapper around onnxruntime.InferenceSession that ensures the Akida custom ops
+library is registered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_or_bytes</strong> (<em>str</em><em> or </em><em>bytes</em>) – path to the ONNX model file or the model in bytes.</p></li>
+<li><p><strong>sess_options</strong> (<em>ort.SessionOptions</em><em>, </em><em>optional</em>) – session options for the inference session.
+Defaults to None.</p></li>
+<li><p><strong>providers</strong> (<em>list</em><em>, </em><em>optional</em>) – list of execution providers. Defaults to None.</p></li>
+<li><p><strong>provider_options</strong> (<em>list</em><em>, </em><em>optional</em>) – list of provider options. Defaults to None.</p></li>
+<li><p><strong>**kwargs</strong> – additional keyword arguments for the InferenceSession.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="api_reference.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../user_guide/onnx2akida_user_guide.html" class="btn btn-neutral float-left" title="User guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../examples/index.html" class="btn btn-neutral float-right" title="MetaONNX examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
