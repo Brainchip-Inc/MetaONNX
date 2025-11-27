@@ -1,6 +1,6 @@
 
-ONNX2AKIDA API
-==============
+API reference
+=============
 
 .. automodule:: onnx2akida
 
@@ -18,9 +18,14 @@ ONNX2AKIDA API
 
     .. autoclass:: onnx2akida.hybrid_model.HybridModel
         :members:
-    
+
     Pipeline
     ========
 
     .. autofunction:: onnx2akida.pipeline.quantize
     .. autofunction:: onnx2akida.pipeline.convert_to_hybrid
+
+    Inference
+    =========
+
+    .. autoclass:: onnx2akida.inference.AkidaInferenceSession
