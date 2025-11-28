@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global onnx2akida workflow &mdash; MetaONNX Examples  documentation</title>
+  <title>Global MetaONNX workflow &mdash; MetaONNX Examples  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
@@ -111,7 +111,13 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#general-examples">General examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Global onnx2akida workflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">5. Summary</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -139,7 +145,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">MetaONNX examples</a></li>
-      <li class="breadcrumb-item active">Global onnx2akida workflow</li>
+      <li class="breadcrumb-item active">Global MetaONNX workflow</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -153,9 +159,408 @@
 <p><a class="reference internal" href="#sphx-glr-download-examples-general-plot-0-global-workflow-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code.</p>
 </div>
-<section class="sphx-glr-example-title" id="global-onnx2akida-workflow">
-<span id="sphx-glr-examples-general-plot-0-global-workflow-py"></span><h1>Global onnx2akida workflow<a class="headerlink" href="#global-onnx2akida-workflow" title="Link to this heading"></a></h1>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.000 seconds)</p>
+<section class="sphx-glr-example-title" id="global-metaonnx-workflow">
+<span id="sphx-glr-examples-general-plot-0-global-workflow-py"></span><h1>Global MetaONNX workflow<a class="headerlink" href="#global-metaonnx-workflow" title="Link to this heading"></a></h1>
+<p>This example demonstrates how to deploy an ONNX model to Akida hardware using
+the onnx2akida toolkit. Starting from an ONNX model, we’ll show how to:</p>
+<ol class="arabic simple">
+<li><p>Convert and analyze compatibility with Akida hardware</p></li>
+<li><p>Display compatibility reports</p></li>
+<li><p>Create hybrid models combining Akida-compatible and ONNX operators</p></li>
+<li><p>Generate inference models for deployment</p></li>
+</ol>
+<p>We’ll use a MobileNetV4 model exported from HuggingFace as our example, though the workflow
+applies to any ONNX model.</p>
+<figure class="align-center" id="id1">
+<a class="reference external image-reference" href="../../_images/execution_flow.png"><img alt="Overall MetaONNX workflow" src="../../_images/execution_flow.png" style="width: 973.75px; height: 284.25px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Global MetaONNX workflow</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="export-model-to-onnx-format">
+<h2>1. Export model to ONNX format<a class="headerlink" href="#export-model-to-onnx-format" title="Link to this heading"></a></h2>
+<section id="export-mobilenetv4-from-huggingface">
+<h3>1.1. Export MobileNetV4 from HuggingFace<a class="headerlink" href="#export-mobilenetv4-from-huggingface" title="Link to this heading"></a></h3>
+<p>We’ll export a MobileNetV4 model from HuggingFace using the Optimum library.
+This demonstrates the typical workflow of obtaining an ONNX model for analysis.</p>
+<p>You can also export models from other frameworks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://onnxruntime.ai/docs/tutorials/tf-get-started.html">tf2onnx</a> for TensorFlow</p></li>
+<li><p><a class="reference external" href="https://docs.pytorch.org/tutorials/beginner/onnx/export_simple_model_to_onnx_tutorial.html">torch.onnx</a> for PyTorch</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">optimum.exporters.onnx</span><span class="w"> </span><span class="kn">import</span> <span class="n">main_export</span>
+
+<span class="n">model_dir</span> <span class="o">=</span> <span class="s2">&quot;mbv4&quot;</span>
+<span class="n">main_export</span><span class="p">(</span><span class="s2">&quot;timm/mobilenetv4_conv_small.e2400_r224_in1k&quot;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">model_dir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model exported to </span><span class="si">{</span><span class="n">model_dir</span><span class="si">}</span><span class="s2">/model.onnx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Weight deduplication check in the ONNX export requires accelerate. Please install accelerate to run it.
+Model exported to mbv4/model.onnx
+</pre></div>
+</div>
+</section>
+<section id="load-the-onnx-model">
+<h3>1.2. Load the ONNX model<a class="headerlink" href="#load-the-onnx-model" title="Link to this heading"></a></h3>
+<p>Load the exported ONNX model for analysis.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">model_dir</span><span class="p">,</span> <span class="s2">&quot;model.onnx&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Loaded ONNX model from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Loaded ONNX model from mbv4/model.onnx
+Model has 89 nodes.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="convert-to-akida">
+<h2>2. Convert to Akida<a class="headerlink" href="#convert-to-akida" title="Link to this heading"></a></h2>
+<section id="convert-and-get-compatibility-information">
+<h3>2.1. Convert and get compatibility information<a class="headerlink" href="#convert-and-get-compatibility-information" title="Link to this heading"></a></h3>
+<p>The main entry point is the <a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a>
+function, which analyzes the ONNX model and returns both a <a class="reference external" href="../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a> and detailed compatibility information.
+The <cite>input_shape</cite> parameter specifies the expected input dimensions for the model. Models can be
+exported with a dynamic shape, but quantization and later Akida conversion and mapping need all
+input dimensions to be fixed.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert</span>
+
+<span class="c1"># Convert the model and analyze compatibility</span>
+<span class="c1"># For MobileNetV4, the input shape is (channels, height, width)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Analyzing model compatibility with Akida hardware...&quot;</span><span class="p">)</span>
+<span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Analyzing model compatibility with Akida hardware...
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+[INFO] Searching sequences... done
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.31it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.31it/s]
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/blocks/blocks.3/blocks.3.0/dw_start/conv/Conv (QuantizedDepthwise2DBiasedScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.4/blocks.4.0/conv/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/blocks/blocks.4/blocks.4.0/conv/Conv (QuantizedConv2DBiasedGlobalAvgPoolReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /classifier/Gemm because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/classifier/Gemm (QuantizedDense1DFlattenBiased)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node node_Conv_1 because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+node_Conv_1 (QuantizedDepthwise2DReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+
+Converting:   0%|          | 0/5 [00:00&lt;?, ?it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_stem/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/conv_stem/Conv (QuantizedInputConv2DBiasedReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+
+Converting:  60%|██████    | 3/5 [00:00&lt;00:00, 29.80it/s]
+Converting: 100%|██████████| 5/5 [00:00&lt;00:00,  7.92it/s]
+</pre></div>
+</div>
+</section>
+<section id="display-compatibility-report">
+<h3>2.2. Display compatibility report<a class="headerlink" href="#display-compatibility-report" title="Link to this heading"></a></h3>
+<p>The obtained <a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo">ModelCompatibilityInfo</a>
+object contains detailed information about which nodes and subgraphs are compatible with Akida
+hardware. Use <a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.print_report">print_report</a>
+to display a comprehensive analysis.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_report</span>
+
+<span class="c1"># Print detailed compatibility report</span>
+<span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Set of Incompatible op_types: [&#39;Cast&#39;, &#39;Conv&#39;, &#39;Mul&#39;, &#39;Relu&#39;]
+List of Incompatibilities:
+ ❌ Node sequence: [node(op_type=Cast), node_1(op_type=Mul), /conv_stem/Conv(op_type=Conv), /bn1/act/Relu(op_type=Relu)]
+     • Stage: Mapping
+     • Faulty node: /conv_stem/Conv
+     • Reason: Cannot map layer &#39;/conv_stem/Conv&#39;. SameUpper padding is not yet supported.
+
+[INFO]: Percentage of nodes compatible with akida: 95.6522 %
+
+List of backends exchanges:
+ • CPU to Akida at layer /blocks/blocks.0/blocks.0.0/conv/Conv: 392.000 KB
+ • Akida to CPU at layer node_Conv_1: 36.750 KB
+ • CPU to Akida at layer /blocks/blocks.2/blocks.2.0/pw_proj/conv/Conv: 36.750 KB
+ • Akida to CPU at layer /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv: 18.375 KB
+ • CPU to Akida at layer /blocks/blocks.3/blocks.3.0/pw_exp/conv/Conv: 18.375 KB
+ • Akida to CPU at layer /classifier/Gemm: 3.906 KB
+</pre></div>
+</div>
+<p>The report shows:</p>
+<ul class="simple">
+<li><p>The list of incompatibles operation types,</p></li>
+<li><p>The list of incompatibilities indexed by node and by stage (quantization, conversion, mapping)
+indicating where an incompatibility was found and why,</p></li>
+<li><p>Overall compatibility percentage,</p></li>
+<li><p>The memory report for Akida to CPU transfers.</p></li>
+</ul>
+</section>
+<section id="understanding-the-hybridmodel">
+<h3>2.3. Understanding the HybridModel<a class="headerlink" href="#understanding-the-hybridmodel" title="Link to this heading"></a></h3>
+<p>The returned <a class="reference external" href="../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a> object
+represents a model that can contain both:</p>
+<ul class="simple">
+<li><p>Akida-compatible submodels (will be accelerated on Akida hardware)</p></li>
+<li><p>Standard ONNX operators (will run on CPU via ONNXRuntime)</p></li>
+</ul>
+<p>This hybrid approach allows partial acceleration even when not all operations
+are Akida-compatible.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Inference is not possible on the <cite>HybridModel</cite> directly. You have to explicitely
+generate an inference model as shown in the next section.</p>
+</div>
+</section>
+</section>
+<section id="generate-inference-model">
+<h2>3. Generate inference model<a class="headerlink" href="#generate-inference-model" title="Link to this heading"></a></h2>
+<section id="generate-hybrid-inference-model-with-akida-device">
+<h3>3.1. Generate hybrid inference model with Akida device<a class="headerlink" href="#generate-hybrid-inference-model-with-akida-device" title="Link to this heading"></a></h3>
+<p>To create a deployable inference model, you need an Akida device.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A 2.0 FPGA device like available in <a class="reference external" href="https://brainchip.com/aclp/">Akida Cloud</a> is used here
+for demonstration.</p>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">akida</span>
+
+<span class="c1"># Check for available Akida devices</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span> <span class="o">:=</span> <span class="n">akida</span><span class="o">.</span><span class="n">devices</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;No device found, this example needs a 2.0 device.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Available devices: </span><span class="si">{</span><span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">desc</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">devices</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available devices: [&#39;fpga-1743&#39;]
+</pre></div>
+</div>
+<p>Inference happens on a device, so we need to map the hybrid model onto it. This can be done using
+<a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map">HybridModel.map</a> like shown
+below.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Map on the device</span>
+<span class="n">fpga_device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">hybrid_model</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fpga_device</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mapping failed:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Mapping failed:
+ Failed to map Akida model at index 2 within &#39;akida_models&#39;. Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware component of type CNP1 available. 27 are needed but 21 are available..
+</pre></div>
+</div>
+<p>Mapping the HybridModel onto the Akida device after conversion might fail: while some layers are
+supported by Akida hardware, they might not fit on device due to resource constraints.
+In such cases, you can try mapping on a larger virtual device - but that cannot be used for
+inference, it only serves for prototyping - or you can go back to model conversion and provide the
+device as a <a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a> parameter.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">fpga_device</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+[INFO] Searching sequences... done
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.31it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.30it/s]
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/blocks/blocks.3/blocks.3.0/dw_start/conv/Conv (QuantizedDepthwise2DBiasedScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.4/blocks.4.0/conv/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/blocks/blocks.4/blocks.4.0/conv/Conv (QuantizedConv2DBiasedGlobalAvgPoolReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /classifier/Gemm because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/classifier/Gemm (QuantizedDense1DFlattenBiased)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node node_Conv_1 because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+node_Conv_1 (QuantizedDepthwise2DReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_mid/conv/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/blocks/blocks.3/blocks.3.0/dw_mid/conv/Conv (QuantizedDepthwise2DBiasedReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+
+Converting:   0%|          | 0/7 [00:00&lt;?, ?it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_stem/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/conv_stem/Conv (QuantizedInputConv2DBiasedReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+
+Converting:  71%|███████▏  | 5/7 [00:00&lt;00:00, 25.45it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_head/Conv because of a dequantizer. The end of the graph is ignored:
+ ___________________________________________________
+Node (type)
+===================================================
+/conv_head/Conv (QuantizedConv2DBiasedReLUScaled)
+===================================================
+.
+ This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
+  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
+
+Converting: 100%|██████████| 7/7 [00:00&lt;00:00, 12.31it/s]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Set of Incompatible op_types: [&#39;Cast&#39;, &#39;Conv&#39;, &#39;Mul&#39;, &#39;Relu&#39;]
+List of Incompatibilities:
+ ❌ Node sequence: [node(op_type=Cast), node_1(op_type=Mul), /conv_stem/Conv(op_type=Conv), /bn1/act/Relu(op_type=Relu)]
+     • Stage: Mapping
+     • Faulty node: /conv_stem/Conv
+     • Reason: Cannot map layer &#39;/conv_stem/Conv&#39;. SameUpper padding is not yet supported.
+
+ ❌ Node sequence: [/conv_head/Conv(op_type=Conv), /norm_head/act/Relu(op_type=Relu)]
+     • Stage: Mapping
+     • Faulty node: /conv_head/Conv
+     • Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware component of type CNP1 available. 27 are needed but 24 are available.
+
+[INFO]: Percentage of nodes compatible with akida: 93.4783 %
+
+List of backends exchanges:
+ • CPU to Akida at layer /blocks/blocks.0/blocks.0.0/conv/Conv: 392.000 KB
+ • Akida to CPU at layer node_Conv_1: 36.750 KB
+ • CPU to Akida at layer /blocks/blocks.2/blocks.2.0/pw_proj/conv/Conv: 36.750 KB
+ • Akida to CPU at layer /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv: 18.375 KB
+ • CPU to Akida at layer /blocks/blocks.3/blocks.3.0/pw_exp/conv/Conv: 18.375 KB
+ • Akida to CPU at layer /blocks/blocks.3/blocks.3.0/dw_mid/conv/Conv: 27.562 KB
+ • CPU to Akida at layer /blocks/blocks.3/blocks.3.0/pw_proj/conv/Conv: 27.562 KB
+ • Akida to CPU at layer /blocks/blocks.4/blocks.4.0/conv/Conv: 0.938 KB
+ • CPU to Akida at layer /classifier/Gemm: 1.250 KB
+ • Akida to CPU at layer /classifier/Gemm: 3.906 KB
+</pre></div>
+</div>
+<p>The conversion algorithm knows the resource limitations, so it now avoids converting parts
+that do not fit on the device. That is why there are more incompatibilities (the node that was too
+big to fit on 6-node device will run on CPU), but operations that were mapped on the device can be
+accelerated by it.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the inference model</span>
+<span class="n">infer_model</span> <span class="o">=</span> <span class="n">hybrid_model</span><span class="o">.</span><span class="n">generate_inference_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="save-the-inference-model">
+<h3>3.2. Save the inference model<a class="headerlink" href="#save-the-inference-model" title="Link to this heading"></a></h3>
+<p>Once generated, the inference model can be saved for deployment.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">inference_model_path</span> <span class="o">=</span> <span class="s2">&quot;model_inference.onnx&quot;</span>
+<span class="n">onnx</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">infer_model</span><span class="p">,</span> <span class="n">inference_model_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The inference model is a standard ONNX model that can be executed using ONNXRuntime. It’s graph
+can be visualised with <a class="reference external" href="https://netron.app">Netron</a> and it will show <code class="docutils literal notranslate"><span class="pre">AkidaOp</span></code> nodes that are
+custom wrappers for all Akida-accelerated submodels. It will also contain <code class="docutils literal notranslate"><span class="pre">Transpose</span></code> nodes
+between ONNX and AkidaOp operators are automatically inserted to handle the different data layout
+conventions (NCHW for ONNX, NHWC for Akida).</p>
+</section>
+<section id="perform-an-inference">
+<h3>3.3. Perform an inference<a class="headerlink" href="#perform-an-inference" title="Link to this heading"></a></h3>
+<p>The inference model can be executed using ONNXRuntime and the provided <a class="reference external" href="../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession">AkidaInferenceSession</a>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida.inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">AkidaInferenceSession</span>
+
+<span class="c1"># Generate random input samples with shape (batch_size, channels, height, width)</span>
+<span class="n">input_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Prepare and run inference</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">AkidaInferenceSession</span><span class="p">(</span><span class="n">inference_model_path</span><span class="p">)</span>
+<span class="n">input_name</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="n">input_name</span><span class="p">:</span> <span class="n">input_samples</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output shape: </span><span class="si">{</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Output shape: (1, 1000)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h2>5. Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>The onnx2akida workflow enables you to:</p>
+<ol class="arabic simple">
+<li><p><strong>Analyze</strong> any ONNX model for Akida compatibility</p></li>
+<li><p><strong>Identify</strong> which operations can be accelerated on Akida hardware</p></li>
+<li><p><strong>Generate</strong> hybrid models that combine Akida acceleration with standard ONNX operators</p></li>
+<li><p><strong>Deploy</strong> optimized inference models using ONNXRuntime</p></li>
+</ol>
+<p>This approach maximizes hardware acceleration while maintaining full model functionality,
+even when only portions of the model are Akida-compatible.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 22.674 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-0-global-workflow-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/760d542b3c76090266d36acf0a686630/plot_0_global_workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_global_workflow.ipynb</span></code></a></p>
@@ -168,6 +573,7 @@ to download the full example code.</p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
 </section>
 
 
