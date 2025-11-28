@@ -1,5 +1,5 @@
 # examples dependencies
-optimum[exporters]<2.0.0
+optimum-onnx
 timm
 
 # onnx2akida package

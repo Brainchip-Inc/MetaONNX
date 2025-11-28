@@ -74,6 +74,9 @@ print(f"Model has {len(model.graph.node)} nodes.")
 # The main entry point is the `convert <../../api_reference/onnx2akida_apis.html#onnx2akida.convert>`__
 # function, which analyzes the ONNX model and returns both a `HybridModel
 # <../../api_reference/onnx2akida_apis.html#hybridmodel>`__ and detailed compatibility information.
+# The `input_shape` parameter specifies the expected input dimensions for the model. Models can be
+# exported with a dynamic shape, but quantization and later Akida conversion and mapping need all
+# input dimensions to be fixed.
 
 from onnx2akida import convert
 
@@ -101,8 +104,8 @@ print_report(compatibility_info, hybrid_model)
 # The report shows:
 #
 # - The list of incompatibles operation types,
-# - The list of incomptibilities indexed by node and at which stage (quantization, conversion,
-#   mapping) an incompatibility was found and why,
+# - The list of incompatibilities indexed by node and by stage (quantization, conversion, mapping)
+#   indicating where an incompatibility was found and why,
 # - Overall compatibility percentage,
 # - The memory report for Akida to CPU transfers.
 
