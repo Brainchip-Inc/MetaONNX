@@ -112,14 +112,3 @@ If a model uses dynamic input shapes, the input shape must be specified:
 .. code-block:: bash
 
     onnx2akida -m model.onnx -s model_tagged.onnx --input_shape 3,224,224
-
-onnx2akida-device CLI
-~~~~~~~~~~~~~~~~~~~~~
-
-To estimate the minimum Akida device configuration required for an ONNX model:
-
-.. code-block:: bash
-
-    onnx2akida-device -m model.onnx
-
-A more detailed explanation on Device and Mapping will be covered in an upcoming tutorial.

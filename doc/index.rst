@@ -47,8 +47,8 @@ MetaONNX is based on the **onnx2akida** Python package installed from the `PyPI
    * **device estimation tools** - determines the minimum Akida hardware configuration
      required for a given model,
 
-   * **developer-friendly APIs** - Python API and CLI tools (`onnx2akida`,
-     `onnx2akida-device`) integrated with ONNX Runtime for seamless deployment workflows.
+   * **developer-friendly APIs** - Python API and CLI tools (`onnx2akida`) integrated with ONNX
+     Runtime for seamless deployment workflows.
 
 
 The onnx2akida toolkit works with models from any framework that supports ONNX export,
