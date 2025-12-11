@@ -216,7 +216,7 @@ outputs = session.run(None, {input_name: input_samples})
 print(f"Output shape: {outputs[0].shape}")
 
 ######################################################################
-# 5. Summary
+# 4. Summary
 # ~~~~~~~~~~
 #
 # The onnx2akida workflow enables you to:
