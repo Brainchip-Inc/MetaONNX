@@ -131,7 +131,7 @@ ultimate_replacements = {
 # Forbidden for url)
 linkcheck_ignore = [
     "./.*", "../.*",
-    "https://github.com/Brainchip-Inc/MetaONNX",
+    "https://onnx.brainchip.com",
 ]
 
 # Timeout for link checking in seconds

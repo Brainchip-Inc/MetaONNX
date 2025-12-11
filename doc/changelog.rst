@@ -21,5 +21,5 @@ MetaONNX Beta
 Beta releases are not intended for production use and may be unstable. They are provided to allow
 users to test new features and provide feedback.
 
-- Beta releases are available at https://brainchip-inc.github.io/MetaONNX/beta/
+- Beta releases are available at https://onnx.brainchip.com/beta
 - Related packages are to be downloaded from https://data.brainchip.com/metaonnx_beta/
