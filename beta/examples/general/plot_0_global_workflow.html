@@ -244,8 +244,8 @@ Calibrating with 1/1.0 samples
 [INFO] Searching sequences... done
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.25it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.25it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.37it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.37it/s]
 /usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
@@ -293,8 +293,8 @@ Node (type)
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting:  60%|██████    | 3/5 [00:00&lt;00:00, 29.67it/s]
-Converting: 100%|██████████| 5/5 [00:00&lt;00:00,  7.91it/s]
+Converting:  80%|████████  | 4/5 [00:00&lt;00:00,  6.36it/s]
+Converting: 100%|██████████| 5/5 [00:00&lt;00:00,  7.94it/s]
 </pre></div>
 </div>
 </section>
@@ -404,8 +404,8 @@ Calibrating with 1/1.0 samples
 [INFO] Searching sequences... done
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.50it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.50it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.47it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.47it/s]
 /usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
@@ -462,7 +462,7 @@ Node (type)
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting:  71%|███████▏  | 5/7 [00:00&lt;00:00, 25.11it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_head/Conv because of a dequantizer. The end of the graph is ignored:
+Converting:  71%|███████▏  | 5/7 [00:00&lt;00:00, 25.41it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_head/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
 ===================================================
@@ -472,7 +472,7 @@ Node (type)
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting: 100%|██████████| 7/7 [00:00&lt;00:00, 12.26it/s]
+Converting: 100%|██████████| 7/7 [00:00&lt;00:00, 12.35it/s]
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
@@ -559,7 +559,7 @@ conventions (NCHW for ONNX, NHWC for Akida).</p>
 </ol>
 <p>This approach maximizes hardware acceleration while maintaining full model functionality,
 even when only portions of the model are Akida-compatible.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 22.618 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 22.431 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-0-global-workflow-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/760d542b3c76090266d36acf0a686630/plot_0_global_workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_global_workflow.ipynb</span></code></a></p>
