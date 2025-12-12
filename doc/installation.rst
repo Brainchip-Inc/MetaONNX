@@ -20,9 +20,8 @@ python's pip package manager:
 
     pip install onnx2akida=={ONNX2AKIDA_VERSION}
 
-MetaONNX is also built on top of Brainchip usual set of tool included
-in `MetaTF <https://doc.brainchipinc.com/>`_, that is QuantizeML, CNN2SNN and Akida. The current
-MetaTF version used is {METATF_VERSION}.
+MetaONNX is, just as `MetaTF <https://doc.brainchipinc.com/>`_, built on top of Brainchip's usual
+set of tools that is QuantizeML, CNN2SNN and Akida.
 
 .. note::
     We recommend using virtual environment such as `Conda <https://conda.io/docs/>`_.
