@@ -122,7 +122,7 @@ print_report(compatibility_info, hybrid_model)
 # This hybrid approach allows partial acceleration even when not all operations
 # are Akida-compatible.
 #
-# .. Warning:: Inference is not possible on the `HybridModel` directly. You have to explicitely
+# .. Warning:: Inference is not possible on the `HybridModel` directly. You have to explicitly
 #              generate an inference model as shown in the next section.
 
 ######################################################################
@@ -191,7 +191,7 @@ onnx.save(infer_model, inference_model_path)
 
 #####################################################################
 # The inference model is a standard ONNX model that can be executed using ONNXRuntime. It's graph
-# can be visualised with `Netron <https://netron.app>`__ and it will show ``AkidaOp`` nodes that are
+# can be visualized with `Netron <https://netron.app>`__ and it will show ``AkidaOp`` nodes that are
 # custom wrappers for all Akida-accelerated submodels. It will also contain ``Transpose`` nodes
 # between ONNX and AkidaOp operators are automatically inserted to handle the different data layout
 # conventions (NCHW for ONNX, NHWC for Akida).
