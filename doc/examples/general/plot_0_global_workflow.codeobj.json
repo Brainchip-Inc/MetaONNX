@@ -1,0 +1,597 @@
+{
+ "AkidaInferenceSession": [
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnx2akida.inference.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnx2akida.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "AkidaInferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "InferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "InferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "InferenceSession"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "Session"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "Session"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "Session"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession"
+  }
+ ],
+ "akida.devices": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "akida",
+   "module_short": "akida",
+   "name": "devices"
+  }
+ ],
+ "compatibility_info": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.compatibility_info",
+   "module_short": "onnx2akida.compatibility_info",
+   "name": "ModelCompatibilityInfo"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "ModelCompatibilityInfo"
+  }
+ ],
+ "convert": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "convert"
+  }
+ ],
+ "devices": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "fpga_device": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "akida.core",
+   "module_short": "akida",
+   "name": "HardwareDevice"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "akida",
+   "module_short": "akida",
+   "name": "HardwareDevice"
+  }
+ ],
+ "hybrid_model": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.hybrid_model",
+   "module_short": "onnx2akida.hybrid_model",
+   "name": "HybridModel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "HybridModel"
+  }
+ ],
+ "hybrid_model.generate_inference_model": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.hybrid_model",
+   "module_short": "onnx2akida.hybrid_model",
+   "name": "HybridModel.generate_inference_model"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "HybridModel.generate_inference_model"
+  }
+ ],
+ "hybrid_model.map": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.hybrid_model",
+   "module_short": "onnx2akida.hybrid_model",
+   "name": "HybridModel.map"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "HybridModel.map"
+  }
+ ],
+ "infer_model": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx.onnx_ml_pb2",
+   "module_short": "onnx",
+   "name": "ModelProto"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx",
+   "module_short": "onnx",
+   "name": "ModelProto"
+  }
+ ],
+ "inference_model_path": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "input_name": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "input_samples": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "main_export": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "optimum.exporters.onnx",
+   "module_short": "optimum.exporters.onnx",
+   "name": "main_export"
+  }
+ ],
+ "model": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx.onnx_ml_pb2",
+   "module_short": "onnx",
+   "name": "ModelProto"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx",
+   "module_short": "onnx",
+   "name": "ModelProto"
+  }
+ ],
+ "model.graph.node": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "google._upb._message",
+   "module_short": "google._upb._message",
+   "name": "RepeatedCompositeContainer"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "google._upb",
+   "module_short": "google._upb",
+   "name": "RepeatedCompositeContainer"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "google",
+   "module_short": "google",
+   "name": "RepeatedCompositeContainer"
+  }
+ ],
+ "model_dir": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "model_path": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "np.float32": [
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "float32"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "floating"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "inexact"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "number"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "generic"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "float32"
+  }
+ ],
+ "np.random.randn": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "module.randn"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "randn"
+  }
+ ],
+ "onnx.load": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx",
+   "module_short": "onnx",
+   "name": "load"
+  }
+ ],
+ "onnx.save": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx",
+   "module_short": "onnx",
+   "name": "save"
+  }
+ ],
+ "os.path.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "outputs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "print_report": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "print_report"
+  }
+ ],
+ "session": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "AkidaInferenceSession"
+  }
+ ],
+ "session.get_inputs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "AkidaInferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "InferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "InferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "InferenceSession.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "Session.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "Session.get_inputs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "Session.get_inputs"
+  }
+ ],
+ "session.run": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida.inference",
+   "module_short": "onnx2akida.inference",
+   "name": "AkidaInferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnx2akida",
+   "module_short": "onnx2akida",
+   "name": "AkidaInferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "InferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "InferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "InferenceSession.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi.onnxruntime_inference_collection",
+   "module_short": "onnxruntime.capi.onnxruntime_inference_collection",
+   "name": "Session.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime.capi",
+   "module_short": "onnxruntime.capi",
+   "name": "Session.run"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "onnxruntime",
+   "module_short": "onnxruntime",
+   "name": "Session.run"
+  }
+ ]
+}

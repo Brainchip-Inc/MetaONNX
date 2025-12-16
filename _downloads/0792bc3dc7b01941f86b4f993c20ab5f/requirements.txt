@@ -1,0 +1,6 @@
+# examples dependencies
+optimum-onnx
+timm
+
+# onnx2akida package
+onnx2akida ~= 0.6.0

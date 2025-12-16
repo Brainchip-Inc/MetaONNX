@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API reference &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/leadlander_tag.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MetaONNX examples" href="../examples/index.html" />
+    <link rel="prev" title="User guide" href="../user_guide/onnx2akida_user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#general-examples">General examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/general/plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/general/plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API reference</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-onnx2akida">
+<span id="api-reference"></span><h1>API reference<a class="headerlink" href="#module-onnx2akida" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="onnx2akida.convert">
+<span class="sig-prename descclassname"><span class="pre">onnx2akida.</span></span><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uint8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_experimental</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_hwpr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sram_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimal_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_num_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">36</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/convert.html#convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.convert" title="Link to this definition"></a></dt>
+<dd><p>Check ONNX model compatibility with Akida and convert the model into a HybridModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>onnx.ModelProto</em>) – The ONNX model.</p></li>
+<li><p><strong>input_shape</strong> (<em>Iterable</em><em>, </em><em>optional</em>) – An iterable specifying the new model input shape
+excluding batch dimension. Defaults to None.</p></li>
+<li><p><strong>input_dtype</strong> (<em>np.dtype</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – expected model input format. If given as a string,
+should follow numpy string type requirements. Defaults to ‘uint8’.</p></li>
+<li><p><strong>enable_experimental</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enable or Disable experimental patterns context.
+Defaults to True.</p></li>
+<li><p><strong>device</strong> (<em>akida.Device</em><em>, </em><em>optional</em>) – the Akida device to map the Akida sub models.
+Defaults to None.</p></li>
+<li><p><strong>enable_hwpr</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, the device is computed assuming partial
+reconfiguration. Used when <cite>device</cite> is None. Defaults to False.</p></li>
+<li><p><strong>sram_size</strong> (<em>akida.NP.SramSize</em><em>, </em><em>optional</em>) – Size of shared SRAM available inside the mesh.
+Ignored when <cite>minimal_memory</cite> is True. Used when <cite>device</cite> is None. Defaults to None.</p></li>
+<li><p><strong>minimal_memory</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, computes and sets the minimal required
+inputs and weights memory for the device.  Used when <cite>device</cite> is None.
+Defaults to False.</p></li>
+<li><p><strong>initial_num_nodes</strong> (<em>int</em><em>, </em><em>optional</em>) – The initial number of nodes that will be used to compute
+the base device. Defaults to 36.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>converted model and
+object containing information about model compatibility.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel" title="onnx2akida.hybrid_model.HybridModel">HybridModel</a>, <a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo" title="onnx2akida.compatibility_info.ModelCompatibilityInfo">ModelCompatibilityInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="onnx2akida.print_report">
+<span class="sig-prename descclassname"><span class="pre">onnx2akida.</span></span><span class="sig-name descname"><span class="pre">print_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compatibility_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hybrid_model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/convert.html#print_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.print_report" title="Link to this definition"></a></dt>
+<dd><p>Prints a report of the model compatibility with Akida.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compatibility_info</strong> (<a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo" title="onnx2akida.compatibility_info.ModelCompatibilityInfo"><em>ModelCompatibilityInfo</em></a>) – The compatibility information.</p></li>
+<li><p><strong>hybrid_model</strong> (<a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel" title="onnx2akida.hybrid_model.HybridModel"><em>HybridModel</em></a>) – The converted hybrid model.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">onnx2akida.compatibility_info.</span></span><span class="sig-name descname"><span class="pre">ModelCompatibilityInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/compatibility_info.html#ModelCompatibilityInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo" title="Link to this definition"></a></dt>
+<dd><p>Tracks Akida compatibility of an ONNX model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>onnx.ModelProto</em>) – The ONNX model to analyze.</p>
+</dd>
+</dl>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage" title="onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compatibility_percentage</span></code></a></p></td>
+<td><p>Returns the model compatibility percentage with the Akida accelerator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities" title="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incompatibilities</span></code></a></p></td>
+<td><p>Returns a list of incompatibilities with reasons and other information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes" title="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incompatible_nodes</span></code></a></p></td>
+<td><p>Returns a list of all incompatible nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types" title="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">incompatible_op_types</span></code></a></p></td>
+<td><p>Returns a list of unique op types of incompatible nodes.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model" title="onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_tagged_model</span></code></a>(save_path)</p></td>
+<td><p>Saves a model with node op_types tagged as 'AK&lt;&gt;' for compatible nodes and 'CPU&lt;&gt;' for incompatible nodes.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compatibility_percentage</span></span><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage" title="Link to this definition"></a></dt>
+<dd><p>Returns the model compatibility percentage with the Akida accelerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>percentage of compatible nodes in the model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">incompatibilities</span></span><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of incompatibilities with reasons and other information.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;node_sequence&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cos_node&quot;</span><span class="p">,</span> <span class="s2">&quot;op_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Cos&quot;</span><span class="p">},</span>
+            <span class="o">...</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;stage&quot;</span><span class="p">:</span> <span class="s2">&quot;Quantization&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;faulty_node&quot;</span><span class="p">:</span> <span class="s2">&quot;cos_node&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Unsupported op.&quot;</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of incompatibilities with reasons and other information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">incompatible_nodes</span></span><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of all incompatible nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of nodes from all incompatible sequences.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">incompatible_op_types</span></span><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of unique op types of incompatible nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of unique op types of incompatible nodes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model">
+<span class="sig-name descname"><span class="pre">save_tagged_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/compatibility_info.html#ModelCompatibilityInfo.save_tagged_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model" title="Link to this definition"></a></dt>
+<dd><p>Saves a model with node op_types tagged as ‘AK&lt;&gt;’ for compatible nodes
+and ‘CPU&lt;&gt;’ for incompatible nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_path</strong> (<em>str</em>) – File path to save the tagged model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="hybridmodel">
+<h2>HybridModel<a class="headerlink" href="#hybridmodel" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">onnx2akida.hybrid_model.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'HybridModel'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/hybrid_model.html#HybridModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel" title="Link to this definition"></a></dt>
+<dd><p>A container for combining and managing multiple Akida and ONNX models as a single one.</p>
+<p>HybridModel allows to sequentially add Akida or ONNX models, connect their inputs and outputs,
+and manage their relationships. It provides a unified interface to access layers,
+input/output shapes and to retrieve or connect sub-models by <strong>layer name</strong>.</p>
+<p>The class ensures model integrity by checking for unique layer names and
+valid inbound connections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>models</strong> (<em>list</em><em>, </em><em>optional</em>) – list of Akida or ONNX models to initialize the hybrid model with.
+Defaults to None.</p></li>
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the hybrid model. Defaults to “HybridModel”.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Attributes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.akida_models" title="onnx2akida.hybrid_model.HybridModel.akida_models"><code class="xref py py-obj docutils literal notranslate"><span class="pre">akida_models</span></code></a></p></td>
+<td><p>Returns a list of Akida models within the hybrid model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.input_shape" title="onnx2akida.hybrid_model.HybridModel.input_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">input_shape</span></code></a></p></td>
+<td><p>Returns the hybrid model input shape.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.layers" title="onnx2akida.hybrid_model.HybridModel.layers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">layers</span></code></a></p></td>
+<td><p>Returns the hybrid model layers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.output_shape" title="onnx2akida.hybrid_model.HybridModel.output_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">output_shape</span></code></a></p></td>
+<td><p>Returns the hybrid model output shape.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.compute_data_movement" title="onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_data_movement</span></code></a>()</p></td>
+<td><p>Computes the data movement between CPU and Akida for models in the HybridModel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.generate_inference_model" title="onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_inference_model</span></code></a>([dirpath])</p></td>
+<td><p>Generates a unified ONNX inference model from all sub-models in the HybridModel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.get_layer" title="onnx2akida.hybrid_model.HybridModel.get_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_layer</span></code></a>(name)</p></td>
+<td><p>Retrieves a layer from the model by its name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel.map" title="onnx2akida.hybrid_model.HybridModel.map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">map</span></code></a>(device[, mode])</p></td>
+<td><p>Map (if possible) all akida models to a given device.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.akida_models">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">akida_models</span></span><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.akida_models" title="Link to this definition"></a></dt>
+<dd><p>Returns a list of Akida models within the hybrid model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the akida models within the hybrid model.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.compute_data_movement">
+<span class="sig-name descname"><span class="pre">compute_data_movement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/hybrid_model.html#HybridModel.compute_data_movement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.compute_data_movement" title="Link to this definition"></a></dt>
+<dd><p>Computes the data movement between CPU and Akida for models in the HybridModel.</p>
+<p>For each Akida model sequence, this method calculates:
+- The amount of data transferred from CPU to Akida.
+- The amount of data transferred from Akida to CPU.</p>
+<p>The size is computed as the product of the input or output dimensions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>a list of dictionaries, each containing :</dt><dd><ul class="simple">
+<li><p>”layer”: the Akida layer involved in the data transfer.</p></li>
+<li><p>”type”: a string indicating the direction (“CPU to Akida” or “Akida to CPU”).</p></li>
+<li><p>”size”: The size in bytes of the data movement.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.generate_inference_model">
+<span class="sig-name descname"><span class="pre">generate_inference_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/hybrid_model.html#HybridModel.generate_inference_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.generate_inference_model" title="Link to this definition"></a></dt>
+<dd><p>Generates a unified ONNX inference model from all sub-models in the HybridModel.</p>
+<p>This method combines all Akida and ONNX sub-models added to the HybridModel into a single
+ONNX model suitable for inference. It handles the conversion of Akida models to ONNX
+and connects sub-models according to their inbounds.</p>
+<p>The resulting model can be used for inferences based on <code class="docutils literal notranslate"><span class="pre">AkidaExecutionProvider</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inference_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate_inference_model</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sess</span> <span class="o">=</span> <span class="n">onnxruntime</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="n">inference_model</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">(),</span>
+<span class="gp">... </span>                                    <span class="n">providers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AkidaExecutionProvider&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">outputs</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">feeds</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirpath</strong> (<em>str</em><em>, </em><em>optional</em>) – directory path where Akida programs will be saved.
+Defaults to the current directory.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the combined ONNX model ready for inference.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>onnx.ModelProto</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.get_layer">
+<span class="sig-name descname"><span class="pre">get_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/hybrid_model.html#HybridModel.get_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.get_layer" title="Link to this definition"></a></dt>
+<dd><p>Retrieves a layer from the model by its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – the name of the layer to retrieve.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the layer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Layer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.input_shape">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.input_shape" title="Link to this definition"></a></dt>
+<dd><p>Returns the hybrid model input shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the model input shape.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.layers">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.layers" title="Link to this definition"></a></dt>
+<dd><p>Returns the hybrid model layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the model layers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MapMode.AllNps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/hybrid_model.html#HybridModel.map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.map" title="Link to this definition"></a></dt>
+<dd><p>Map (if possible) all akida models to a given device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<em>akida.Device</em>) – An Akida device.</p></li>
+<li><p><strong>mode</strong> (<em>akida.MapMode</em><em>, </em><em>optional</em>) – The mapping mode. Defaults to AllNps.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="onnx2akida.hybrid_model.HybridModel.output_shape">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#onnx2akida.hybrid_model.HybridModel.output_shape" title="Link to this definition"></a></dt>
+<dd><p>Returns the hybrid model output shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the model output shape.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="pipeline">
+<h2>Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="onnx2akida.pipeline.quantize">
+<span class="sig-prename descclassname"><span class="pre">onnx2akida.pipeline.</span></span><span class="sig-name descname"><span class="pre">quantize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uint8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/pipeline/quantize.html#quantize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.pipeline.quantize" title="Link to this definition"></a></dt>
+<dd><p>Quantizes an ONNX model, handling partial quantization and quantization errors as needed.</p>
+<p>This function attempts to quantize the entire model in one pass. If quantization fails
+due to unsupported or unquantizable nodes, it analyzes the error, splits the model at
+the problematic nodes, and recursively quantizes each sub-model. The quantized sub-models
+are then merged back into the original model graph. This approach ensures that all
+quantizable parts of the model are quantized, while gracefully handling sections that
+cannot be quantized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>Any</em>) – the ONNX model to quantize.</p></li>
+<li><p><strong>input_dtype</strong> (<em>np.dtype</em><em> or </em><em>str</em><em>, </em><em>optional</em>) – expected model input format. If given as a string,
+should follow numpy string type requirements. Defaults to ‘uint8’.</p></li>
+<li><p><strong>input_shape</strong> (<em>Iterable</em><em>, </em><em>optional</em>) – an iterable specifying the new model input shape.
+If not specified, keeps the shape. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the quantized model and the incompatibilites (optional).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any, <a class="reference internal" href="#onnx2akida.compatibility_info.ModelCompatibilityInfo" title="onnx2akida.compatibility_info.ModelCompatibilityInfo">ModelCompatibilityInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="onnx2akida.pipeline.convert_to_hybrid">
+<span class="sig-prename descclassname"><span class="pre">onnx2akida.pipeline.</span></span><span class="sig-name descname"><span class="pre">convert_to_hybrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qmodel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_hwpr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sram_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimal_memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_num_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">36</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/pipeline/convert_to_hybrid.html#convert_to_hybrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.pipeline.convert_to_hybrid" title="Link to this definition"></a></dt>
+<dd><p>Converts a quantized ONNX model into a HybridModel containing Akida and ONNX sub-models.</p>
+<p>This function splits the input quantized model into convertible sequences, attempts to convert
+and map each fully quantized sequence to an Akida model and adds it to the HybridModel.
+Sequences that cannot be converted and mapped to Akida are added on ONNX domain. The function
+also manages inbound connections between sub-models to preserve the original model’s topology.</p>
+<p>When device is not provided, a mimimal device is computed independently for each akida
+compatible model, then a common device is computed and used to map the HybridModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qmodel</strong> (<em>Any</em>) – the quantized ONNX model to convert.</p></li>
+<li><p><strong>device</strong> (<em>akida.Device</em><em>, </em><em>optional</em>) – the Akida device to map the Akida sub models.
+Defaults to None.</p></li>
+<li><p><strong>enable_hwpr</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, the device is computed assuming partial
+reconfiguration. Used when <cite>device</cite> is None. Defaults to False.</p></li>
+<li><p><strong>sram_size</strong> (<em>akida.NP.SramSize</em><em>, </em><em>optional</em>) – Size of shared SRAM available inside the mesh.
+Ignored when <cite>minimal_memory</cite> is True. Used when <cite>device</cite> is None. Defaults to None.</p></li>
+<li><p><strong>minimal_memory</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, computes and sets the minimal required
+inputs and weights memory for the device.  Used when <cite>device</cite> is None.
+Defaults to False.</p></li>
+<li><p><strong>initial_num_nodes</strong> (<em>int</em><em>, </em><em>optional</em>) – the initial number of nodes with which to compute
+the base device. Used when <cite>device</cite> is None. Defaults to 36.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a hybrid model containing Akida and ONNX sub-models.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#onnx2akida.hybrid_model.HybridModel" title="onnx2akida.hybrid_model.HybridModel">HybridModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="inference">
+<h2>Inference<a class="headerlink" href="#inference" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="onnx2akida.inference.AkidaInferenceSession">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">onnx2akida.inference.</span></span><span class="sig-name descname"><span class="pre">AkidaInferenceSession</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sess_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">providers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/onnx2akida/inference/inference.html#AkidaInferenceSession"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#onnx2akida.inference.AkidaInferenceSession" title="Link to this definition"></a></dt>
+<dd><p>A wrapper around onnxruntime.InferenceSession that ensures the Akida custom ops
+library is registered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_or_bytes</strong> (<em>str</em><em> or </em><em>bytes</em>) – path to the ONNX model file or the model in bytes.</p></li>
+<li><p><strong>sess_options</strong> (<em>ort.SessionOptions</em><em>, </em><em>optional</em>) – session options for the inference session.
+Defaults to None.</p></li>
+<li><p><strong>providers</strong> (<em>list</em><em>, </em><em>optional</em>) – list of execution providers. Defaults to None.</p></li>
+<li><p><strong>provider_options</strong> (<em>list</em><em>, </em><em>optional</em>) – list of provider options. Defaults to None.</p></li>
+<li><p><strong>**kwargs</strong> – additional keyword arguments for the InferenceSession.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user_guide/onnx2akida_user_guide.html" class="btn btn-neutral float-left" title="User guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="MetaONNX examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

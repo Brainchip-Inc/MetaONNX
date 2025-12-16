@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script src="_static/leadlander_tag.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference/onnx2akida_apis.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#general-examples">General examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/general/plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "architecture": "mobilenetv4_conv_small",
+  "classifier": "classifier",
+  "crop_mode": "center",
+  "crop_pct": 0.875,
+  "custom_load": false,
+  "export_model_type": "mobilenetv4_conv_small",
+  "first_conv": "conv_stem",
+  "fixed_input_size": false,
+  "hf_hub_id": "timm/mobilenetv4_conv_small.e2400_r224_in1k",
+  "input_size": [
+    3,
+    224,
+    224
+  ],
+  "interpolation": "bicubic",
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "num_classes": 1000,
+  "pool_size": [
+    7,
+    7
+  ],
+  "source": "hf-hub",
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "tag": "e2400_r224_in1k",
+  "test_crop_pct": 0.95,
+  "test_input_size": [
+    3,
+    256,
+    256
+  ],
+  "transformers_version": "4.46.3"
+}

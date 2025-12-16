@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>onnx2akida.compatibility_info &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/leadlander_tag.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#general-examples">General examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">onnx2akida.compatibility_info</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for onnx2akida.compatibility_info</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># ******************************************************************************</span>
+<span class="c1"># Copyright 2025 Brainchip Holdings Ltd.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ******************************************************************************</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ModelCompatibilityInfo&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+
+<span class="n">_IncompatibleSequence</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;IncompatibleSequence&quot;</span><span class="p">,</span>
+                                   <span class="p">(</span><span class="s2">&quot;nodes&quot;</span><span class="p">,</span> <span class="s2">&quot;stage&quot;</span><span class="p">,</span> <span class="s2">&quot;faulty_node&quot;</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="ModelCompatibilityInfo">
+<a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelCompatibilityInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tracks Akida compatibility of an ONNX model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (onnx.ModelProto): The ONNX model to analyze.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">incompatible_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of all incompatible nodes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: list of nodes from all incompatible sequences.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
+            <span class="n">sequence</span><span class="o">.</span><span class="n">nodes</span> <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">incompatible_op_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of unique op types of incompatible nodes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: list of unique op types of incompatible nodes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_nodes</span><span class="p">})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compatibility_percentage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the model compatibility percentage with the Akida accelerator.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: percentage of compatible nodes in the model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">incompatible_nodes</span><span class="p">)</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="k">if</span> <span class="n">total</span> <span class="k">else</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">incompatibilities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of incompatibilities with reasons and other information.</span>
+
+<span class="sd">        Example</span>
+<span class="sd">        -------</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            [</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;node_sequence&quot;: [</span>
+<span class="sd">                        {&quot;name&quot;: &quot;cos_node&quot;, &quot;op_type&quot;: &quot;Cos&quot;},</span>
+<span class="sd">                        ...</span>
+<span class="sd">                    ],</span>
+<span class="sd">                    &quot;stage&quot;: &quot;Quantization&quot;,</span>
+<span class="sd">                    &quot;faulty_node&quot;: &quot;cos_node&quot;,</span>
+<span class="sd">                    &quot;reason&quot;: &quot;Unsupported op.&quot;</span>
+<span class="sd">                },</span>
+<span class="sd">                ...</span>
+<span class="sd">            ]</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: list of incompatibilities with reasons and other information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">incompatibilities</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="p">:</span>
+            <span class="n">sequence_desc</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;op_type&quot;</span><span class="p">:</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">sequence</span><span class="o">.</span><span class="n">nodes</span>
+            <span class="p">]</span>
+            <span class="n">incompatibilities</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;node_sequence&quot;</span><span class="p">:</span> <span class="n">sequence_desc</span><span class="p">,</span>
+                <span class="s2">&quot;stage&quot;</span><span class="p">:</span> <span class="n">sequence</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
+                <span class="s2">&quot;faulty_node&quot;</span><span class="p">:</span> <span class="n">sequence</span><span class="o">.</span><span class="n">faulty_node</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="n">sequence</span><span class="o">.</span><span class="n">reason</span>
+            <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">incompatibilities</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_incompatibility</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_sequence</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">faulty_node</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Registers an incompatibility for a given sequence of ONNX nodes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node_sequence (list[onnx.NodeProto]): The sequence of ONNX nodes that are incompatibles.</span>
+<span class="sd">            stage (str): The processing stage where the incompatibility was detected</span>
+<span class="sd">                        (e.g., &#39;Quantization&#39;, &#39;Conversion&#39;, &#39;Mapping&#39;).</span>
+<span class="sd">            faulty_node (str): The name of the node responsible for the incompatibility.</span>
+<span class="sd">            reason (str): A human-readable explanation of why the incompatibility occurred.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_IncompatibleSequence</span><span class="p">(</span><span class="n">node_sequence</span><span class="p">,</span>
+                                                                 <span class="n">stage</span><span class="p">,</span>
+                                                                 <span class="n">faulty_node</span><span class="p">,</span>
+                                                                 <span class="n">reason</span><span class="p">))</span>
+
+<div class="viewcode-block" id="ModelCompatibilityInfo.save_tagged_model">
+<a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_tagged_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Saves a model with node op_types tagged as &#39;AK&lt;&gt;&#39; for compatible nodes</span>
+<span class="sd">        and &#39;CPU&lt;&gt;&#39; for incompatible nodes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            save_path (str): File path to save the tagged model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">incompatible_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">incompatible_nodes</span>
+        <span class="n">copy_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">__deepcopy__</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">copy_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">incompatible_nodes</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="s2">&quot;AK&lt;&quot;</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">+</span> <span class="s2">&quot;&gt;&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="s2">&quot;CPU&lt;&quot;</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">+</span> <span class="s2">&quot;&gt;&quot;</span>
+        <span class="n">onnx</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="n">copy_model</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

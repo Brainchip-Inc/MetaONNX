@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>onnx2akida.pipeline.quantize &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/leadlander_tag.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#general-examples">General examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">onnx2akida.pipeline.quantize</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for onnx2akida.pipeline.quantize</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># ******************************************************************************</span>
+<span class="c1"># Copyright 2025 Brainchip Holdings Ltd.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ******************************************************************************</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;quantize&quot;</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">redirect_stdout</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ir</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">onnx_ir.passes.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">NameFixPass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime.quantization.calibrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">TensorData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantizationParams</span><span class="p">,</span> <span class="n">quantization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.graph_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">infer_partial_io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.quantize</span><span class="w"> </span><span class="kn">import</span> <span class="n">calibrate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.quantize</span><span class="w"> </span><span class="kn">import</span> <span class="n">quantize_calibrated</span> <span class="k">as</span> <span class="n">qml_quantize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">insert_rescaling</span><span class="p">,</span> <span class="n">sanitize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_onnx_random_samples</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.shape</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_model_shape</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..compatibility_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelCompatibilityInfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..tools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">ONNXExtractorModel</span><span class="p">,</span> <span class="n">ensure_model_type</span><span class="p">,</span> <span class="n">convert_model_to</span><span class="p">,</span>
+                     <span class="n">extract_model_from_tensor_names</span><span class="p">,</span> <span class="n">is_quantized</span><span class="p">,</span> <span class="n">rename_tensors</span><span class="p">,</span> <span class="n">replace_graph</span><span class="p">,</span>
+                     <span class="n">extract_nodes_from_tensor_names</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">remove_pointless_quantizers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.sequences</span><span class="w"> </span><span class="kn">import</span> <span class="n">search_cycles_on_model</span><span class="p">,</span> <span class="n">split_model_on_sequences</span>
+
+<span class="n">_WARNINGS_TO_BE_HANDLE_AS_ERRORS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;The following nodes were not quantized&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;Impossible to quantize&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_tensors_range</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates calibration tensor ranges for an ONNX model using random samples.</span>
+
+<span class="sd">    This function creates random input samples for the model and performs model calibration</span>
+<span class="sd">    to obtain the value ranges for each tensor.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (onnx.ModelProto): the ONNX model to calibrate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        TensorsData: An object containing the calibration ranges for each tensor in the model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generate the random samples.</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">generate_onnx_random_samples</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)[</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">):</span>
+        <span class="c1"># Rescale samples to [-128, 127].</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="n">samples</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">*</span> <span class="n">samples</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">samples</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">samples</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="c1"># Calibrate the model with samples.</span>
+    <span class="n">tensors_range</span> <span class="o">=</span> <span class="n">calibrate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+
+    <span class="c1"># Fill ranges that were not calibrated.</span>
+    <span class="n">fake_tensor_range</span> <span class="o">=</span> <span class="n">TensorData</span><span class="p">(</span><span class="n">lowest</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">),</span> <span class="n">highest</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">new_range</span> <span class="o">:=</span> <span class="n">node</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tensors_range</span><span class="p">:</span>
+            <span class="n">tensors_range</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">new_range</span><span class="p">]</span> <span class="o">=</span> <span class="n">fake_tensor_range</span>
+
+    <span class="c1"># Duplicate all ranges to enable quantization when introducing rescaling nodes.</span>
+    <span class="n">new_tensors</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tensors_range</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rescaled_name</span> <span class="o">:=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">/rescaled&quot;</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tensors_range</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="n">new_tensors</span><span class="p">[</span><span class="n">rescaled_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">tensors_range</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">new_tensors</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tensors_range</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_source_error</span><span class="p">(</span><span class="n">error_warning_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">error_warning_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">warnings</span><span class="o">.</span><span class="n">WarningMessage</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">message</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">_WARNINGS_TO_BE_HANDLE_AS_ERRORS</span><span class="p">)):</span>
+            <span class="c1"># Partial quantization occurred.</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="c1"># No error source found.</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_tensors_by_error_msg</span><span class="p">(</span><span class="n">error_msg</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="s2">&quot;node names are required.&quot;</span>
+    <span class="c1"># Search tensor to split model by specific patterns in error message.</span>
+    <span class="c1"># Note all nodes between input_names and output_names are incompatibles to quantization.</span>
+    <span class="k">if</span> <span class="s2">&quot;The following nodes were not quantized&quot;</span> <span class="ow">in</span> <span class="n">error_msg</span><span class="p">:</span>
+        <span class="c1"># Partial quantization (e.g [&#39;node1_name (node1_op)&#39;, &#39;node2_name (node2_op)&#39;, ...]):</span>
+        <span class="c1"># * search for nodes that were not quantized</span>
+        <span class="n">node_names</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&#39;(.+?) \([^\)]+\)&#39;&quot;</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">remaining_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">node_names</span><span class="p">]</span>
+        <span class="c1"># * target tensors will be the inputs in the node list.</span>
+        <span class="n">input_names</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">infer_partial_io</span><span class="p">(</span><span class="n">remaining_nodes</span><span class="p">,</span>
+                                          <span class="n">exclude</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">get_initializer_name_set</span><span class="p">()))</span>
+        <span class="c1"># Since we don&#39;t know how many nodes are incompatible, inputs are equal to outputs.</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="n">input_names</span>
+    <span class="k">elif</span> <span class="s2">&quot;Impossible to quantize&quot;</span> <span class="ow">in</span> <span class="n">error_msg</span><span class="p">:</span>
+        <span class="c1"># There was a list of nodes that did not allow to finalize the model quantization:</span>
+        <span class="c1"># (e.g. [print(node_proto1), print(node_proto2), ...])</span>
+        <span class="c1"># * search for incompatible nodes in the list</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;attribute\s*{[^}]*}&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+        <span class="n">node_names</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;name:\s*&quot;([^&quot;]+)&quot;&#39;</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span>
+        <span class="n">remaining_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">node_names</span><span class="p">]</span>
+        <span class="c1"># * split model before and after the incompatible list</span>
+        <span class="n">input_names</span><span class="p">,</span> <span class="n">output_names</span> <span class="o">=</span> <span class="n">infer_partial_io</span><span class="p">(</span>
+            <span class="n">remaining_nodes</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">get_initializer_name_set</span><span class="p">()))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node was not found in error (not handled yet): </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># Split model after first node.</span>
+        <span class="c1"># Note input_names is None to take as incompatible the nodes from graph input.</span>
+        <span class="n">input_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">input_names</span><span class="p">,</span> <span class="n">output_names</span>
+
+
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize_calibrated</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tensors_range</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">,</span> <span class="n">ensure_fully_quantized</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quantizes a model using provided calibration tensor ranges.</span>
+
+<span class="sd">    This function replicates `quantizeml.models.quantize()` avoiding sanitize and calibrate steps.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (Any): the model to quantize. An already sanitized model is expected.</span>
+<span class="sd">        tensors_range (TensorsData): calibration ranges, typically obtained from a calibration step.</span>
+<span class="sd">        input_dtype (str, optional): the data type used to quantize the inputs. Defaults to &quot;int8&quot;.</span>
+<span class="sd">        ensure_fully_quantized (bool, optional): If True, raises an error if the model is not</span>
+<span class="sd">            fully quantized. Otherwise, allows partial quantization. Defaults to True.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Any: the quantized model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Clone the model because insert_rescaling is performed inplace.</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">redirect_stdout</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()),</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="n">ensure_fully_quantized</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ensure_fully_quantized</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">_WARNINGS_TO_BE_HANDLE_AS_ERRORS</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+        <span class="c1"># Rescaling nodes must be inserted as they are transformed into InputQuantizer.</span>
+        <span class="n">insert_rescaling</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="c1"># Quantize with tensors_range and input_dtype.</span>
+        <span class="k">with</span> <span class="n">quantization</span><span class="p">(</span><span class="n">QuantizationParams</span><span class="p">(</span><span class="n">input_dtype</span><span class="o">=</span><span class="n">input_dtype</span><span class="p">)):</span>
+            <span class="n">qmodel</span> <span class="o">=</span> <span class="n">qml_quantize</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tensors_range</span><span class="o">=</span><span class="n">tensors_range</span><span class="p">)</span>
+        <span class="c1"># Rename dequantizer outputs to match with original tensor names</span>
+        <span class="c1"># (required when merging float graphs with quantized ones).</span>
+        <span class="n">tensor_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;Dequantizer&quot;</span><span class="p">:</span>
+                <span class="c1"># Rename dequantizer input to allow naming the output to its old name.</span>
+                <span class="n">tensor_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">/to_dequantize&quot;</span>
+                <span class="n">tensor_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">rename_tensors</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">tensor_map</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">convert_model_to</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">new_type</span><span class="o">=</span><span class="n">ONNXExtractorModel</span><span class="p">)</span>
+
+
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search_quantizable_sequences</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tensors_range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identify and return all quantizable sequences in a model.</span>
+
+<span class="sd">    This function iteratively splits the model into sequences of consecutive nodes. Moreover,</span>
+<span class="sd">    a sequence can contain multiple branches only if the nodes between the shared input and</span>
+<span class="sd">    its merge node are fully quantizable.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (Any): the model to split.</span>
+<span class="sd">        tensor_ranges (TensorsData, optional): calibration ranges. If not provided,</span>
+<span class="sd">            they are computed by increasing the runtime. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of onnx.ModelProto: A list of sub-models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Search cycles in the model</span>
+    <span class="n">loop_sequences</span> <span class="o">=</span> <span class="n">search_cycles_on_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Check which sub_model is fully quantizable.</span>
+    <span class="n">skip_outbounds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">tensors_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tensors_range</span> <span class="o">=</span> <span class="n">get_tensors_range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="n">loop_sequences</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">quantize_calibrated</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">tensors_range</span><span class="p">)</span>
+            <span class="c1"># Store the link between input_name and merge_node to compute sequences.</span>
+            <span class="n">skip_outbounds</span><span class="p">[</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+    <span class="c1"># Split model in sequences.</span>
+    <span class="k">return</span> <span class="n">split_model_on_sequences</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">skip_outbounds</span><span class="o">=</span><span class="n">skip_outbounds</span><span class="p">)</span>
+
+
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize_sequential</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="s1">&#39;int8&#39;</span><span class="p">,</span> <span class="n">tensors_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quantize a sequential ONNX model, handling partial quantization and errors as needed.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * This function expects a sanitized model</span>
+<span class="sd">        * This function has unexpected behavior if there are quantization errors in branches.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (Any): the ONNX model to quantize.</span>
+<span class="sd">        input_dtype (np.dtype or str, optional): expected model input format. If given as a string,</span>
+<span class="sd">            should follow numpy string type requirements. Defaults to &#39;int8&#39;.</span>
+<span class="sd">        tensor_ranges (TensorsData, optional): calibration ranges. If not provided,</span>
+<span class="sd">            they are computed by increasing the runtime. Defaults to None.</span>
+<span class="sd">        compatibility_info (ModelCompatibilityInfo, optional): an existing ModelCompatibilityInfo</span>
+<span class="sd">            object to accumulate incompatibility information during quantization.</span>
+<span class="sd">            If None, incompatibilities are not recorded. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Any, ModelCompatibilityInfo: the quantized model and the incompatibilites.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Return the empty graph.</span>
+        <span class="k">return</span> <span class="n">model</span>
+
+    <span class="c1"># Compute tensors range if needed.</span>
+    <span class="k">if</span> <span class="n">tensors_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">tensors_range</span> <span class="o">=</span> <span class="n">get_tensors_range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Analyze error source when quantizing.</span>
+    <span class="n">qparams</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">input_dtype</span><span class="o">=</span><span class="n">input_dtype</span><span class="p">,</span>
+                   <span class="n">tensors_range</span><span class="o">=</span><span class="n">tensors_range</span><span class="p">,</span>
+                   <span class="n">compatibility_info</span><span class="o">=</span><span class="n">compatibility_info</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Try to quantize the whole model, triggering partial quantization as an error.</span>
+        <span class="n">qmodel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">errors_queue</span><span class="p">:</span>
+            <span class="c1"># Quantize model with tensors_range.</span>
+            <span class="n">qmodel</span> <span class="o">=</span> <span class="n">quantize_calibrated</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">tensors_range</span><span class="p">,</span> <span class="n">input_dtype</span><span class="p">,</span>
+                                         <span class="n">ensure_fully_quantized</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># Append the error into the queue. Please note that we give higher priority to warnings,</span>
+        <span class="c1"># since they occur before errors.</span>
+        <span class="n">errors_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="c1"># If there is any source of error, continue the algorithm.</span>
+    <span class="k">if</span> <span class="n">source_error</span> <span class="o">:=</span> <span class="n">_find_source_error</span><span class="p">(</span><span class="n">errors_queue</span><span class="p">):</span>
+        <span class="c1"># Try to parse the node which produces the error.</span>
+        <span class="n">split_before</span><span class="p">,</span> <span class="n">split_after</span> <span class="o">=</span> <span class="n">_find_tensors_by_error_msg</span><span class="p">(</span><span class="n">source_error</span><span class="p">,</span> <span class="n">qmodel</span><span class="p">)</span>
+        <span class="c1"># Add nodes to info with its error message.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wrong_nodes</span> <span class="o">:=</span> <span class="n">extract_nodes_from_tensor_names</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">split_before</span><span class="p">,</span> <span class="n">split_after</span><span class="p">))</span>
+                <span class="ow">and</span> <span class="n">compatibility_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">compatibility_info</span><span class="o">.</span><span class="n">_set_incompatibility</span><span class="p">(</span><span class="n">node_sequence</span><span class="o">=</span><span class="n">wrong_nodes</span><span class="p">,</span>
+                                                    <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;Quantization&quot;</span><span class="p">,</span>
+                                                    <span class="n">faulty_node</span><span class="o">=</span><span class="n">wrong_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                    <span class="n">reason</span><span class="o">=</span><span class="n">source_error</span><span class="p">)</span>
+        <span class="c1"># Quantize nodes after &#39;split_after&#39;.</span>
+        <span class="c1"># Note input dtype changes if there are some quantized node.</span>
+        <span class="n">head_model</span> <span class="o">=</span> <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">input_names</span><span class="o">=</span><span class="n">split_after</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">qparams</span><span class="p">[</span><span class="s2">&quot;input_dtype&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;int8&#39;</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_quantized</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span>
+            <span class="n">qparams</span><span class="p">[</span><span class="s2">&quot;input_dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;int8&#39;</span>
+        <span class="n">qhead_model</span> <span class="o">=</span> <span class="n">quantize_sequential</span><span class="p">(</span><span class="n">head_model</span><span class="p">,</span> <span class="o">**</span><span class="n">qparams</span><span class="p">)</span>
+        <span class="n">replace_graph</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span>
+                      <span class="n">qhead_model</span><span class="p">,</span>
+                      <span class="n">from_tensors</span><span class="o">=</span><span class="n">split_after</span><span class="p">,</span>
+                      <span class="n">until_tensors</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">head_model</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">qmodel</span>
+
+
+<div class="viewcode-block" id="quantize">
+<a class="viewcode-back" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize">[docs]</a>
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">quantize</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="s1">&#39;uint8&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quantizes an ONNX model, handling partial quantization and quantization errors as needed.</span>
+
+<span class="sd">    This function attempts to quantize the entire model in one pass. If quantization fails</span>
+<span class="sd">    due to unsupported or unquantizable nodes, it analyzes the error, splits the model at</span>
+<span class="sd">    the problematic nodes, and recursively quantizes each sub-model. The quantized sub-models</span>
+<span class="sd">    are then merged back into the original model graph. This approach ensures that all</span>
+<span class="sd">    quantizable parts of the model are quantized, while gracefully handling sections that</span>
+<span class="sd">    cannot be quantized.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (Any): the ONNX model to quantize.</span>
+<span class="sd">        input_dtype (np.dtype or str, optional): expected model input format. If given as a string,</span>
+<span class="sd">            should follow numpy string type requirements. Defaults to &#39;uint8&#39;.</span>
+<span class="sd">        input_shape (Iterable, optional): an iterable specifying the new model input shape.</span>
+<span class="sd">            If not specified, keeps the shape. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Any, ModelCompatibilityInfo: the quantized model and the incompatibilites (optional).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Prevent requantization</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_quantized</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Requantizing a model is not supported. &quot;</span>
+                         <span class="s2">&quot;Please quantize the original float model directly.&quot;</span><span class="p">)</span>
+    <span class="c1"># Sanitize model.</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">set_model_shape</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">)</span>
+    <span class="n">qmodel</span> <span class="o">=</span> <span class="n">sanitize</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="c1"># Convert to extractor model to handle compatibility info.</span>
+    <span class="n">qmodel</span> <span class="o">=</span> <span class="n">convert_model_to</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">new_type</span><span class="o">=</span><span class="n">ONNXExtractorModel</span><span class="p">)</span>
+    <span class="c1"># Generates node names to better understand incompatibilities.</span>
+    <span class="c1"># Use onnx_ir NameFixPass to fix when there are duplicates</span>
+    <span class="n">ir_pass</span> <span class="o">=</span> <span class="n">NameFixPass</span><span class="p">()</span>
+    <span class="n">qmodel</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">ir_pass</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">))</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">ModelCompatibilityInfo</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="c1"># Compute tensors range</span>
+    <span class="n">tensors_range</span> <span class="o">=</span> <span class="n">get_tensors_range</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="c1"># Quantize each quantizable sequence independently.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[INFO] Searching sequences...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="n">search_quantizable_sequences</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">tensors_range</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">base_model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Quantizing&quot;</span><span class="p">)):</span>
+        <span class="c1"># Use input_dtype only if no node has been quantized yet.</span>
+        <span class="k">if</span> <span class="n">input_dtype</span> <span class="o">!=</span> <span class="s1">&#39;int8&#39;</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_quantized</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span>
+            <span class="n">input_dtype</span> <span class="o">=</span> <span class="s1">&#39;int8&#39;</span>
+        <span class="n">input_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">base_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">]</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">base_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">]</span>
+        <span class="c1"># Quantize the sequence.</span>
+        <span class="c1"># Note we transfer extractor to speed runtime.</span>
+        <span class="n">base_model</span> <span class="o">=</span> <span class="n">ONNXExtractorModel</span><span class="p">(</span><span class="n">base_model</span><span class="p">)</span>
+        <span class="n">base_model</span><span class="o">.</span><span class="n">extractor</span> <span class="o">=</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">extractor</span>
+        <span class="n">qbase_model</span> <span class="o">=</span> <span class="n">quantize_sequential</span><span class="p">(</span><span class="n">base_model</span><span class="p">,</span>
+                                          <span class="n">input_dtype</span><span class="p">,</span>
+                                          <span class="n">tensors_range</span><span class="p">,</span>
+                                          <span class="n">compatibility_info</span><span class="p">)</span>
+        <span class="c1"># Update the quantized sequence in the main model.</span>
+        <span class="n">replace_graph</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">qbase_model</span><span class="p">,</span> <span class="n">input_names</span><span class="p">,</span> <span class="n">output_names</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;sequence_</span><span class="si">{</span><span class="n">seq_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Remove pointless quantizers</span>
+    <span class="n">remove_pointless_quantizers</span><span class="p">(</span><span class="n">qmodel</span><span class="p">)</span>
+
+    <span class="c1"># Return a new ONNXExtractorModel to remove extractor (was not updated when quantizing</span>
+    <span class="c1"># to speed up the computation).</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ONNXExtractorModel</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">compatibility_info</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>onnx2akida.pipeline.convert_to_hybrid &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/leadlander_tag.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#general-examples">General examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">onnx2akida.pipeline.convert_to_hybrid</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for onnx2akida.pipeline.convert_to_hybrid</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># ******************************************************************************</span>
+<span class="c1"># Copyright 2025 Brainchip Holdings Ltd.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ******************************************************************************</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;convert_to_hybrid&quot;</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">akida</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">onnxscript</span><span class="w"> </span><span class="kn">import</span> <span class="n">ir</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">cnn2snn</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert</span> <span class="k">as</span> <span class="n">cnn2snn_convert</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.layers.base_layer</span><span class="w"> </span><span class="kn">import</span> <span class="n">IR_VERSION</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.sequences</span><span class="w"> </span><span class="kn">import</span> <span class="n">search_cycles_on_model</span><span class="p">,</span> <span class="n">split_model_on_sequences</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..hybrid_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">HybridModel</span><span class="p">,</span> <span class="n">get_ir_output_dtype</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..compatibility_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelCompatibilityInfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..tools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">ensure_model_type</span><span class="p">,</span> <span class="n">extract_model_from_tensor_names</span><span class="p">,</span> <span class="n">is_convertible</span><span class="p">,</span>
+                     <span class="n">find_no_initializer_inputs</span><span class="p">,</span> <span class="n">convert_model_to</span><span class="p">,</span> <span class="n">ONNXExtractorModel</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_tensors_by_error_msg</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="s2">&quot;node names are required.&quot;</span>
+    <span class="c1"># Search tensor to split model by specific patterns in error message.</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="c1"># Build a set of all node names in the model.</span>
+    <span class="n">node_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+    <span class="c1"># Create a regex pattern that matches any node name exactly.</span>
+    <span class="c1"># Note name could be closed by quotes or &#39;:&#39;.</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[\b&#39;</span><span class="se">\&quot;</span><span class="s2">]?(&quot;</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">node_names</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;)[.\b&#39;</span><span class="se">\&quot;</span><span class="s2">:]+&quot;</span><span class="p">)</span>
+    <span class="c1"># Find all node in the error message.</span>
+    <span class="n">matched_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">error_msg</span><span class="p">))</span>
+    <span class="n">target_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">matched_names</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Split model before and after target_node.</span>
+        <span class="n">input_names</span> <span class="o">=</span> <span class="n">find_no_initializer_inputs</span><span class="p">(</span><span class="n">target_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="n">target_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node was not found in error: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># Split model after first node.</span>
+        <span class="n">input_names</span> <span class="o">=</span> <span class="n">output_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">input_names</span><span class="p">,</span> <span class="n">output_names</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_inbound_names</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">oname_to_node</span><span class="p">):</span>
+    <span class="n">inbound_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">input_</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">inode</span> <span class="o">:=</span> <span class="n">oname_to_node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">input_</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">inbound_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inode</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inbound_names</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_rename_akida_input_layer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">new_input_data_name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">layer_type</span> <span class="o">==</span> <span class="n">akida</span><span class="o">.</span><span class="n">LayerType</span><span class="o">.</span><span class="n">InputData</span><span class="p">:</span>
+        <span class="n">model_dict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">model_dict</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_input_data_name</span>
+        <span class="c1"># Rename next layer with the new input data name.</span>
+        <span class="n">model_dict</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;inbounds&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_input_data_name</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">akida</span><span class="o">.</span><span class="n">model_from_dict</span><span class="p">(</span><span class="n">model_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_transpose_model</span><span class="p">(</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">ttype</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_first</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">input_shape</span><span class="p">)),</span> <span class="nb">type</span><span class="o">=</span><span class="n">ttype</span><span class="p">)</span>
+    <span class="n">tape</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">tape</span><span class="o">.</span><span class="n">Tape</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[],</span> <span class="n">nodes</span><span class="o">=</span><span class="p">[],</span>
+                                 <span class="n">opset_imports</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;transpose&quot;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Expand inputs to match with 4D shape.</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="n">channel_first</span> <span class="k">else</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">ir_shape</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">initializer</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;int64&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/shape&quot;</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="s2">&quot;Reshape&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">ir_shape</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Permute channels.</span>
+        <span class="n">perm</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">AttrInt64s</span><span class="p">(</span><span class="s2">&quot;perm&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">channel_first</span> <span class="k">else</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="s2">&quot;Transpose&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;perm&quot;</span><span class="p">:</span> <span class="n">perm</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="c1"># Build the model.</span>
+    <span class="n">tape</span><span class="o">.</span><span class="n">graph_like</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">tape</span><span class="o">.</span><span class="n">graph_like</span><span class="p">,</span> <span class="n">ir_version</span><span class="o">=</span><span class="n">IR_VERSION</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">onnx</span><span class="o">.</span><span class="n">shape_inference</span><span class="o">.</span><span class="n">infer_shapes</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">ir_model</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_flatten_model</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">):</span>
+    <span class="n">input_shape</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[N, </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ak_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">])</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">output_shape</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[N, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">)</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="n">dtype</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">))</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s2">&quot;int&quot;</span> <span class="ow">in</span> <span class="n">dtype</span><span class="p">,</span> <span class="s2">&quot;Only integer models are allowed.&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse_model</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt; ir_version: 10, opset_import: [&quot;&quot; : 15] &gt;</span>
+<span class="s2">            flatten (</span><span class="si">{</span><span class="n">dtype</span><span class="si">}{</span><span class="n">input_shape</span><span class="si">}</span><span class="s2"> X) =&gt; (</span><span class="si">{</span><span class="n">dtype</span><span class="si">}{</span><span class="n">output_shape</span><span class="si">}</span><span class="s2"> Y)</span><span class="se">{{</span><span class="s2">Y = Flatten(X)</span><span class="se">}}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/flatten&quot;</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_add_submodel</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">sub_model</span><span class="p">,</span> <span class="n">inbound_names</span><span class="p">):</span>
+    <span class="c1"># Check if sub_model requires transpose nodes.</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">iname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inbound_names</span><span class="p">):</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">hybrid_model</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="n">iname</span><span class="p">)</span>
+        <span class="n">transpose_params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/transpose&quot;</span><span class="p">}</span>
+        <span class="n">layer_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ly</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="n">hybrid_model</span><span class="o">.</span><span class="n">layers</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+                <span class="c1"># Nothing to do: links between Akida models are possible.</span>
+                <span class="k">continue</span>
+            <span class="c1"># Define parameters to create transpose.</span>
+            <span class="n">transpose_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">,</span>
+                                         <span class="n">ttype</span><span class="o">=</span><span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">layer</span><span class="p">),</span>
+                                         <span class="n">channel_first</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">):</span>
+                <span class="c1"># Nothing to do: links between ONNX models are possible.</span>
+                <span class="k">continue</span>
+            <span class="c1"># Define parameters to create transpose.</span>
+            <span class="n">transpose_params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+                                         <span class="n">ttype</span><span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                                         <span class="n">channel_first</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+        <span class="c1"># Create a new transpose if it does not exist (avoiding creating pointless transpose).</span>
+        <span class="k">if</span> <span class="n">transpose_params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">layer_names</span><span class="p">:</span>
+            <span class="n">hybrid_model</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">_get_transpose_model</span><span class="p">(</span><span class="o">**</span><span class="n">transpose_params</span><span class="p">),</span> <span class="p">[</span><span class="n">iname</span><span class="p">])</span>
+        <span class="c1"># Update inbound with new transpose.</span>
+        <span class="n">inbound_names</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">transpose_params</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Insert sub_model in hybrid model.</span>
+    <span class="n">hybrid_model</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">inbound_names</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cnn2snn_convert_and_map</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">input_data_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates an Akida model based on an ONNX quantizeml model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (obj:`onnx.ModelProto`): a ONNX model to convert.</span>
+<span class="sd">        device (akida.Device, optional): the Akida device to map the Akida sub models.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        input_data_name (str, optional): fix InputData name. Defaults to None.</span>
+<span class="sd">        device_kwargs (dict, optional): parameters for computing device if device = None.</span>
+<span class="sd">            Defaults to {}.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        akida.Model: the generated Akida model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">akida_model</span> <span class="o">=</span> <span class="n">cnn2snn_convert</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Rename InputData if required.</span>
+    <span class="k">if</span> <span class="n">input_data_name</span><span class="p">:</span>
+        <span class="n">akida_model</span> <span class="o">=</span> <span class="n">_rename_akida_input_layer</span><span class="p">(</span><span class="n">akida_model</span><span class="p">,</span> <span class="n">input_data_name</span><span class="p">)</span>
+
+    <span class="c1"># Compute device.</span>
+    <span class="n">map_on_device</span> <span class="o">=</span> <span class="n">akida</span><span class="o">.</span><span class="n">compute_min_device</span><span class="p">(</span>
+        <span class="n">akida_model</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">)</span> <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">device</span>
+
+    <span class="c1"># Map model.</span>
+    <span class="n">akida_model</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">map_on_device</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">akida</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">MapMode</span><span class="o">.</span><span class="n">Minimal</span><span class="p">,</span> <span class="n">hw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Check all sequences were mapped in hardware.</span>
+    <span class="k">if</span> <span class="n">sw</span> <span class="o">:=</span> <span class="p">[</span><span class="n">seq</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">akida_model</span><span class="o">.</span><span class="n">sequences</span> <span class="k">if</span> <span class="n">seq</span><span class="o">.</span><span class="n">backend</span> <span class="o">!=</span> <span class="n">akida</span><span class="o">.</span><span class="n">BackendType</span><span class="o">.</span><span class="n">Hardware</span><span class="p">]:</span>
+        <span class="c1"># Throws error on the first SW sequence in a different format:</span>
+        <span class="c1"># 1. If it is the first sequence, raise native error.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">first_sequence</span> <span class="o">:=</span> <span class="n">sw</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="n">akida_model</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">akida_model</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">map_on_device</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">akida</span><span class="o">.</span><span class="n">MapMode</span><span class="o">.</span><span class="n">Minimal</span><span class="p">,</span> <span class="n">hw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># 2. Show sequence location on the model, allowing to find it by the search node algorithm.</span>
+        <span class="n">passes</span> <span class="o">=</span> <span class="n">first_sequence</span><span class="o">.</span><span class="n">passes</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">passes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">passes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: &quot;</span>
+                           <span class="s2">&quot;could not find a compatible sequence.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">akida_model</span>
+
+
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search_convertible_sequences</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identify and return all fully convertible sequences in a quantized model.</span>
+
+<span class="sd">    This function analyzes the model graph to find cycles (loops) and filter out them when</span>
+<span class="sd">    they are not fully convertible. Finally, the function splits the model into sequences</span>
+<span class="sd">    returning a list of sub-models that are suitable for conversion.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model (Any): the quantized ONNX model to analyze.</span>
+<span class="sd">        device (akida.Device, optional): the Akida device to map the Akida sub models.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        device_kwargs (dict, optional): parameters for computing device if device = None.</span>
+<span class="sd">            Defaults to {}.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: a list of ONNX sub-models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Search cycles in the model.</span>
+    <span class="n">loop_sequences</span> <span class="o">=</span> <span class="n">search_cycles_on_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Process cycles in several steps:</span>
+    <span class="n">filtered_loop_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="n">loop_sequences</span><span class="p">:</span>
+        <span class="c1"># * removes non-quantized cycles completely</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="c1"># * remove cycles with full branches (non-mappable)</span>
+        <span class="n">merged_node</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">graph_input_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">merged_node</span><span class="o">.</span><span class="n">input</span><span class="p">[:])</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">graph_input_names</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">filtered_loop_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_model</span><span class="p">)</span>
+    <span class="c1"># * merge all &#39;sequential&#39; cycles</span>
+    <span class="c1"># Note we can compare cycles by index since search_cycles returns them in topological order.</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_loop_sequences</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">first_sub_model</span> <span class="o">=</span> <span class="n">filtered_loop_sequences</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">second_sub_model</span> <span class="o">=</span> <span class="n">filtered_loop_sequences</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">first_sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">second_sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">new_model</span> <span class="o">=</span> <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
+                                                            <span class="p">[</span><span class="n">first_sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+                                                            <span class="p">[</span><span class="n">second_sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+                <span class="n">new_model</span> <span class="o">=</span> <span class="n">convert_model_to</span><span class="p">(</span><span class="n">new_model</span><span class="p">,</span> <span class="n">new_type</span><span class="o">=</span><span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">filtered_loop_sequences</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">new_model</span><span class="p">)</span>
+                <span class="n">filtered_loop_sequences</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">first_sub_model</span><span class="p">)</span>
+                <span class="n">filtered_loop_sequences</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">second_sub_model</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Check which sub_model is fully convertible.</span>
+    <span class="n">skip_outbounds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">inames_to_nodes</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">input_name_to_nodes</span><span class="p">()</span>
+    <span class="n">onames_to_node</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output_name_to_node</span><span class="p">()</span>
+    <span class="n">loop_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="n">filtered_loop_sequences</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># To avoid conversion issues, cycle must contain one quantized node</span>
+            <span class="c1"># at the input and at the output. Reasons:</span>
+            <span class="c1"># - InputData cannot be a split node and</span>
+            <span class="c1"># - merge node develops into next quantized node</span>
+            <span class="n">parent_node</span> <span class="o">=</span> <span class="n">onames_to_node</span><span class="p">[</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="n">child_nodes</span> <span class="o">=</span> <span class="n">inames_to_nodes</span><span class="p">[</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">parent_node</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_convertible</span><span class="p">(</span><span class="n">child_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="k">continue</span>
+            <span class="n">new_input_name</span> <span class="o">=</span> <span class="n">find_no_initializer_inputs</span><span class="p">(</span><span class="n">parent_node</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_output_name</span> <span class="o">:=</span> <span class="p">[</span><span class="n">n</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">child_nodes</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># We avoid converting cycles with multiple outputs.</span>
+                <span class="k">continue</span>
+            <span class="n">model_to_convert</span> <span class="o">=</span> <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
+                                                               <span class="n">new_input_name</span><span class="p">,</span>
+                                                               <span class="n">new_output_name</span><span class="p">)</span>
+            <span class="n">cnn2snn_convert_and_map</span><span class="p">(</span><span class="n">model_to_convert</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Store the link between input_name and merge_node to compute sequences.</span>
+            <span class="n">loop_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model_to_convert</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">skip_outbounds</span><span class="p">[</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="c1"># Split model in sequences.</span>
+    <span class="n">base_sequences</span> <span class="o">=</span> <span class="n">split_model_on_sequences</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">skip_outbounds</span><span class="o">=</span><span class="n">skip_outbounds</span><span class="p">)</span>
+
+    <span class="c1"># Verify sequences are fully convertible. If this is not the case, divide the sub_models</span>
+    <span class="c1"># based on loop_sequences.</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">base_sequences</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sub_model</span> <span class="o">=</span> <span class="n">base_sequences</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cnn2snn_convert_and_map</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">target_loop</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">loop_model</span> <span class="ow">in</span> <span class="n">loop_sequences</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">n</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">loop_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">):</span>
+                        <span class="n">target_loop</span> <span class="o">=</span> <span class="n">loop_model</span>
+                        <span class="k">break</span>
+
+                <span class="c1"># Split sub_model with target_loop to ensure that at least it is convertible.</span>
+                <span class="k">if</span> <span class="n">target_loop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">edges_to_split</span> <span class="o">=</span> <span class="p">((</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">target_loop</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="n">target_loop</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">output</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">input_</span><span class="p">,</span> <span class="n">output_</span> <span class="ow">in</span> <span class="n">edges_to_split</span><span class="p">:</span>
+                        <span class="n">input_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">input_</span><span class="p">]</span>
+                        <span class="n">output_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">output_</span><span class="p">]</span>
+                        <span class="n">e_model</span> <span class="o">=</span> <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_names</span><span class="p">,</span> <span class="n">output_names</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">e_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="c1"># Add extracted model into the queue to analyze if it contains</span>
+                            <span class="c1"># another loop_sequence in next iterations.</span>
+                            <span class="n">base_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+                    <span class="c1"># Replace sub_model by target_loop (model to add in sequences list).</span>
+                    <span class="n">sub_model</span> <span class="o">=</span> <span class="n">target_loop</span>
+        <span class="n">sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sequences</span>
+
+
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_sequential</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">oname_to_node</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">compatibility_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively converts a quantized ONNX model into a HybridModel.</span>
+
+<span class="sd">    This function attempts to convert the provided quantized ONNX model into an Akida model using</span>
+<span class="sd">    `cnn2snn.convert`. If the conversion fails, it splits the model in several ones and recursively</span>
+<span class="sd">    tries to convert each sequence independently. Convertible sequences are added as Akida models,</span>
+<span class="sd">    while non-convertible ones are retained as ONNX models within the HybridModel.</span>
+
+<span class="sd">    The function also manages necessary input/output format conversions (e.g., transpose) to ensure</span>
+<span class="sd">    compatibility between models.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qmodel (Any): the quantized ONNX model to convert.</span>
+<span class="sd">        device (akida.Device, optional): the Akida device to map the Akida sub models.</span>
+<span class="sd">            If not present, compute one. Defaults to None.</span>
+<span class="sd">        hybrid_model (HybridModel, optional): an existing HybridModel to which sub-models</span>
+<span class="sd">            will be added. If None, a new HybridModel is created. Defaults to None.</span>
+<span class="sd">        oname_to_node (dict, optional): a mapping from output tensor names to ONNX nodes.</span>
+<span class="sd">            If None, it is initialized from the provided qmodel. Defaults to None.</span>
+<span class="sd">        compatibility_info (ModelCompatibilityInfo, optional): an existing ModelCompatibilityInfo</span>
+<span class="sd">            object to accumulate incompatibility information during conversion and mapping.</span>
+<span class="sd">            If None, incompatibilities are not recorded. Defaults to None.</span>
+<span class="sd">        device_kwargs (dict, optional): parameters for computing device if device = None.</span>
+<span class="sd">            Defaults to {}.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        HybridModel: a hybrid model containing both Akida and ONNX sub-models, with appropriate</span>
+<span class="sd">            format conversions and connections to preserve the original model&#39;s topology.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_compatibility_info</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">ex</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">compatibility_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Nothing to record.</span>
+            <span class="k">return</span>
+        <span class="n">reason</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">),</span> <span class="s2">&quot;Mapping&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;Cannot convert&quot;</span> <span class="ow">in</span> <span class="n">reason</span><span class="p">:</span>
+            <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;Conversion&quot;</span>
+            <span class="n">reason</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">__cause__</span><span class="p">)</span>
+        <span class="n">node_sequence</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()[:]</span>
+        <span class="n">compatibility_info</span><span class="o">.</span><span class="n">_set_incompatibility</span><span class="p">(</span><span class="n">node_sequence</span><span class="o">=</span><span class="n">node_sequence</span><span class="p">,</span>
+                                                <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span>
+                                                <span class="n">faulty_node</span><span class="o">=</span><span class="n">node_sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">oname_to_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">oname_to_node</span> <span class="o">=</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">output_name_to_node</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">hybrid_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">hybrid_model</span> <span class="o">=</span> <span class="n">HybridModel</span><span class="p">()</span>
+    <span class="n">convert_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="n">device</span><span class="p">,</span> <span class="o">**</span><span class="n">device_kwargs</span><span class="p">}</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;oname_to_node&quot;</span><span class="p">:</span> <span class="n">oname_to_node</span><span class="p">,</span>
+              <span class="s2">&quot;compatibility_info&quot;</span><span class="p">:</span> <span class="n">compatibility_info</span><span class="p">,</span>
+              <span class="o">**</span><span class="n">convert_kwargs</span><span class="p">}</span>
+
+    <span class="c1"># Nothing to convert.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">hybrid_model</span>
+
+    <span class="c1"># Analyze error source when converting.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create a new InputData name since HybridModel cannot contain layers with duplicate names.</span>
+        <span class="n">input_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qmodel</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/InputData&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ly</span><span class="p">:</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="n">ly</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="o">.</span><span class="n">layers</span><span class="p">)))</span>
+        <span class="n">input_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">input_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">ak_model</span> <span class="o">=</span> <span class="n">cnn2snn_convert_and_map</span><span class="p">(</span>
+            <span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">input_data_name</span><span class="o">=</span><span class="n">input_name</span><span class="p">,</span> <span class="o">**</span><span class="n">convert_kwargs</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># End condition: conversion failure in single-node model.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">_add_submodel</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">_find_inbound_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">oname_to_node</span><span class="p">))</span>
+            <span class="n">_update_compatibility_info</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">hybrid_model</span>
+        <span class="c1"># Try to parse the node which produces the error.</span>
+        <span class="n">split_before</span><span class="p">,</span> <span class="n">split_after</span> <span class="o">=</span> <span class="n">_find_tensors_by_error_msg</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">qmodel</span><span class="p">)</span>
+        <span class="c1"># Split model into three parts:</span>
+        <span class="n">model_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">output_names</span><span class="o">=</span><span class="n">split_before</span><span class="p">),</span>
+            <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">split_before</span><span class="p">,</span> <span class="n">split_after</span><span class="p">),</span>
+            <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">input_names</span><span class="o">=</span><span class="n">split_after</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="c1"># Try to convert each sub-model.</span>
+        <span class="k">for</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="n">model_list</span><span class="p">:</span>
+            <span class="n">convert_sequential</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="o">=</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Add the model to the HybridModel.</span>
+        <span class="n">_add_submodel</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">ak_model</span><span class="p">,</span> <span class="n">_find_inbound_names</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">oname_to_node</span><span class="p">))</span>
+
+        <span class="c1"># Adds a flatten model if the original output is 2D since Akida outputs are 4D.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">tensor_type</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">flatten</span> <span class="o">=</span> <span class="n">_get_flatten_model</span><span class="p">(</span><span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">hybrid_model</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">flatten</span><span class="p">,</span> <span class="p">[</span><span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+
+            <span class="c1"># Update outbound names for the next model.</span>
+            <span class="n">oname_to_node</span><span class="p">[</span><span class="n">qmodel</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">flatten</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">hybrid_model</span>
+
+
+<div class="viewcode-block" id="convert_to_hybrid">
+<a class="viewcode-back" href="../../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid">[docs]</a>
+<span class="nd">@ensure_model_type</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_to_hybrid</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">enable_hwpr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">sram_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">minimal_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">initial_num_nodes</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a quantized ONNX model into a HybridModel containing Akida and ONNX sub-models.</span>
+
+<span class="sd">    This function splits the input quantized model into convertible sequences, attempts to convert</span>
+<span class="sd">    and map each fully quantized sequence to an Akida model and adds it to the HybridModel.</span>
+<span class="sd">    Sequences that cannot be converted and mapped to Akida are added on ONNX domain. The function</span>
+<span class="sd">    also manages inbound connections between sub-models to preserve the original model&#39;s topology.</span>
+
+<span class="sd">    When device is not provided, a mimimal device is computed independently for each akida</span>
+<span class="sd">    compatible model, then a common device is computed and used to map the HybridModel.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qmodel (Any): the quantized ONNX model to convert.</span>
+<span class="sd">        device (akida.Device, optional): the Akida device to map the Akida sub models.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        enable_hwpr (bool, optional): if True, the device is computed assuming partial</span>
+<span class="sd">            reconfiguration. Used when `device` is None. Defaults to False.</span>
+<span class="sd">        sram_size (akida.NP.SramSize, optional): Size of shared SRAM available inside the mesh.</span>
+<span class="sd">            Ignored when `minimal_memory` is True. Used when `device` is None. Defaults to None.</span>
+<span class="sd">        minimal_memory (bool, optional): if True, computes and sets the minimal required</span>
+<span class="sd">            inputs and weights memory for the device.  Used when `device` is None.</span>
+<span class="sd">            Defaults to False.</span>
+<span class="sd">        initial_num_nodes (int, optional): the initial number of nodes with which to compute</span>
+<span class="sd">            the base device. Used when `device` is None. Defaults to 36.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        HybridModel: a hybrid model containing Akida and ONNX sub-models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">enable_hwpr</span> <span class="ow">or</span> <span class="n">sram_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">minimal_memory</span>
+                               <span class="ow">or</span> <span class="n">initial_num_nodes</span> <span class="o">!=</span> <span class="mi">36</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">&quot;When &#39;device&#39; is provided, the parameters &#39;enable_hwpr&#39;, &#39;sram_size&#39;, &quot;</span>
+            <span class="s2">&quot;&#39;minimal_memory&#39;, and &#39;initial_num_nodes&#39; are ignored. Continuing execution.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">device_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+                         <span class="n">enable_hwpr</span><span class="o">=</span><span class="n">enable_hwpr</span><span class="p">,</span>
+                         <span class="n">sram_size</span><span class="o">=</span><span class="n">sram_size</span><span class="p">,</span>
+                         <span class="n">minimal_memory</span><span class="o">=</span><span class="n">minimal_memory</span><span class="p">,</span>
+                         <span class="n">initial_num_nodes</span><span class="o">=</span><span class="n">initial_num_nodes</span><span class="p">)</span>
+
+    <span class="c1"># Split model in (un)convertible sequences.</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="n">search_convertible_sequences</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span> <span class="o">**</span><span class="n">device_params</span><span class="p">)</span>
+
+    <span class="c1"># Sort sequences topologically.</span>
+    <span class="n">sequences</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">nodes</span><span class="p">()[:]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="c1"># Convert sequences into Akida (when possible) and add them to the HybridModel.</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">HybridModel</span><span class="p">()</span>
+    <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">ModelCompatibilityInfo</span><span class="p">(</span><span class="n">qmodel</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">oname_to_node</span> <span class="o">=</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">output_name_to_node</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Converting&quot;</span><span class="p">):</span>
+        <span class="n">sub_model</span> <span class="o">=</span> <span class="n">ONNXExtractorModel</span><span class="p">(</span><span class="n">sub_model</span><span class="p">)</span>
+        <span class="c1"># Convert sub_model to Akida if all nodes are convertible.</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">()):</span>
+            <span class="c1"># Note we transfer extractor to speed runtime.</span>
+            <span class="n">sub_model</span><span class="o">.</span><span class="n">extractor</span> <span class="o">=</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">extractor</span>
+            <span class="n">convert_sequential</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span>
+                               <span class="n">hybrid_model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                               <span class="n">oname_to_node</span><span class="o">=</span><span class="n">oname_to_node</span><span class="p">,</span>
+                               <span class="n">compatibility_info</span><span class="o">=</span><span class="n">compatibility_info</span><span class="p">,</span>
+                               <span class="o">**</span><span class="n">device_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Add non-convertible sub_models.</span>
+            <span class="n">_add_submodel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">_find_inbound_names</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">oname_to_node</span><span class="p">))</span>
+
+    <span class="c1"># Sort outputs to align them with quantized model order.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">_assign_outputs_order</span><span class="p">([</span><span class="n">oname_to_node</span><span class="p">[</span><span class="n">out</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">qmodel</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
+
+    <span class="c1"># Post mapping to map all Akida sub models on a common device.</span>
+    <span class="c1"># Applied only when using minimum device</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">akida</span><span class="o">.</span><span class="n">compute_common_device</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">akida</span><span class="o">.</span><span class="n">MapMode</span><span class="o">.</span><span class="n">Minimal</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">compatibility_info</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
