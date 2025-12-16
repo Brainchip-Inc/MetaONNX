@@ -244,8 +244,8 @@ Calibrating with 1/1.0 samples
 [INFO] Searching sequences... done
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.31it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.30it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.48it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.48it/s]
 /usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
@@ -273,28 +273,10 @@ Node (type)
 .
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
-/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node node_Conv_1 because of a dequantizer. The end of the graph is ignored:
- ___________________________________________________
-Node (type)
-===================================================
-node_Conv_1 (QuantizedDepthwise2DReLUScaled)
-===================================================
-.
- This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
-  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting:   0%|          | 0/5 [00:00&lt;?, ?it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_stem/Conv because of a dequantizer. The end of the graph is ignored:
- ___________________________________________________
-Node (type)
-===================================================
-/conv_stem/Conv (QuantizedInputConv2DBiasedReLUScaled)
-===================================================
-.
- This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
-  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
-
-Converting:  60%|██████    | 3/5 [00:00&lt;00:00, 29.49it/s]
-Converting: 100%|██████████| 5/5 [00:00&lt;00:00,  7.91it/s]
+Converting:   0%|          | 0/3 [00:00&lt;?, ?it/s]
+Converting:  67%|██████▋   | 2/3 [00:00&lt;00:00,  5.88it/s]
+Converting: 100%|██████████| 3/3 [00:00&lt;00:00,  8.80it/s]
 </pre></div>
 </div>
 </section>
@@ -310,21 +292,10 @@ to display a comprehensive analysis.</p>
 <span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Set of Incompatible op_types: [&#39;Cast&#39;, &#39;Conv&#39;, &#39;Mul&#39;, &#39;Relu&#39;]
-List of Incompatibilities:
- ❌ Node sequence: [node(op_type=Cast), node_1(op_type=Mul), /conv_stem/Conv(op_type=Conv), /bn1/act/Relu(op_type=Relu)]
-     • Stage: Mapping
-     • Faulty node: /conv_stem/Conv
-     • Reason: Cannot map layer &#39;/conv_stem/Conv&#39;. SameUpper padding is not yet supported.
-
-[INFO]: Percentage of nodes compatible with akida: 95.6522 %
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[INFO]: Percentage of nodes compatible with akida: 100.0000 %
 
 List of backends exchanges:
- • CPU to Akida at layer /blocks/blocks.0/blocks.0.0/conv/Conv: 392.000 KB
- • Akida to CPU at layer node_Conv_1: 36.750 KB
- • CPU to Akida at layer /blocks/blocks.2/blocks.2.0/pw_proj/conv/Conv: 36.750 KB
- • Akida to CPU at layer /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv: 18.375 KB
- • CPU to Akida at layer /blocks/blocks.3/blocks.3.0/pw_exp/conv/Conv: 18.375 KB
+ • CPU to Akida at layer /conv_stem/Conv: 147.000 KB
  • Akida to CPU at layer /classifier/Gemm: 3.906 KB
 </pre></div>
 </div>
@@ -349,7 +320,7 @@ represents a model that can contain both:</p>
 are Akida-compatible.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Inference is not possible on the <cite>HybridModel</cite> directly. You have to explicitely
+<p>Inference is not possible on the <cite>HybridModel</cite> directly. You have to explicitly
 generate an inference model as shown in the next section.</p>
 </div>
 </section>
@@ -371,7 +342,7 @@ for demonstration.</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Available devices: </span><span class="si">{</span><span class="p">[</span><span class="n">dev</span><span class="o">.</span><span class="n">desc</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">devices</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available devices: [&#39;fpga-1743&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available devices: [&#39;fpga-1766&#39;]
 </pre></div>
 </div>
 <p>Inference happens on a device, so we need to map the hybrid model onto it. This can be done using
@@ -386,7 +357,7 @@ below.</p>
 </pre></div>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Mapping failed:
- Failed to map Akida model at index 2 within &#39;akida_models&#39;. Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware component of type CNP1 available. 27 are needed but 21 are available..
+ Failed to map Akida model at index 0 within &#39;akida_models&#39;. Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware components of type CNP1 available. 27 are needed but 21 are available..
 </pre></div>
 </div>
 <p>Mapping the HybridModel onto the Akida device after conversion might fail: while some layers are
@@ -404,8 +375,8 @@ Calibrating with 1/1.0 samples
 [INFO] Searching sequences... done
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.49it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.49it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.28it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.27it/s]
 /usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
@@ -452,17 +423,8 @@ Node (type)
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting:   0%|          | 0/7 [00:00&lt;?, ?it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_stem/Conv because of a dequantizer. The end of the graph is ignored:
- ___________________________________________________
-Node (type)
-===================================================
-/conv_stem/Conv (QuantizedInputConv2DBiasedReLUScaled)
-===================================================
-.
- This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
-  warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
-
-Converting:  71%|███████▏  | 5/7 [00:00&lt;00:00, 25.23it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_head/Conv because of a dequantizer. The end of the graph is ignored:
+Converting:   0%|          | 0/7 [00:00&lt;?, ?it/s]
+Converting:  71%|███████▏  | 5/7 [00:00&lt;00:00, 27.99it/s]/usr/local/lib/python3.11/dist-packages/cnn2snn/quantizeml/onnx_conversion/model_generator.py:68: UserWarning: Conversion stops  at node /conv_head/Conv because of a dequantizer. The end of the graph is ignored:
  ___________________________________________________
 Node (type)
 ===================================================
@@ -472,28 +434,23 @@ Node (type)
  This can be expected for model heads (e.g. softmax for classification) but could also mean that processing layers were not quantized.
   warnings.warn(f&quot;Conversion stops {stop_layer_msg} because of a dequantizer. &quot;
 
-Converting: 100%|██████████| 7/7 [00:00&lt;00:00, 12.31it/s]
+Converting: 100%|██████████| 7/7 [00:00&lt;00:00, 13.13it/s]
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Set of Incompatible op_types: [&#39;Cast&#39;, &#39;Conv&#39;, &#39;Mul&#39;, &#39;Relu&#39;]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Set of Incompatible op_types: [&#39;Conv&#39;, &#39;Relu&#39;]
 List of Incompatibilities:
- ❌ Node sequence: [node(op_type=Cast), node_1(op_type=Mul), /conv_stem/Conv(op_type=Conv), /bn1/act/Relu(op_type=Relu)]
-     • Stage: Mapping
-     • Faulty node: /conv_stem/Conv
-     • Reason: Cannot map layer &#39;/conv_stem/Conv&#39;. SameUpper padding is not yet supported.
-
  ❌ Node sequence: [/conv_head/Conv(op_type=Conv), /norm_head/act/Relu(op_type=Relu)]
      • Stage: Mapping
      • Faulty node: /conv_head/Conv
-     • Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware component of type CNP1 available. 27 are needed but 24 are available.
+     • Reason: Cannot map layer &#39;/conv_head/Conv&#39;. Not enough hardware components of type CNP1 available. 27 are needed but 24 are available.
 
-[INFO]: Percentage of nodes compatible with akida: 93.4783 %
+[INFO]: Percentage of nodes compatible with akida: 97.8261 %
 
 List of backends exchanges:
- • CPU to Akida at layer /blocks/blocks.0/blocks.0.0/conv/Conv: 392.000 KB
+ • CPU to Akida at layer /conv_stem/Conv: 147.000 KB
  • Akida to CPU at layer node_Conv_1: 36.750 KB
  • CPU to Akida at layer /blocks/blocks.2/blocks.2.0/pw_proj/conv/Conv: 36.750 KB
  • Akida to CPU at layer /blocks/blocks.3/blocks.3.0/dw_start/conv/Conv: 18.375 KB
@@ -522,7 +479,7 @@ accelerated by it.</p>
 </pre></div>
 </div>
 <p>The inference model is a standard ONNX model that can be executed using ONNXRuntime. It’s graph
-can be visualised with <a class="reference external" href="https://netron.app">Netron</a> and it will show <code class="docutils literal notranslate"><span class="pre">AkidaOp</span></code> nodes that are
+can be visualized with <a class="reference external" href="https://netron.app">Netron</a> and it will show <code class="docutils literal notranslate"><span class="pre">AkidaOp</span></code> nodes that are
 custom wrappers for all Akida-accelerated submodels. It will also contain <code class="docutils literal notranslate"><span class="pre">Transpose</span></code> nodes
 between ONNX and AkidaOp operators are automatically inserted to handle the different data layout
 conventions (NCHW for ONNX, NHWC for Akida).</p>
@@ -559,7 +516,7 @@ conventions (NCHW for ONNX, NHWC for Akida).</p>
 </ol>
 <p>This approach maximizes hardware acceleration while maintaining full model functionality,
 even when only portions of the model are Akida-compatible.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 22.753 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 23.737 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-0-global-workflow-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/760d542b3c76090266d36acf0a686630/plot_0_global_workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_global_workflow.ipynb</span></code></a></p>
