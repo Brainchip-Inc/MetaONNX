@@ -9,6 +9,7 @@ Supported configurations
 * **Python versions:** 3.10 to 3.12
 * **cnn2snn version:** {CNN2SNN_VERSION}
 * **onnxruntime version:** 1.19.2
+* **pytorch version:** While not an explicit MetaTF/ONNX requirement, Pytorch versions >= 2.6 are supported. GPU support and Tensorflow dependency management are left to the user discretion.
 
 Quick installation
 ------------------
