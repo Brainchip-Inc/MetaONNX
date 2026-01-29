@@ -122,8 +122,23 @@ print_report(hybrid_model, compatibility_info)
 # This hybrid approach allows partial acceleration even when not all operations
 # are Akida-compatible.
 #
-# .. Warning:: Inference is not possible on the `HybridModel` directly. You have to explicitly
-#              generate an inference model as shown in the next section.
+# You can inspect the structure of the `HybridModel` using its `summary
+# <../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary>`__ method.
+
+print(hybrid_model.summary())
+
+######################################################################
+# Inference is possible on the `HybridModel`. This is allowed for convenience and **computing
+# quantization** impact on accuracy even before generating a deployable inference model.
+
+import numpy as np
+
+hybrid_out = hybrid_model(np.random.randn(1, 3, 224, 224).astype(np.float32))
+print(f"Example output of the hybrid model: {hybrid_out[0][0][:10]}")
+
+######################################################################
+# .. Warning:: This is a pure software simulation and does not use any Akida hardware acceleration.
+#              For deployment, an inference model needs to be generated as shown in next section.
 
 ######################################################################
 # 3. Generate inference model
@@ -203,7 +218,6 @@ onnx.save(infer_model, inference_model_path)
 # The inference model can be executed using ONNXRuntime and the provided `AkidaInferenceSession
 # <../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession>`__.
 
-import numpy as np
 from onnx2akida.inference import AkidaInferenceSession
 
 # Generate random input samples with shape (batch_size, channels, height, width)
