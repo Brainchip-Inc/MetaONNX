@@ -7,7 +7,7 @@ Supported configurations
 * **Operating systems:**
     * Any Linux variant compatible with `manylinux 2.28 <https://github.com/pypa/manylinux>`_ (Ubuntu 22.04, Ubuntu 24.04, ...)
 * **Python versions:** 3.10 to 3.12
-* **cnn2snn version:** 2.18.1
+* **cnn2snn version:** {CNN2SNN_VERSION}
 * **onnxruntime version:** 1.19.2
 
 Quick installation

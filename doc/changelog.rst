@@ -10,6 +10,11 @@ for rendering.
 Please refer to the repository `release area <https://github.com/Brainchip-Inc/MetaONNX/releases>`_
 for the full changelog.
 
+.. dropdown:: MetaONNX documentation previous versions
+   :animate: fade-in
+
+   * `MetaONNX - 0.6.0 <https://brainchip-inc.github.io/MetaONNX-0.6.0/>`_
+
 .. dropdown:: For reference, this documentation was generated using the following packages
    :animate: fade-in
 
