@@ -60,10 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_reference/onnx2akida_apis.html">API reference</a><ul>
@@ -85,18 +82,12 @@
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
@@ -158,11 +149,9 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
- | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
  | <a href="#S"><strong>S</strong></a>
  
 </div>
@@ -183,13 +172,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage">compatibility_percentage (onnx2akida.compatibility_info.ModelCompatibilityInfo property)</a>
 </li>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement">compute_data_movement() (onnx2akida.hybrid_model.HybridModel method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.convert">convert() (in module onnx2akida)</a>
+      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement">compute_data_movement() (onnx2akida.hybrid_model.HybridModel method)</a>
 </li>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid">convert_to_hybrid() (in module onnx2akida.pipeline)</a>
+      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.convert">convert() (in module onnx2akida)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -198,10 +185,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model">generate_inference_model() (onnx2akida.hybrid_model.HybridModel method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer">get_layer() (onnx2akida.hybrid_model.HybridModel method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -226,14 +209,6 @@
       <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types">incompatible_op_types (onnx2akida.compatibility_info.ModelCompatibilityInfo property)</a>
 </li>
       <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape">input_shape (onnx2akida.hybrid_model.HybridModel property)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers">layers (onnx2akida.hybrid_model.HybridModel property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -282,18 +257,14 @@
   </ul></td>
 </tr></table>
 
-<h2 id="Q">Q</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize">quantize() (in module onnx2akida.pipeline)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model">save_tagged_model() (onnx2akida.compatibility_info.ModelCompatibilityInfo method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary">summary() (onnx2akida.hybrid_model.HybridModel method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -307,7 +278,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
   </div>
 
    

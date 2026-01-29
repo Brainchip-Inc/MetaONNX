@@ -60,10 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html">API reference</a><ul>
@@ -85,18 +82,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
@@ -174,15 +165,13 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ir</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">onnx_ir.passes.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">NameFixPass</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization</span><span class="w"> </span><span class="kn">import</span> <span class="n">custom_pattern_scope</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.shape</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_model_shape</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.quantization.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">sanitize</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.compatibility_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelCompatibilityInfo</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">quantize</span><span class="p">,</span> <span class="n">convert_to_hybrid</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.tools</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">ensure_model_type</span><span class="p">,</span> <span class="n">extract_model_from_tensor_names</span><span class="p">,</span> <span class="n">convert_model_to</span><span class="p">,</span>
-                    <span class="n">experimental_context</span><span class="p">,</span> <span class="n">ONNXExtractorModel</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_custom_pattern_map</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">ensure_model_type</span><span class="p">,</span> <span class="n">convert_model_to</span><span class="p">,</span> <span class="n">ONNXExtractorModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.hybrid_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">HybridModel</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_match_qnode_on_model</span><span class="p">(</span><span class="n">qnode</span><span class="p">,</span> <span class="n">qmodel</span><span class="p">,</span> <span class="n">float_model</span><span class="p">):</span>
@@ -202,23 +191,7 @@
         <span class="n">output_name</span> <span class="o">=</span> <span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Search all nodes in float_model between inputs and outputs.</span>
-    <span class="c1"># TODO: improve this search</span>
-    <span class="k">return</span> <span class="n">extract_model_from_tensor_names</span><span class="p">(</span><span class="n">float_model</span><span class="p">,</span> <span class="n">input_names</span><span class="p">,</span> <span class="p">[</span><span class="n">output_name</span><span class="p">])</span><span class="o">.</span><span class="n">nodes</span><span class="p">()[:]</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_compatibility_info</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">compatibility</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">compatibility</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">seq_node</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">seq_node</span> <span class="ow">in</span> <span class="n">sequence</span><span class="o">.</span><span class="n">nodes</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">sequence</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_set_compatibility_info</span><span class="p">(</span><span class="n">new_sequence</span><span class="p">,</span> <span class="n">compatibility</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">new_sequence</span><span class="o">.</span><span class="n">faulty_node</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">compatibility</span><span class="o">.</span><span class="n">incompatible_nodes</span><span class="p">):</span>
-        <span class="c1"># Sequences was already added in compatibility.</span>
-        <span class="k">return</span>
-
-    <span class="c1"># Add sequence into compatibility info.</span>
-    <span class="n">compatibility</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_sequence</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">float_model</span><span class="o">.</span><span class="n">extractor</span><span class="o">.</span><span class="n">_collect_reachable_nodes</span><span class="p">(</span><span class="n">input_names</span><span class="p">,</span> <span class="p">[</span><span class="n">output_name</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="convert">
@@ -227,12 +200,12 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span>
             <span class="n">input_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">input_dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
-            <span class="n">enable_experimental</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">enable_hwpr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">sram_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">minimal_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">initial_num_nodes</span><span class="o">=</span><span class="mi">36</span><span class="p">):</span>
+            <span class="n">minimal_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check ONNX model compatibility with Akida and convert the model into a HybridModel.</span>
 
 <span class="sd">    Args:</span>
@@ -241,8 +214,11 @@
 <span class="sd">            excluding batch dimension. Defaults to None.</span>
 <span class="sd">        input_dtype (np.dtype or str, optional): expected model input format. If given as a string,</span>
 <span class="sd">            should follow numpy string type requirements. Defaults to &#39;uint8&#39;.</span>
-<span class="sd">        enable_experimental (bool, optional): Enable or Disable experimental patterns context.</span>
-<span class="sd">            Defaults to True.</span>
+<span class="sd">        samples (list of numpy arrays, optional): List of input samples to use for</span>
+<span class="sd">            calibration. If not provided, random samples will be generated. Defaults</span>
+<span class="sd">            to None.</span>
+<span class="sd">        num_samples (int, optional): Number of samples to use for calibration.</span>
+<span class="sd">            Defaults to 1.</span>
 <span class="sd">        device (akida.Device, optional): the Akida device to map the Akida sub models.</span>
 <span class="sd">            Defaults to None.</span>
 <span class="sd">        enable_hwpr (bool, optional): if True, the device is computed assuming partial</span>
@@ -252,16 +228,15 @@
 <span class="sd">        minimal_memory (bool, optional): if True, computes and sets the minimal required</span>
 <span class="sd">            inputs and weights memory for the device.  Used when `device` is None.</span>
 <span class="sd">            Defaults to False.</span>
-<span class="sd">        initial_num_nodes (int, optional): The initial number of nodes that will be used to compute</span>
-<span class="sd">            the base device. Defaults to 36.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        HybridModel, ModelCompatibilityInfo: converted model and</span>
 <span class="sd">        object containing information about model compatibility.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Check model validity.</span>
+    <span class="c1"># Check model validity with full_check=False to avoid running shape inference check. It will be</span>
+    <span class="c1"># done later at the end of set_model_shape.</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">check_model</span><span class="p">()</span>
+        <span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">check_model</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">full_check</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid ONNX model: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1"># Sanitize the model, since _check_akida_compatibility required it.</span>
@@ -274,48 +249,51 @@
     <span class="n">ir_pass</span> <span class="o">=</span> <span class="n">NameFixPass</span><span class="p">()</span>
     <span class="n">sanitized_model</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">ir_pass</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">sanitized_model</span><span class="o">.</span><span class="n">model</span><span class="p">))</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
     <span class="c1"># Quantize model.</span>
-    <span class="k">with</span> <span class="n">experimental_context</span><span class="p">(</span><span class="n">enable_experimental</span><span class="p">),</span> <span class="n">custom_pattern_scope</span><span class="p">(</span><span class="n">get_custom_pattern_map</span><span class="p">()):</span>
-        <span class="n">qmodel</span><span class="p">,</span> <span class="n">q_compatibility_info</span> <span class="o">=</span> <span class="n">quantize</span><span class="p">(</span><span class="n">sanitized_model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="n">input_dtype</span><span class="p">)</span>
+    <span class="n">qmodel</span><span class="p">,</span> <span class="n">q_compatibility_info</span> <span class="o">=</span> <span class="n">quantize</span><span class="p">(</span><span class="n">sanitized_model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="n">input_dtype</span><span class="p">,</span>
+                                            <span class="n">samples</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
 
     <span class="c1"># Convert model.</span>
     <span class="n">hybrid_model</span><span class="p">,</span> <span class="n">ak_compatibility_info</span> <span class="o">=</span> <span class="n">convert_to_hybrid</span><span class="p">(</span><span class="n">qmodel</span><span class="p">,</span>
                                                             <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
                                                             <span class="n">enable_hwpr</span><span class="o">=</span><span class="n">enable_hwpr</span><span class="p">,</span>
                                                             <span class="n">sram_size</span><span class="o">=</span><span class="n">sram_size</span><span class="p">,</span>
-                                                            <span class="n">minimal_memory</span><span class="o">=</span><span class="n">minimal_memory</span><span class="p">,</span>
-                                                            <span class="n">initial_num_nodes</span><span class="o">=</span><span class="n">initial_num_nodes</span><span class="p">)</span>
+                                                            <span class="n">minimal_memory</span><span class="o">=</span><span class="n">minimal_memory</span><span class="p">)</span>
 
     <span class="c1"># Merge compatibilities into just one.</span>
     <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">ModelCompatibilityInfo</span><span class="p">(</span><span class="n">sanitized_model</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">sanitized_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">incompatible_seq</span> <span class="o">:=</span> <span class="n">_get_compatibility_info</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">q_compatibility_info</span><span class="p">):</span>
-            <span class="c1"># Transfer incompatibility to general info.</span>
-            <span class="n">_set_compatibility_info</span><span class="p">(</span><span class="n">incompatible_seq</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">incompatible_seq</span> <span class="o">:=</span> <span class="n">_get_compatibility_info</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ak_compatibility_info</span><span class="p">):</span>
-            <span class="c1"># Match node sequence in float model before to set in general info.</span>
-            <span class="n">node_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="n">_match_qnode_on_model</span><span class="p">(</span><span class="n">qnode</span><span class="p">,</span> <span class="n">qmodel</span><span class="p">,</span> <span class="n">sanitized_model</span><span class="p">)</span>
-                             <span class="k">for</span> <span class="n">qnode</span> <span class="ow">in</span> <span class="n">incompatible_seq</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span>
-            <span class="c1"># Transfer incompatibility to general info.</span>
-            <span class="n">compatibility_info</span><span class="o">.</span><span class="n">_set_incompatibility</span><span class="p">(</span><span class="n">node_sequence</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">node_sequence</span><span class="p">,</span> <span class="p">[]),</span>
-                                                    <span class="n">stage</span><span class="o">=</span><span class="n">incompatible_seq</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
-                                                    <span class="n">faulty_node</span><span class="o">=</span><span class="n">incompatible_seq</span><span class="o">.</span><span class="n">faulty_node</span><span class="p">,</span>
-                                                    <span class="n">reason</span><span class="o">=</span><span class="n">incompatible_seq</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">q_incompatibility</span> <span class="ow">in</span> <span class="n">q_compatibility_info</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="p">:</span>
+        <span class="n">compatibility_info</span><span class="o">.</span><span class="n">_set_incompatibility</span><span class="p">(</span><span class="n">node_sequence</span><span class="o">=</span><span class="n">q_incompatibility</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
+                                                <span class="n">stage</span><span class="o">=</span><span class="n">q_incompatibility</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
+                                                <span class="n">faulty_node</span><span class="o">=</span><span class="n">q_incompatibility</span><span class="o">.</span><span class="n">faulty_node</span><span class="p">,</span>
+                                                <span class="n">reason</span><span class="o">=</span><span class="n">q_incompatibility</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c_incompatibility</span> <span class="ow">in</span> <span class="n">ak_compatibility_info</span><span class="o">.</span><span class="n">incompatible_sequences</span><span class="p">:</span>
+        <span class="c1"># Match node sequence in float model before to set in general info.</span>
+        <span class="n">node_sequence</span> <span class="o">=</span> <span class="p">[</span><span class="n">_match_qnode_on_model</span><span class="p">(</span><span class="n">qnode</span><span class="p">,</span> <span class="n">qmodel</span><span class="p">,</span> <span class="n">sanitized_model</span><span class="p">)</span>
+                         <span class="k">for</span> <span class="n">qnode</span> <span class="ow">in</span> <span class="n">c_incompatibility</span><span class="o">.</span><span class="n">nodes</span><span class="p">]</span>
+        <span class="c1"># Transfer incompatibility to general info.</span>
+        <span class="n">compatibility_info</span><span class="o">.</span><span class="n">_set_incompatibility</span><span class="p">(</span><span class="n">node_sequence</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">node_sequence</span><span class="p">,</span> <span class="p">[]),</span>
+                                                <span class="n">stage</span><span class="o">=</span><span class="n">c_incompatibility</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
+                                                <span class="n">faulty_node</span><span class="o">=</span><span class="n">c_incompatibility</span><span class="o">.</span><span class="n">faulty_node</span><span class="p">,</span>
+                                                <span class="n">reason</span><span class="o">=</span><span class="n">c_incompatibility</span><span class="o">.</span><span class="n">reason</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span></div>
 
 
 
 <div class="viewcode-block" id="print_report">
 <a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.print_report">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a report of the model compatibility with Akida.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        compatibility_info (ModelCompatibilityInfo): The compatibility information.</span>
 <span class="sd">        hybrid_model (HybridModel): The converted hybrid model.</span>
+<span class="sd">        compatibility_info (ModelCompatibilityInfo): The compatibility information.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Validate argument types for backward compatibility with versions &lt; 0.7.0</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">HybridModel</span><span class="p">)</span> <span class="ow">and</span> \
+        <span class="nb">isinstance</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">ModelCompatibilityInfo</span><span class="p">),</span> <span class="s2">&quot;Invalid arguments types.&quot;</span>
+
     <span class="c1"># Color codes</span>
     <span class="n">RESET</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span>
-    <span class="n">RED</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1;31m&quot;</span>
     <span class="n">YELLOW</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[33m&quot;</span>
     <span class="n">CYAN</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[36m&quot;</span>
     <span class="n">GREEN</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1;32m&quot;</span>
@@ -324,9 +302,9 @@
 
     <span class="k">if</span> <span class="n">incompatibilities</span><span class="p">:</span>
         <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">RED</span><span class="si">}</span><span class="s2">Set of Incompatible op_types:</span><span class="si">{</span><span class="n">RESET</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">YELLOW</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Set of incompatible op_types: </span><span class="si">{</span><span class="n">YELLOW</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">compatibility_info</span><span class="o">.</span><span class="n">incompatible_op_types</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">RED</span><span class="si">}</span><span class="s2">List of Incompatibilities:</span><span class="si">{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;List of incompatibilities:&quot;</span><span class="p">,</span>
         <span class="p">]</span>
 
         <span class="k">for</span> <span class="n">incompatibility</span> <span class="ow">in</span> <span class="n">incompatibilities</span><span class="p">:</span>
@@ -343,11 +321,16 @@
 
     <span class="nb">print</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;[INFO]: Percentage of nodes compatible with akida: &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">GREEN</span><span class="si">}{</span><span class="n">compatibility_info</span><span class="o">.</span><span class="n">compatibility_percentage</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> %</span><span class="si">{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">GREEN</span><span class="si">}{</span><span class="n">compatibility_info</span><span class="o">.</span><span class="n">compatibility_percentage</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> %</span><span class="si">{</span><span class="n">RESET</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;[INFO]: Number of mappable sequences on akida: &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">GREEN</span><span class="si">}{</span><span class="nb">len</span><span class="p">(</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">data_movement</span> <span class="o">:=</span> <span class="n">hybrid_model</span><span class="o">.</span><span class="n">compute_data_movement</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">RED</span><span class="si">}</span><span class="s2">List of backends exchanges:</span><span class="si">{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">List of backends exchanges:&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_movement</span><span class="p">:</span>
             <span class="n">size_kb</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1024</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; • </span><span class="si">{</span><span class="n">CYAN</span><span class="si">}{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2"> at layer &quot;</span>
@@ -363,7 +346,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
   </div>
 
    

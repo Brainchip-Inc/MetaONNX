@@ -63,10 +63,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#onnx2akida-cli">onnx2akida CLI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api_reference/onnx2akida_apis.html">API reference</a><ul>
@@ -88,18 +85,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
@@ -191,7 +182,7 @@ point <a class="reference external" href="../api_reference/onnx2akida_apis.html#
 <p>The returned <a class="reference external" href="../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo">compatibility_info</a>
 object contains detailed information about which parts of the model are compatible with Akida. Its content can be displayed using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_report</span>
-<span class="n">print_report</span><span class="p">(</span><span class="n">compatibility_info</span><span class="p">,</span> <span class="n">hybrid_model</span><span class="p">)</span>
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <a class="reference external" href="../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel">HybridModel</a>
@@ -230,8 +221,6 @@ The resulting hybrid ONNX model is compatible with ONNXRuntime for inference.</p
 <h2>Command line interface<a class="headerlink" href="#command-line-interface" title="Link to this heading"></a></h2>
 <p>The toolkit also provides command-line utilities for quick prototyping or users who prefer
 working outside the Python API.</p>
-<section id="onnx2akida-cli">
-<h3>onnx2akida CLI<a class="headerlink" href="#onnx2akida-cli" title="Link to this heading"></a></h3>
 <p>To generate a compatibility report for an ONNX model, the following command can be used:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>onnx2akida<span class="w"> </span>-m<span class="w"> </span>model.onnx<span class="w"> </span>-s<span class="w"> </span>model_tagged.onnx
 </pre></div>
@@ -247,7 +236,6 @@ Its purpose is to allow visualization of compatibility annotations in the
 </div>
 </section>
 </section>
-</section>
 
 
            </div>
@@ -260,7 +248,7 @@ Its purpose is to allow visualization of compatibility annotations in the
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
   </div>
 
    
