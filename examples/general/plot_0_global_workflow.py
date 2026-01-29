@@ -98,7 +98,7 @@ hybrid_model, compatibility_info = convert(model, input_shape=(3, 224, 224))
 from onnx2akida import print_report
 
 # Print detailed compatibility report
-print_report(compatibility_info, hybrid_model)
+print_report(hybrid_model, compatibility_info)
 
 ######################################################################
 # The report shows:
@@ -169,7 +169,7 @@ except RuntimeError as e:
 hybrid_model, compatibility_info = convert(model, input_shape=(3, 224, 224), device=fpga_device)
 
 ######################################################################
-print_report(compatibility_info, hybrid_model)
+print_report(hybrid_model, compatibility_info)
 
 ######################################################################
 # The conversion algorithm knows the resource limitations, so it now avoids converting parts

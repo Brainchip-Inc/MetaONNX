@@ -48,7 +48,7 @@ object contains detailed information about which parts of the model are compatib
 .. code-block:: python
 
    from onnx2akida import print_report
-   print_report(compatibility_info, hybrid_model)
+   print_report(hybrid_model, compatibility_info)
 
 The `HybridModel <../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel>`__
 object can then be used to generate a hybrid inference model containing both Akida submodels and standard
