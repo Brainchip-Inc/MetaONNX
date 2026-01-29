@@ -101,8 +101,9 @@ steps:
   - rm -rf _* examples/ api_reference/ user_guide/
   - rm *.html *.inv *.js
   - cp -R ../build/* .
-  - rm -Rf doc/ build/
   - rm -rf _sources/
+  - cd ..
+  - rm -Rf doc/ build/
   - git add .
   - git diff --quiet && git diff --staged --quiet || git commit -am "Automated - Push to beta"
   - git push origin gh-pages
@@ -119,7 +120,10 @@ steps:
   - git fetch
   - git checkout gh-pages
   - git clean -xf
+  - rm -rf _* examples/ api_reference/ user_guide/
+  - rm -f *.html *.inv *.js
   - cp -r beta/* .
+  - rm -Rf doc/ build/
   - git add .
   - git diff --quiet && git diff --staged --quiet || git commit -am 'Automated - Promote beta to prod [tag:${DRONE_TAG}]'
   - git push origin gh-pages
