@@ -92,9 +92,6 @@ Command line interface
 The toolkit also provides command-line utilities for quick prototyping or users who prefer
 working outside the Python API.
 
-onnx2akida CLI
-~~~~~~~~~~~~~~
-
 To generate a compatibility report for an ONNX model, the following command can be used:
 
 .. code-block:: bash
