@@ -1,0 +1,1241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced convert usage - Parameters explained by example &mdash; MetaONNX Examples  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c4c4e161" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/leadlander_tag.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Changelog" href="../../changelog.html" />
+    <link rel="prev" title="Global MetaONNX workflow" href="plot_0_global_workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #000000" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/MetaONNX_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#supported-configurations">Supported configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#quick-installation">Quick installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#running-examples">Running examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.print_report"><code class="docutils literal notranslate"><span class="pre">print_report()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#compatibility">Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.compatibility_percentage"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.compatibility_percentage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatibilities"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatibilities</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_nodes"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_nodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.incompatible_op_types"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.incompatible_op_types</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.compatibility_info.ModelCompatibilityInfo.save_tagged_model"><code class="docutils literal notranslate"><span class="pre">ModelCompatibilityInfo.save_tagged_model()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#hybridmodel">HybridModel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.inference.AkidaInferenceSession"><code class="docutils literal notranslate"><span class="pre">AkidaInferenceSession</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#general-examples">General examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="plot_0_global_workflow.html">Global MetaONNX workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plot_0_global_workflow.html#export-model-to-onnx-format">1. Export model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Advanced convert usage - Parameters explained by example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#preliminary-steps">1. Preliminary steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-related-parameters">2. Input-related parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#device-and-mapping-parameters">3. Device and mapping parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#virtual-device-optimization-computation">4. Virtual device optimization computation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html#metaonnx-beta">MetaONNX Beta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developer.brainchip.com/support/">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #000000" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MetaONNX Examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MetaONNX examples</a></li>
+      <li class="breadcrumb-item active">Advanced convert usage - Parameters explained by example</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-general-plot-1-detailed-convert-usage-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="advanced-convert-usage-parameters-explained-by-example">
+<span id="sphx-glr-examples-general-plot-1-detailed-convert-usage-py"></span><h1>Advanced convert usage - Parameters explained by example<a class="headerlink" href="#advanced-convert-usage-parameters-explained-by-example" title="Link to this heading"></a></h1>
+<p>This tutorial provides a parameter-by-parameter explanation of the
+<a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a>
+function. It explains what each parameter does, when it matters, and how to use it correctly, using
+small, practical examples.</p>
+<p>The goal is to help users reason about quantization, conversion and device mapping instead of
+treating <a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a> like a black
+box.</p>
+<p>The tutorial is organized into thematic sections:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Inputs and shapes</p></li>
+<li><p>Quantization-related parameters</p></li>
+<li><p>Device and mapping parameters</p></li>
+<li><p>Common pitfalls and best practices</p></li>
+</ol>
+</div></blockquote>
+<p>For this tutorial we will use the
+<a class="reference external" href="https://data.brainchip.com/models/AkidaV2/akidanet/akidanet_imagenet_224_alpha_1.h5">akidanet_imagenet_224_alpha_1</a>
+from the MetaTF model zoo, after exporting it to ONNX format.</p>
+<section id="preliminary-steps">
+<h2>1. Preliminary steps<a class="headerlink" href="#preliminary-steps" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a>
+function performs several distinct stages:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Input shape fixing and model sanitization</p></li>
+<li><p>Compatibility checks</p></li>
+<li><p>Quantization</p></li>
+<li><p>Conversion to a hybrid model</p></li>
+<li><p>Optional device-aware mapping</p></li>
+</ol>
+</div></blockquote>
+<p>The tutorial will go through the parameters that are listed below.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">convert</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>(model, input_shape=None, input_dtype=&#39;uint8&#39;, samples=None, num_samples=1, device=None, enable_hwpr=False, sram_size=None, minimal_memory=False)
+</pre></div>
+</div>
+<p>Load the model</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span>
+
+<span class="n">model_filename</span> <span class="o">=</span> <span class="s2">&quot;akidanet_imagenet_224_alpha_1.onnx&quot;</span>
+<span class="n">model_url</span> <span class="o">=</span> <span class="s2">&quot;https://data.brainchip.com/models/AkidaV2/onnx_support/akidanet_imagenet_224_alpha_1.onnx&quot;</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">model_url</span><span class="p">,</span> <span class="n">model_filename</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">model_filename</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded model with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">node</span><span class="p">)</span><span class="si">}</span><span class="s2"> nodes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Loaded model with 84 nodes
+</pre></div>
+</div>
+<p>The minimal invocation of <a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a> only
+requires the model.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">onnx2akida</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_report</span>
+
+<span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.97it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.95it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[INFO]: Percentage of nodes compatible with akida: 100.0000 %
+
+[INFO]: Number of mappable sequences on akida: 1
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+</section>
+<section id="input-related-parameters">
+<h2>2. Input-related parameters<a class="headerlink" href="#input-related-parameters" title="Link to this heading"></a></h2>
+<section id="input-shape">
+<h3>2.1 input_shape<a class="headerlink" href="#input-shape" title="Link to this heading"></a></h3>
+<p>Having a fully defined non-dynamic model input shape is mandatory for quantization
+and Akida conversion.
+<code class="docutils literal notranslate"><span class="pre">input_shape</span></code> parameter can be used to enforce shape on a model that does not fulfill this
+requirement.
+It was possible to convert without it above only because the toy model
+had fixed input dimensions (except the batch dimension which can be dynamic).
+We will use a copy of the model in which we make the input shape dynamic
+to illustrate the importance of this parameter.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">clone_model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">()</span>
+<span class="n">clone_model</span><span class="o">.</span><span class="n">CopyFrom</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">clone_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">tensor_type</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">dim</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input dimensions:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">dim_param</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dim </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">dim_param</span><span class="si">}</span><span class="s2"> (Dynamic)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dim </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">dim_value</span><span class="si">}</span><span class="s2"> (Fixed)&quot;</span><span class="p">)</span>
+
+
+<span class="n">print_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Input dimensions:
+Dim 0: unk__455 (Dynamic)
+Dim 1: 224 (Fixed)
+Dim 2: 224 (Fixed)
+Dim 3: 3 (Fixed)
+</pre></div>
+</div>
+<p>Let’s make the input shape dynamic for demonstration purposes.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">shape</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dim_param</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;dynamic_dim_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Verify the change and try converting again.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_shape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Input dimensions:
+Dim 0: unk__455 (Dynamic)
+Dim 1: dynamic_dim_0 (Dynamic)
+Dim 2: dynamic_dim_1 (Dynamic)
+Dim 3: dynamic_dim_2 (Dynamic)
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">clone_model</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Conversion failed as expected: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Conversion failed as expected: The model has a dynamic input shape, expecting &#39;samples&#39; or a fully defined  &#39;input_shape&#39; to be provided.
+</pre></div>
+</div>
+<p>If we provide input_shape (excluding batch), conversion works again.
+Note that convert expects channel-last layout (NHWC) for image data, so we provide the shape
+accordingly.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">clone_model</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00, 10.06it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+</pre></div>
+</div>
+</section>
+<section id="input-dtype">
+<h3>2.2 input_dtype<a class="headerlink" href="#input-dtype" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">input_dtype</span></code> defines the expected input type for quantization.
+It is typically either “uint8” (default value) for image data or “int8” for non-image data.
+If the model was trained with a different input range than “uint8”, specifying it here
+ensures correct quantization scaling.
+For example, since the model was trained with inputs in the range [0, 255], we can
+try converting with “int8” inputs instead. The percentage of nodes compatible with Akida drops
+to 90.9091% due to the first layers being incompatible with this input range.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.61it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.60it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
+[INFO]: Percentage of nodes compatible with akida: 100.0000 %
+
+[INFO]: Number of mappable sequences on akida: 1
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<p>However, if we try converting with “uint16” inputs, the model is 100% compatible.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_dtype</span><span class="o">=</span><span class="s2">&quot;uint16&quot;</span><span class="p">)</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.10it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.08it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+[INFO]: Percentage of nodes compatible with akida: 100.0000 %
+
+[INFO]: Number of mappable sequences on akida: 1
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<p>This shows how important it is to use the right dtype to quantize the model, following what was
+done during training.</p>
+<dl class="simple">
+<dt>DO:</dt><dd><ul class="simple">
+<li><p>Match input_dtype to the training data range</p></li>
+</ul>
+</dd>
+<dt>DON’T:</dt><dd><ul class="simple">
+<li><p>Assume default input_dtype is always correct</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="samples-and-num-samples">
+<h3>2.3 samples and num_samples<a class="headerlink" href="#samples-and-num-samples" title="Link to this heading"></a></h3>
+<p>These parameters are used to provide real calibration data for
+an accurate quantization. If not provided, random data is used for
+calibration. We won’t illustrate their use here, as they are covered in detail
+in the <a class="reference external" href="https://doc.brainchipinc.com/examples/quantization/plot_0_advanced_quantizeml.html#calibration">Quantization tutorial</a>.
+Quantized model accuracy can be evaluated on the HybridModel, see <a class="reference external" href="./plot_0_global_workflow.html#understanding-the-hybridmodel">Global workflow</a> for more details.</p>
+</section>
+</section>
+<section id="device-and-mapping-parameters">
+<h2>3. Device and mapping parameters<a class="headerlink" href="#device-and-mapping-parameters" title="Link to this heading"></a></h2>
+<p>Providing a device changes the conversion strategy itself, not just the final mapping.
+When a device is provided, conversion becomes device-aware and avoids generating Akida subgraphs
+that cannot fit. In other words, conversion will also ensure each Akida converted part will also
+map on the given device. If not, the part will be left in ONNX format.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">akida</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">akida</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00, 10.28it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.04it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.04it/s]
+
+Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;]
+List of incompatibilities:
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D(op_type=Conv), node_Clip_5(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D&#39;. Not enough hardware components of type CNP1 available. 30 are needed but 24 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D(op_type=Conv), node_Clip_7(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D&#39;. Not enough hardware components of type CNP1 available. 32 are needed but 24 are available.
+
+[INFO]: Percentage of nodes compatible with akida: 90.9091 %
+
+[INFO]: Number of mappable sequences on akida: 2
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D: 784.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise: 392.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D: 1.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 1.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<p>As shown in the report, only 90.9091% of the nodes could be mapped on the device.
+This is because some nodes could not be mapped due to insufficient resources on the
+provided device.
+e.g. “Reason: Cannot map layer
+‘StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D’.
+Not enough hardware components of type CNP1 available.
+30 are needed but 24 are available.”</p>
+<p>Note that the two convolutions that could not be mapped due to insufficient resources
+follow one another in the network and they will run consecutively on the
+host processor. Therefore, the two akida models will be formed by the nodes
+before and after these two unmapped nodes.
+If the two nodes were not consecutive, we would need 3 akida models
+to cover the whole network.</p>
+<p>It is possible to print the hybrid model summary to visualize the different
+akida models created during conversion and the unmapped nodes which form ONNX sub-models.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>                                                                                                     HybridModel Summary: HybridModel
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+Layer (type)                                                                                           Output shape    Inbounds                                                                             Data movement
+
+========================================================================================================= --- ONNX Sub-model 0 --- ========================================================================================================
+
+680264bd-f75a-4018-be4d-84937b5336db/quantizer_0 (InputQuantizer)                                      [3, 224, 224]   input                                                                                N/A
+
+======================================================================================================== --- Akida Sub-model 1 --- ========================================================================================================
+
+node_Conv_1 (InputConv2D)                                                                              [112, 112, 32]  680264bd-f75a-4018-be4d-84937b5336db/quantize_0                                      147.00 KB (CPU -&gt; Akida)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D (Conv2D)                                  [112, 112, 64]  StatefulPartitionedCall/akidanet_1.00_160_1000/conv_0/relu/clip_by_value:0           784.00 KB (Akida -&gt; CPU)
+
+========================================================================================================= --- ONNX Sub-model 2 --- ========================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)  [128, 56, 56]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/relu/clip_by_value:0           N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)  [128, 56, 56]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/relu/clip_by_value:0           N/A
+
+======================================================================================================== --- Akida Sub-model 3 --- ========================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise (DepthwiseConv2D)              [28, 28, 128]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/relu/clip_by_value:0           392.00 KB (CPU -&gt; Akida)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D (Conv2D)                          [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise (DepthwiseConv2D)              [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D (Conv2D)                          [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise (DepthwiseConv2D)              [14, 14, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/Conv2D (Conv2D)                          [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise (DepthwiseConv2D)              [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D (Conv2D)                          [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise (DepthwiseConv2D)              [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D (Conv2D)                          [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise (DepthwiseConv2D)              [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D (Conv2D)                          [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise (DepthwiseConv2D)             [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/relu/clip_by_value:0   N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D (Conv2D)                         [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise:0           N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise (DepthwiseConv2D)             [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/relu/clip_by_value:0  N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D (Conv2D)                         [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise:0           N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise (DepthwiseConv2D)             [7, 7, 512]     StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/relu/clip_by_value:0  N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D (Conv2D)                         [7, 7, 1024]    StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise:0           N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise (DepthwiseConv2D)             [7, 7, 1024]    StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/relu/clip_by_value:0  N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D (Conv2D)                         [1, 1, 1024]    StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise:0           1.00 KB (Akida -&gt; CPU)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion (Dense1D)             [1, 1, 1000]    StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/global_avg/Mean:0     4.91 KB (CPU -&gt; Akida -&gt; CPU)
+
+========================================================================================================= --- ONNX Sub-model 4 --- ========================================================================================================
+
+5f6d5b8f-a95d-4215-a755-5010c2e49173/dequantizer_0 (Dequantizer)                                       [1000]          classifier/to_dequantize                                                             N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+</pre></div>
+</div>
+<p>It is also possible to use a virtual device which is a simulated version of
+a hardware device. We provide two different devices within
+the akida package:
+<a class="reference external" href="https://doc.brainchipinc.com/api_reference/akida_apis.html#akida.TwoNodesIPv2">akida.TwoNodesIPv2()</a>
+and <a class="reference external" href="https://doc.brainchipinc.com/api_reference/akida_apis.html#akida.SixNodesIPv2">akida.SixNodesIPv2()</a> which is
+the software representation of the physical Akida v2 device used when converting the model
+above.</p>
+<p>Let’s try using the 2 nodes virtual device in
+<a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">akida</span><span class="o">.</span><span class="n">TwoNodesIPv2</span><span class="p">())</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.49it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.48it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.94it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.94it/s]
+
+Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;, &#39;GlobalAveragePool&#39;]
+List of incompatibilities:
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D(op_type=Conv), node_Clip_5(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D&#39;. Not enough hardware components of type CNP1 available. 30 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D(op_type=Conv), node_Clip_7(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D&#39;. Not enough hardware components of type CNP1 available. 32 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D(op_type=Conv), node_Clip_15(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D&#39;. Not enough hardware components of type CNP1 available. 12 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D(op_type=Conv), node_Clip_17(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D&#39;. Not enough hardware components of type CNP1 available. 12 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D(op_type=Conv), node_Clip_19(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D&#39;. Not enough hardware components of type CNP1 available. 12 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D(op_type=Conv), node_Clip_21(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D&#39;. Not enough hardware components of type CNP1 available. 12 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D(op_type=Conv), node_Clip_23(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D&#39;. Not enough hardware components of type CNP1 available. 12 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D(op_type=Conv), node_Clip_25(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D&#39;. Not enough hardware components of type CNP1 available. 11 are needed but 8 are available.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D(op_type=Conv), node_Clip_27(op_type=Clip), StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/global_avg/Mean(op_type=GlobalAveragePool)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D&#39;. Not enough hardware components of type CNP1 available. 22 are needed but 8 are available.
+
+[INFO]: Percentage of nodes compatible with akida: 56.8182 %
+
+[INFO]: Number of mappable sequences on akida: 9
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D: 784.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise: 392.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise: 196.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D: 196.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D: 196.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise: 196.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise: 24.500 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise: 49.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise: 49.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 1.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>                                                                                                                 HybridModel Summary: HybridModel
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+Layer (type)                                                                                                                 Output shape    Inbounds                                                                             Data movement
+
+===================================================================================================================== --- ONNX Sub-model 0 --- ====================================================================================================================
+
+5561163d-5f83-41c9-9841-631fe40e5e1b/quantizer_0 (InputQuantizer)                                                            [3, 224, 224]   input                                                                                N/A
+
+==================================================================================================================== --- Akida Sub-model 1 --- ====================================================================================================================
+
+node_Conv_1 (InputConv2D)                                                                                                    [112, 112, 32]  5561163d-5f83-41c9-9841-631fe40e5e1b/quantize_0                                      147.00 KB (CPU -&gt; Akida)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D (Conv2D)                                                        [112, 112, 64]  StatefulPartitionedCall/akidanet_1.00_160_1000/conv_0/relu/clip_by_value:0           784.00 KB (Akida -&gt; CPU)
+
+===================================================================================================================== --- ONNX Sub-model 2 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)                        [128, 56, 56]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/relu/clip_by_value:0           N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)                        [128, 56, 56]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/relu/clip_by_value:0           N/A
+
+==================================================================================================================== --- Akida Sub-model 3 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise (DepthwiseConv2D)                                    [28, 28, 128]   StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/relu/clip_by_value:0           490.00 KB (CPU -&gt; Akida -&gt; CPU)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D (Conv2D)                                                [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise:0            98.00 KB (CPU -&gt; Akida)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise (DepthwiseConv2D)                                    [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/relu/clip_by_value:0   196.00 KB (Akida -&gt; CPU)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D (Conv2D)                                                [28, 28, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise:0            392.00 KB (CPU -&gt; Akida -&gt; CPU)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise (DepthwiseConv2D)                                    [14, 14, 256]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/relu/clip_by_value:0   196.00 KB (CPU -&gt; Akida)
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/Conv2D (Conv2D)                                                [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise:0            N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise (DepthwiseConv2D)                                    [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/relu/clip_by_value:0   98.00 KB (Akida -&gt; CPU)
+
+===================================================================================================================== --- ONNX Sub-model 4 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)                [512, 14, 14]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise:0            N/A
+
+==================================================================================================================== --- Akida Sub-model 5 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise (DepthwiseConv2D)                                    [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/relu/clip_by_value:0   196.00 KB (CPU -&gt; Akida -&gt; CPU)
+
+===================================================================================================================== --- ONNX Sub-model 6 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)                [512, 14, 14]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise:0            N/A
+
+==================================================================================================================== --- Akida Sub-model 7 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise (DepthwiseConv2D)                                    [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/relu/clip_by_value:0   196.00 KB (CPU -&gt; Akida -&gt; CPU)
+
+===================================================================================================================== --- ONNX Sub-model 8 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)                [512, 14, 14]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise:0            N/A
+
+==================================================================================================================== --- Akida Sub-model 9 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise (DepthwiseConv2D)                                   [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/relu/clip_by_value:0   196.00 KB (CPU -&gt; Akida -&gt; CPU)
+
+==================================================================================================================== --- ONNX Sub-model 10 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)               [512, 14, 14]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise:0           N/A
+
+==================================================================================================================== --- Akida Sub-model 11 --- ===================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise (DepthwiseConv2D)                                   [14, 14, 512]   StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/relu/clip_by_value:0  196.00 KB (CPU -&gt; Akida -&gt; CPU)
+
+==================================================================================================================== --- ONNX Sub-model 12 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)               [512, 14, 14]   StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise:0           N/A
+
+==================================================================================================================== --- Akida Sub-model 13 --- ===================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise (DepthwiseConv2D)                                   [7, 7, 512]     StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/relu/clip_by_value:0  122.50 KB (CPU -&gt; Akida -&gt; CPU)
+
+==================================================================================================================== --- ONNX Sub-model 14 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D (QuantizedConv2DBiasedReLUClippedScaled)               [1024, 7, 7]    StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise:0           N/A
+
+==================================================================================================================== --- Akida Sub-model 15 --- ===================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise (DepthwiseConv2D)                                   [7, 7, 1024]    StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/relu/clip_by_value:0  98.00 KB (CPU -&gt; Akida -&gt; CPU)
+
+==================================================================================================================== --- ONNX Sub-model 16 --- ====================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D (QuantizedConv2DBiasedGlobalAvgPoolReLUClippedScaled)  [1024, 1, 1]    StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise:0           N/A
+
+==================================================================================================================== --- Akida Sub-model 17 --- ===================================================================================================================
+
+StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion (Dense1D)                                   [1, 1, 1000]    StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/global_avg/Mean:0     4.91 KB (CPU -&gt; Akida -&gt; CPU)
+
+==================================================================================================================== --- ONNX Sub-model 18 --- ====================================================================================================================
+
+1c5f979e-a660-4389-8107-f4dc4130e84d/dequantizer_0 (Dequantizer)                                                             [1000]          classifier/to_dequantize                                                             N/A
+___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+</pre></div>
+</div>
+<p>With the TwoNodes device, as shown in the report and the summary,
+56.8182% of the nodes could be mapped and we would need 9 akida models
+to cover the whole network. The reason is that the TwoNodes device
+has much less resources than the SixNodes device and therefore less
+nodes could be mapped.</p>
+<dl class="simple">
+<dt>DO:</dt><dd><ul class="simple">
+<li><p>Use device in <a class="reference external" href="https://onnx.brainchip.com/api_reference/onnx2akida_apis.html#onnx2akida.convert">convert</a> when
+targeting real hardware</p></li>
+<li><p>Check the compatibility report to understand resource bottlenecks</p></li>
+<li><p>Consider that consecutive unmapped nodes will form a single CPU-based segment</p></li>
+</ul>
+</dd>
+<dt>DON’T:</dt><dd><ul class="simple">
+<li><p>Expect 100% node mapping on small virtual devices</p></li>
+<li><p>Ignore incompatibility reasons - they tell you exactly what resources are missing</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="virtual-device-optimization-computation">
+<h2>4. Virtual device optimization computation<a class="headerlink" href="#virtual-device-optimization-computation" title="Link to this heading"></a></h2>
+<p>The following parameters (enable_hwpr, sram_size, minimal_memory)
+are advanced features intended for fine-tuning the virtual device computation
+when no physical device is provided. Most users should rely on the default
+settings, which work well for typical use cases. Only adjust these if you
+need to optimize for specific memory or resource constraints.</p>
+<section id="enable-hwpr">
+<h3>4.1 enable_hwpr<a class="headerlink" href="#enable-hwpr" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Let us first introduce the concept of Nodes and NPs in Akida devices:</dt><dd><ul class="simple">
+<li><p>An Akida Node contains a fixed number of 4 NPs (Neural Processors).</p></li>
+<li><p>An Akida NP can be of type CNP (for convolutional layers), TNP_B (for spatiotemporal TENNs)
+or FNP (for dense layers).</p></li>
+<li><p>The total number of NPs in a device is equal to the number of Nodes
+multiplied by the number of NPs per Node (4 NPs by node).</p></li>
+<li><p>The term “Node” is also used to refer to a layer in an ONNX graph, which can be confusing.
+In a device context, “Node” refers to the hardware unit, while in a graph/model context,
+it refers to a layer.</p></li>
+</ul>
+</dd>
+</dl>
+<p>When no device is provided, convert will return a hybrid model
+that is mapped on a virtual device created during conversion.
+If enable_hwpr is set to False (default), the virtual device assumes that the final device
+must have enough resources to fit each submodel at once.
+Let’s inspect the obtained device.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.12it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.10it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
+[INFO]: Percentage of nodes compatible with akida: 100.0000 %
+
+[INFO]: Number of mappable sequences on akida: 1
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">analyse_hybrid_model</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of NPs in final device: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nps</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of Akida models in the hybrid model: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">akida_model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Akida model </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of layers in the Akida model: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">akida_model</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of sequences in the Akida model: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">akida_model</span><span class="o">.</span><span class="n">sequences</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">akida_model</span><span class="o">.</span><span class="n">sequences</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - sequence </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    - number of passes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">passes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">passage</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">passes</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;      - pass </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">passage</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span><span class="si">}</span><span class="s2"> layers&quot;</span><span class="p">)</span>
+
+
+<span class="n">analyse_hybrid_model</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of NPs in final device: 208
+Number of Akida models in the hybrid model: 1
+
+Akida model 0:
+Number of layers in the Akida model: 25
+Number of sequences in the Akida model: 1
+  - sequence 0:
+    - number of passes: 1
+      - pass 0 --&gt; 25 layers
+</pre></div>
+</div>
+<p>The summary above shows that with the default settings, we end up
+with one akida model containing one pass. The device should have
+at least 208 NPs (52 nodes) to be able to fit the whole submodel
+in one pass.</p>
+<p>However, if we enable partial hardware reconfiguration (HWPR) by setting
+enable_hwpr to True, the virtual device created during conversion
+assumes that the device will be partially reconfigured between passes
+as much as possible.
+This generally allows fitting larger submodels on smaller devices
+because resources can be reused across passes.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model_hwpr</span><span class="p">,</span> <span class="n">compatibility_info_hwpr</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">enable_hwpr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model_hwpr</span><span class="p">,</span> <span class="n">compatibility_info_hwpr</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.35it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.33it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.52it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.52it/s]
+[INFO]: Percentage of nodes compatible with akida: 100.0000 %
+
+[INFO]: Number of mappable sequences on akida: 1
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">analyse_hybrid_model</span><span class="p">(</span><span class="n">hybrid_model_hwpr</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of NPs in final device: 64
+Number of Akida models in the hybrid model: 1
+
+Akida model 0:
+Number of layers in the Akida model: 25
+Number of sequences in the Akida model: 1
+  - sequence 0:
+    - number of passes: 4
+      - pass 0 --&gt; 3 layers
+      - pass 1 --&gt; 8 layers
+      - pass 2 --&gt; 8 layers
+      - pass 3 --&gt; 6 layers
+</pre></div>
+</div>
+<p>As we can see, with enable_hwpr set to True, we end up with the same
+percentage of mapped nodes (100%) and number of akida models,
+but the number of NPs in the device is much smaller (64 NPs, 8 nodes)
+However the akida model now contains 4 passes.
+The cost (clock count) of HWPR is negligible in the overall process,
+so using this parameter will only have an impact on the created
+virtual device (small with components reuse or as big as necessary to
+fit the whole model).</p>
+<dl class="simple">
+<dt>DO:</dt><dd><ul class="simple">
+<li><p>Use enable_hwpr=True to allow reusing HW resources and build a smaller device</p></li>
+<li><p>Expect the final device to be auto-resized to fit each akida model</p></li>
+<li><p>Remember: 1 Node = 4 NPs</p></li>
+</ul>
+</dd>
+<dt>DON’T:</dt><dd><ul class="simple">
+<li><p>Forget that HWPR allows resource reuse but doesn’t eliminate all splits</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="sram-size">
+<h3>4.2 sram_size<a class="headerlink" href="#sram-size" title="Link to this heading"></a></h3>
+<p>Used only when <code class="docutils literal notranslate"><span class="pre">device</span></code> is None and <code class="docutils literal notranslate"><span class="pre">minimal_memory</span></code> is False.
+The sram_size is a tuple that contains the size of shared SRAM
+available inside the mesh for the input_buffer_memory and
+the weight memory.
+The input_buffer_memory is the SRAM needed to store input activations
+(intermediate feature maps) for each neural processing unit (NP).
+When data flows through the network, each layer receives inputs from
+the previous layer - this memory holds those inputs before processing.
+The weight memory is the SRAM needed to store the weights
+(parameters) of the layers assigned to each NP.
+During conversion, if
+<a class="reference external" href="https://doc.brainchipinc.com/api_reference/akida_apis.html#akida.NP.SramSize">sram_size</a>
+is provided, the virtual device created will use this value to determine whether
+a submodel can fit in the available memory. Let’s see how to use this parameter.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sram_size</span><span class="o">=</span><span class="n">akida</span><span class="o">.</span><span class="n">NP</span><span class="o">.</span><span class="n">SramSize</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
+
+<span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.55it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.53it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.03s/it]
+Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.03s/it]
+
+Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;, &#39;GlobalAveragePool&#39;]
+List of incompatibilities:
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D(op_type=Conv), node_Clip_3(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D(op_type=Conv), node_Clip_5(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_2/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D(op_type=Conv), node_Clip_7(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/conv_3/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise(op_type=Conv)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_4/depthwise&#39;. Error: Attempted to write value 512 into a 8-bit field, which will cause an overflow..
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D(op_type=Conv), node_Clip_9(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_4/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise(op_type=Conv)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_5/depthwise&#39;. Error: Attempted to write value 256 into a 8-bit field, which will cause an overflow..
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D(op_type=Conv), node_Clip_11(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_5/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise(op_type=Conv)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_6/depthwise&#39;. Error: Attempted to write value 256 into a 8-bit field, which will cause an overflow..
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/Conv2D(op_type=Conv), node_Clip_13(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_6/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D(op_type=Conv), node_Clip_15(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_7/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D(op_type=Conv), node_Clip_17(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_8/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D(op_type=Conv), node_Clip_19(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_9/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D(op_type=Conv), node_Clip_21(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_10/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D(op_type=Conv), node_Clip_23(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_11/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D(op_type=Conv), node_Clip_25(op_type=Clip)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_12/Conv2D&#39;. Filter size is too big to fit in a CNP: try decreasing the input channels or the bitwidth.
+
+ ❌ Node sequence: [StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D(op_type=Conv), node_Clip_27(op_type=Clip), StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/global_avg/Mean(op_type=GlobalAveragePool)]
+     • Stage: Mapping
+     • Faulty node: StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D
+     • Reason: Cannot map layer &#39;StatefulPartitionedCall/akidanet_1.00_160_1000/pw_separable_13/Conv2D&#39;. When using Global Average Pooling, spatial split is impossible.
+
+[INFO]: Percentage of nodes compatible with akida: 31.8182 %
+
+[INFO]: Number of mappable sequences on akida: 9
+
+List of backends exchanges:
+ • CPU -&gt; Akida at layer node_Conv_1: 147.000 KB
+ • Akida -&gt; CPU at layer node_Conv_1: 392.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_7/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_8/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_9/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_10/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_11/depthwise: 98.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise: 98.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_12/depthwise: 24.500 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise: 49.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/dw_separable_13/depthwise: 49.000 KB
+ • CPU -&gt; Akida at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 1.000 KB
+ • Akida -&gt; CPU at layer StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion: 3.906 KB
+</pre></div>
+</div>
+<p>The resulting hybrid models have as expected the same mapping results. However, the device
+created when minimal_memory is enabled has a smaller SRAM size for the input buffer memory and
+the same one for the weight. This is because the biggest layer assigned to the device requires
+less input buffer memory than the default 64 KB. However, the weight memory is being used at its
+maximum (50 KB) so it remains unchanged.</p>
+<dl class="simple">
+<dt>DO:</dt><dd><ul class="simple">
+<li><p>Set sram_size to match your target hardware specifications</p></li>
+<li><p>Understand that smaller SRAM forces more layer splits and akida models</p></li>
+<li><p>Remember: input_bytes stores activations, weight_bytes stores parameters</p></li>
+</ul>
+</dd>
+<dt>DON’T:</dt><dd><ul class="simple">
+<li><p>Use sram_size when device is provided (it will be ignored)</p></li>
+<li><p>Set arbitrary values - base them on real hardware capabilities</p></li>
+<li><p>Forget that 64 KB input + 50 KB weight is the v2 default</p></li>
+<li><p>Use sram_size with minimal_memory=True (minimal_memory overrides it)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="minimal-memory">
+<h3>4.3 minimal_memory<a class="headerlink" href="#minimal-memory" title="Link to this heading"></a></h3>
+<p>Computes the minimal required input buffer and weights memory footprint and overrides
+the default sram_size that is used when sram_size is not explicitly provided, which is
+akida.NP.SramSize_v2 (64 KB for input buffer memory and 50 KB for weight memory).
+When enabled, the virtual device created during conversion assumes that the NPs have just
+enough memory to fit the biggest submodel assigned to them.
+Let’s see how this works.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.40it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.38it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.57it/s]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;device input buffer memory: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">np_sram_size</span><span class="o">.</span><span class="n">input_bytes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;device weight memory: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">np_sram_size</span><span class="o">.</span><span class="n">weight_bytes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">minimal_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>device input buffer memory: 65536
+device weight memory: 51200
+Applied 28 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+Applied 1 of general pattern rewrite rules.
+
+Calibrating with 1/1.0 samples
+
+Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.72it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.71it/s]
+
+Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;device input buffer memory: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">np_sram_size</span><span class="o">.</span><span class="n">input_bytes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;device weight memory: &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">hybrid_model</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">np_sram_size</span><span class="o">.</span><span class="n">weight_bytes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>device input buffer memory: 64000
+device weight memory: 51200
+</pre></div>
+</div>
+<p>The resulting hybrid models have as expected the same mapping results. However,
+the device created when minimal_memory is enabled has a smaller  SRAM size for the input
+buffer memory and the same one for the weight. This is because the biggest submodel assigned
+to an NP requires less input buffer memory than the default 64 KB. However, the weight memory
+is being used at its maximum (50 KB) so it remains unchanged.</p>
+<dl class="simple">
+<dt>DO:</dt><dd><ul class="simple">
+<li><p>Use minimal_memory=True to optimize device size for your specific model</p></li>
+<li><p>Understand that it computes the maximum memory across all NPs</p></li>
+<li><p>Use it when you want the smallest possible device that fits your model</p></li>
+<li><p>Check the resulting np_sram_size to understand your model’s memory footprint</p></li>
+</ul>
+</dd>
+<dt>DON’T:</dt><dd><ul class="simple">
+<li><p>Combine minimal_memory=True with explicit sram_size (minimal_memory wins)</p></li>
+<li><p>Expect minimal_memory to reduce the number of akida models</p></li>
+<li><p>Use it if you need to match specific hardware SRAM specifications</p></li>
+<li><p>Forget that it’s computing per-NP requirements, not total device memory</p></li>
+</ul>
+</dd>
+</dl>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 1.142 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-1-detailed-convert-usage-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/f07e7fc14525bc19e6ec4872aa563bca/plot_1_detailed_convert_usage.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_1_detailed_convert_usage.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/86be1e420b2621f4b0dc237dfa86ad4d/plot_1_detailed_convert_usage.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_1_detailed_convert_usage.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/e7696b1b6c4010c07a4263e4a31b0d3a/plot_1_detailed_convert_usage.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_1_detailed_convert_usage.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_0_global_workflow.html" class="btn btn-neutral float-left" title="Global MetaONNX workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
