@@ -63,10 +63,7 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_reference/onnx2akida_apis.html">API reference</a><ul>
@@ -88,18 +85,12 @@
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
@@ -115,6 +106,13 @@
 <li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/general/plot_1_detailed_convert_usage.html">Advanced convert usage - Parameters explained by example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_1_detailed_convert_usage.html#preliminary-steps">1. Preliminary steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_1_detailed_convert_usage.html#input-related-parameters">2. Input-related parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_1_detailed_convert_usage.html#device-and-mapping-parameters">3. Device and mapping parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/general/plot_1_detailed_convert_usage.html#virtual-device-optimization-computation">4. Virtual device optimization computation</a></li>
 </ul>
 </li>
 </ul>
@@ -165,15 +163,16 @@
 </dl>
 </li>
 <li><p><strong>Python versions:</strong> 3.10 to 3.12</p></li>
-<li><p><strong>cnn2snn version:</strong> 2.18.1</p></li>
+<li><p><strong>cnn2snn version:</strong> 2.19.1</p></li>
 <li><p><strong>onnxruntime version:</strong> 1.19.2</p></li>
+<li><p><strong>pytorch version:</strong> While not an explicit MetaTF/ONNX requirement, Pytorch versions &gt;= 2.6 are supported. GPU support and Tensorflow dependency management are left to the user discretion.</p></li>
 </ul>
 </section>
 <section id="quick-installation">
 <h2>Quick installation<a class="headerlink" href="#quick-installation" title="Link to this heading"></a></h2>
 <p>MetaONNX relies on <strong>onnx2akida</strong> python package that can be setup with
 python’s pip package manager:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">onnx2akida</span><span class="o">==</span><span class="m">0</span>.6.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">onnx2akida</span><span class="o">==</span><span class="m">0</span>.7.0
 </pre></div>
 </div>
 <p>MetaONNX is, just as <a class="reference external" href="https://doc.brainchipinc.com/">MetaTF</a>, built on top of Brainchip’s usual
@@ -224,7 +223,7 @@ and configuration.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
   </div>
 
    

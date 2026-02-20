@@ -60,10 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-workflow">onnx2akida workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#onnx2akida-cli">onnx2akida CLI</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/onnx2akida_user_guide.html#command-line-interface">Command line interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html">API reference</a><ul>
@@ -85,18 +82,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.akida_models"><code class="docutils literal notranslate"><span class="pre">HybridModel.akida_models</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.compute_data_movement"><code class="docutils literal notranslate"><span class="pre">HybridModel.compute_data_movement()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.generate_inference_model"><code class="docutils literal notranslate"><span class="pre">HybridModel.generate_inference_model()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer"><code class="docutils literal notranslate"><span class="pre">HybridModel.get_layer()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.input_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.input_shape</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.layers"><code class="docutils literal notranslate"><span class="pre">HybridModel.layers</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map"><code class="docutils literal notranslate"><span class="pre">HybridModel.map()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.output_shape"><code class="docutils literal notranslate"><span class="pre">HybridModel.output_shape</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary"><code class="docutils literal notranslate"><span class="pre">HybridModel.summary()</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#pipeline">Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.quantize"><code class="docutils literal notranslate"><span class="pre">quantize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#onnx2akida.pipeline.convert_to_hybrid"><code class="docutils literal notranslate"><span class="pre">convert_to_hybrid()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../api_reference/onnx2akida_apis.html#inference">Inference</a><ul>
@@ -112,6 +103,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#convert-to-akida">2. Convert to Akida</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#generate-inference-model">3. Generate inference model</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_0_global_workflow.html#summary">4. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/general/plot_1_detailed_convert_usage.html">Advanced convert usage - Parameters explained by example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_1_detailed_convert_usage.html#preliminary-steps">1. Preliminary steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_1_detailed_convert_usage.html#input-related-parameters">2. Input-related parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_1_detailed_convert_usage.html#device-and-mapping-parameters">3. Device and mapping parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/general/plot_1_detailed_convert_usage.html#virtual-device-optimization-computation">4. Virtual device optimization computation</a></li>
 </ul>
 </li>
 </ul>
@@ -173,12 +171,13 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">onnx</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnxruntime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">onnxscript</span><span class="w"> </span><span class="kn">import</span> <span class="n">ir</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime.quantization.quant_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_by_name</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">onnx_ir</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ir</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BRN_OPSET</span><span class="p">,</span> <span class="n">ONNX_OPSET</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">quantizeml.onnx_support.layers.base_layer</span><span class="w"> </span><span class="kn">import</span> <span class="n">IR_VERSION</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_return_element_or_list</span><span class="p">(</span><span class="n">list_object</span><span class="p">):</span>
@@ -192,15 +191,77 @@
     <span class="k">return</span> <span class="n">_return_element_or_list</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_layers</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_find_nodes_between_values</span><span class="p">(</span><span class="n">input_value</span><span class="p">,</span> <span class="n">output_value</span><span class="p">):</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">output_value</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">out_value</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">out_value</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="ow">or</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">in_value</span> <span class="o">==</span> <span class="n">input_value</span> <span class="k">for</span> <span class="n">in_value</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nodes</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_get_model_inputs</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-        <span class="c1"># Embed layer in tuple to match with ONNX format.</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">],)</span>
-    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_print_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">new_splits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper method to print formatted tables.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table (list): 2D list containing table data (including headers).</span>
+<span class="sd">        title (str): title of the table.</span>
+<span class="sd">        new_splits (list, optional): list indicating where to insert separators. Defaults to</span>
+<span class="sd">            None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert to np.array</span>
+    <span class="n">to_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">])</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">to_np</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+    <span class="c1"># Get column lengths</span>
+    <span class="n">str_len_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)))</span>
+    <span class="n">str_lens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">str_len_f</span><span class="p">(</span><span class="n">table</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">line_len</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">str_lens</span><span class="p">)</span>
+
+    <span class="c1"># Prepare format rows</span>
+    <span class="n">size_formats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">{{</span><span class="s2">:</span><span class="si">{</span><span class="n">cell</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">cell</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">format_strings</span> <span class="o">=</span> <span class="n">size_formats</span><span class="p">(</span><span class="n">str_lens</span><span class="p">)</span>
+    <span class="n">format_row</span> <span class="o">=</span> <span class="s2">&quot;  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_strings</span><span class="p">)</span>
+
+    <span class="c1"># Generate separators</span>
+    <span class="n">separator_len</span> <span class="o">=</span> <span class="n">line_len</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">separator</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="o">*</span> <span class="n">separator_len</span>
+    <span class="n">double_separator</span> <span class="o">=</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="n">separator_len</span>
+
+    <span class="c1"># Print header</span>
+    <span class="n">center_format</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">{{</span><span class="s2">:^</span><span class="si">{</span><span class="n">separator_len</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">center_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">title</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">format_row</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">new_splits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">new_splits</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_splits</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">new_splits</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">double_separator</span><span class="p">)</span>
+
+    <span class="c1"># Print body</span>
+    <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">new_split</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">new_splits</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_split</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="c1"># Compute the number of char on each side of the text</span>
+            <span class="n">space_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">separator_len</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_split</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+            <span class="n">space_left</span> <span class="o">=</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">space_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">space_right</span> <span class="o">=</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">space_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">space_left</span><span class="p">,</span> <span class="n">new_split</span><span class="p">,</span> <span class="n">space_right</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">new_split</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">format_row</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">row</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_ir_input_dtype</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">):</span>
@@ -236,26 +297,32 @@
     <span class="k">return</span> <span class="n">ir</span><span class="o">.</span><span class="n">TensorType</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT8</span> <span class="k">if</span> <span class="n">layer_params</span><span class="o">.</span><span class="n">output_bits</span> <span class="o">&lt;=</span> <span class="mi">8</span> <span class="k">else</span> <span class="n">ir</span><span class="o">.</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT32</span><span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_ak_model_into_onnx</span><span class="p">(</span><span class="n">ak_model</span><span class="p">,</span> <span class="n">program_path</span><span class="p">,</span> <span class="n">ir_input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ir_output</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts an Akida model into its equivalent ONNX model.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_ak_model_into_onnx</span><span class="p">(</span><span class="n">ak_model</span><span class="p">,</span>
+                               <span class="n">program_path</span><span class="p">,</span>
+                               <span class="n">ir_input</span><span class="p">,</span>
+                               <span class="n">in_channel_last</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">out_channel_last</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                               <span class="n">flat_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts an Akida model into its equivalent ONNX operators.</span>
 
-<span class="sd">    This function wraps the Akida model as a single ONNX node AkidaOp operator,</span>
-<span class="sd">    preserving input and output shapes and data types. The resulting ONNX model can be used</span>
-<span class="sd">    in ONNX pipelines and supports integration with other ONNX models.</span>
-
-<span class="sd">    Note that inferences must be made through ``AkidaExecutionProvider``.</span>
+<span class="sd">    This function wraps the Akida model as a list of ONNX node AkidaOp operators,</span>
+<span class="sd">    preserving input and output shapes and data types.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        ak_model (akida.Model): the Akida model to convert.</span>
 <span class="sd">        program_path (str): path where Akida program(s) will be saved to be referenced</span>
 <span class="sd">            by the ONNX node.</span>
-<span class="sd">        ir_input (onnxscript.ir.Value): value used as model input. If not provided,</span>
-<span class="sd">            create a new one based on the first layer of the model. Defaults to None.</span>
-<span class="sd">        ir_output (onnxscript.ir.Value): value used as model output. If not provided,</span>
-<span class="sd">            create a new one based on the last layer of the model. Defaults to None.</span>
+<span class="sd">        ir_input (onnxscript.ir.Value): value used as onnx model input.</span>
+<span class="sd">        in_channel_last (bool, optional): whether the input shape is channel-last format.</span>
+<span class="sd">            Since Akida requires channel last, include a Transpose in the input when it is False.</span>
+<span class="sd">            Defaults to True.</span>
+<span class="sd">        out_channel_last (bool, optional): whether the output shape is channel-last format.</span>
+<span class="sd">            Append a Transpose in the output when it is False. Defaults to True.</span>
+<span class="sd">        flat_output (bool, optional): whether to flatten the output to 2D shape.</span>
+<span class="sd">            Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ir.Model: the ONNX equivalent model.</span>
+<span class="sd">        ir.Tape: the registered operations tape.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">program_base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">program_path</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">ext</span> <span class="o">==</span> <span class="s2">&quot;.bin&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Wrong extension in </span><span class="si">{</span><span class="n">program_path</span><span class="si">}</span><span class="s2">. It must be &#39;.bin&#39;.&quot;</span>
@@ -277,124 +344,105 @@
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">program</span><span class="p">)</span>
 
     <span class="c1"># Define input/output.</span>
-    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">ir_input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">ir_input</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span>
-            <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">ir</span><span class="o">.</span><span class="n">SymbolicDim</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">),</span> <span class="o">*</span><span class="n">input_layer</span><span class="o">.</span><span class="n">input_dims</span><span class="p">)),</span>
-            <span class="nb">type</span><span class="o">=</span><span class="n">get_ir_input_dtype</span><span class="p">(</span><span class="n">input_layer</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">ir_output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">output_dtype</span> <span class="o">:=</span> <span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">output_layer</span><span class="p">))</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">ir</span><span class="o">.</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">:</span>
-            <span class="c1"># We reject this because Dequantizer must run in CPU.</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot convert models whose output is float.&quot;</span><span class="p">)</span>
-        <span class="n">ir_output</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span>
-            <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">ir</span><span class="o">.</span><span class="n">SymbolicDim</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">),</span> <span class="o">*</span><span class="n">output_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">)),</span>
-            <span class="nb">type</span><span class="o">=</span><span class="n">output_dtype</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">ir</span><span class="o">.</span><span class="n">DataType</span><span class="o">.</span><span class="n">FLOAT</span><span class="p">:</span>
+        <span class="c1"># We reject this because Dequantizer must run in CPU.</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Cannot convert models whose output is float.&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Record the akida op(s).</span>
+    <span class="c1"># Create tape to record ops.</span>
     <span class="n">tape</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">tape</span><span class="o">.</span><span class="n">Tape</span><span class="p">()</span>
+
+    <span class="c1"># Convert input from channel-first to channel-last.</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">ir_input</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">in_channel_last</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ir_input</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># When input is 2D, we need to expand the input to 4D.</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/transp&quot;</span><span class="p">,</span>
+                         <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span>
+                         <span class="nb">type</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">TensorType</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+            <span class="n">reshape</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">initializer</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">tensor</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                                                 <span class="n">dtype</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">DataType</span><span class="o">.</span><span class="n">INT64</span><span class="p">,</span>
+                                                 <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/reshape_shape&quot;</span><span class="p">))</span>
+            <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="s2">&quot;Reshape&quot;</span><span class="p">,</span>
+                    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">ir_input</span><span class="p">,</span> <span class="n">reshape</span><span class="p">],</span>
+                    <span class="n">version</span><span class="o">=</span><span class="n">ONNX_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                    <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                    <span class="n">metadata_props</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;added on conversion&quot;</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/transp&quot;</span><span class="p">,</span>
+                         <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span>
+                         <span class="nb">type</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">TensorType</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+            <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="s2">&quot;Transpose&quot;</span><span class="p">,</span>
+                    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">ir_input</span><span class="p">],</span>
+                    <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;perm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span>
+                    <span class="n">version</span><span class="o">=</span><span class="n">ONNX_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                    <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                    <span class="n">metadata_props</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;added on conversion&quot;</span><span class="p">})</span>
+
+    <span class="c1"># Record the Akida op(s).</span>
     <span class="k">for</span> <span class="n">program_path</span><span class="p">,</span> <span class="n">ak_layer</span> <span class="ow">in</span> <span class="n">program_path_and_layer</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
         <span class="n">op_type</span> <span class="o">=</span> <span class="s2">&quot;AkidaOpInt8&quot;</span> <span class="k">if</span> <span class="n">ak_layer</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">output_bits</span> <span class="o">&lt;=</span> <span class="mi">8</span> <span class="k">else</span> <span class="s2">&quot;AkidaOpInt32&quot;</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="n">op_type</span><span class="p">,</span>
-                    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">y</span><span class="p">],</span>
-                    <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;program_path&quot;</span><span class="p">:</span> <span class="n">ir</span><span class="o">.</span><span class="n">AttrString</span><span class="p">(</span><span class="s2">&quot;program_path&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">program_path</span><span class="p">))},</span>
-                    <span class="n">name</span><span class="o">=</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                    <span class="n">domain</span><span class="o">=</span><span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
-                    <span class="n">version</span><span class="o">=</span><span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
-        <span class="c1"># Assign value attributes to avoid name collisions when building complex models.</span>
-        <span class="n">y</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">y</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">ir</span><span class="o">.</span><span class="n">SymbolicDim</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">),</span> <span class="o">*</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">))</span>
-        <span class="n">y</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/ak_op&quot;</span><span class="p">,</span>
+                     <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">)),</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">))</span>
+        <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="n">op_type</span><span class="p">,</span>
+                <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;program_path&quot;</span><span class="p">:</span> <span class="n">ir</span><span class="o">.</span><span class="n">AttrString</span><span class="p">(</span><span class="s2">&quot;program_path&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">program_path</span><span class="p">))},</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">domain</span><span class="o">=</span><span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span>
+                <span class="n">version</span><span class="o">=</span><span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="c1"># onnxscript &lt;= 0.2.5 does not support &#39;output&#39; as parameter of &#39;tape.op&#39;.</span>
-    <span class="c1"># That is why we must do it manually.</span>
-    <span class="n">y</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span><span class="o">.</span><span class="n">_outputs</span> <span class="o">=</span> <span class="p">(</span><span class="n">ir_output</span><span class="p">,)</span>
+    <span class="c1"># Convert output from channel-last to channel-first.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">out_channel_last</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/transp&quot;</span><span class="p">,</span>
+                     <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])),</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">TensorType</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+        <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="s2">&quot;Transpose&quot;</span><span class="p">,</span>
+                <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;perm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span>
+                <span class="n">version</span><span class="o">=</span><span class="n">ONNX_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">metadata_props</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;added on conversion&quot;</span><span class="p">})</span>
 
-    <span class="n">ir_input</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">ir_output</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="c1"># Build the model.</span>
-    <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">ir_input</span><span class="p">],</span>
-                                 <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">ir_output</span><span class="p">],</span>
-                                 <span class="n">nodes</span><span class="o">=</span><span class="n">tape</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
-                                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;akida_op&quot;</span><span class="p">,</span>
-                                 <span class="n">opset_imports</span><span class="o">=</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tape</span><span class="o">.</span><span class="n">used_opsets</span><span class="p">}),</span>
-                        <span class="n">ir_version</span><span class="o">=</span><span class="n">IR_VERSION</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ir_model</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">ir_Value</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extension of onnxscript.ir.Value to handle Akida layers.</span>
-
-<span class="sd">    This class overrides the `is_graph_output` method to bypass check when producer is an</span>
-<span class="sd">    akida.Layer, supporting model creation through ``ir.Graph`` interface.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">is_graph_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">producer</span><span class="p">(),</span> <span class="n">akida</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">is_graph_output</span><span class="p">()</span>
+    <span class="c1"># Flat output if expected one is 2D.</span>
+    <span class="k">if</span> <span class="n">flat_output</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/flat&quot;</span><span class="p">,</span>
+                     <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))),</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">TensorType</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
+        <span class="n">tape</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">op_type</span><span class="o">=</span><span class="s2">&quot;Flatten&quot;</span><span class="p">,</span>
+                <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span>
+                <span class="n">version</span><span class="o">=</span><span class="n">ONNX_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                <span class="n">output</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                <span class="n">metadata_props</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;added on conversion&quot;</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">tape</span>
 
 
 <div class="viewcode-block" id="HybridModel">
 <a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HybridModel</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A container for combining and managing multiple Akida and ONNX models as a single one.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tensor-driven container for mixing ONNX and Akida execution.</span>
 
-<span class="sd">    HybridModel allows to sequentially add Akida or ONNX models, connect their inputs and outputs,</span>
-<span class="sd">    and manage their relationships. It provides a unified interface to access layers,</span>
-<span class="sd">    input/output shapes and to retrieve or connect sub-models by **layer name**.</span>
-
-<span class="sd">    The class ensures model integrity by checking for unique layer names and</span>
-<span class="sd">    valid inbound connections.</span>
+<span class="sd">    ``HybridModel`` wraps a single ONNX graph and allows sections of the graph to be replaced</span>
+<span class="sd">    by Akida models. Integration is performed by identifying an input tensor (the entry point of</span>
+<span class="sd">    the Akida model) and an output tensor (where execution returns to the ONNX graph).</span>
+<span class="sd">    Akida segments are tracked internally so they can be mapped to hardware devices.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        models (list, optional): list of Akida or ONNX models to initialize the hybrid model with.</span>
-<span class="sd">            Defaults to None.</span>
+<span class="sd">        model (onnx.ModelProto or ir.Model): the base graph to augment.</span>
 <span class="sd">        name (str, optional): name of the hybrid model. Defaults to &quot;HybridModel&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;HybridModel&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;HybridModel&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_models</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output_layer_names</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">models</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_outgoing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">values</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">values</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">outputs_</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">consumers</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_layer_names</span><span class="p">:</span>
-            <span class="c1"># Sort outputs following output names order.</span>
-            <span class="n">outputs_</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
-                <span class="n">outputs_</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_layer_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">outputs_</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the hybrid model layers.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            list: the model layers.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">ly</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="n">_get_layers</span><span class="p">(</span><span class="n">model</span><span class="p">)]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_output_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">):</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">ir</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">CheckerPass</span><span class="p">(</span><span class="n">full_check</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tensors</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">create_value_mapping</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">input_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -403,11 +451,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            list: the model input shape.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># By HybridModel construction, only one model can be connected to the input.</span>
-        <span class="n">input_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">input_model</span><span class="o">.</span><span class="n">input_shape</span>
-        <span class="k">return</span> <span class="n">_get_ir_dimensions</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_get_ir_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -416,93 +460,39 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            list: the model output shape.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">_get_ir_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_get_ir_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">akida_models</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of Akida models within the hybrid model.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list: the akida models within the hybrid model.</span>
+<span class="sd">            tuple: the akida models within the hybrid model.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">model</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 
-<div class="viewcode-block" id="HybridModel.get_layer">
-<a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.get_layer">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves a layer from the model by its name.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">incoming_value_name</span><span class="p">,</span> <span class="n">outgoing_value_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Replace all nodes between incoming and outgoing values by an akida Model.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): the name of the layer to retrieve.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Layer: the layer.</span>
+<span class="sd">            model (akida.Model): the model to add.</span>
+<span class="sd">            incoming_value_name (str): a tensor name used to link the model input.</span>
+<span class="sd">            outgoing_value_name (str): a tensor name used to link the model output.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">layer</span> <span class="o">:=</span> <span class="n">find_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Layer with name &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; not found in &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">layer</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to add </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> to &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;. Expected an </span><span class="si">{</span><span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">inbound_names</span><span class="o">=</span><span class="p">[]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a new Akida or ONNX model and connects its inputs to specified inbounds.</span>
-
-<span class="sd">        This method performs several checks and conversions:</span>
-<span class="sd">        - validates the model type (must be akida.Model or onnx.ModelProto)</span>
-<span class="sd">        - converts ONNX models to the internal IR representation if necessary</span>
-<span class="sd">        - determines the inbound layers/nodes to connect the new model&#39;s inputs</span>
-<span class="sd">        - updates the internal inbound mapping and appends the model to the HybridModel.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            model (akida.Model or onnx.ModelProto): the model to add.</span>
-<span class="sd">            inbound_names (list, optional): list of layer names in the HybridModel to which</span>
-<span class="sd">                the new model&#39;s inputs will be connected. If not provided, the model will be</span>
-<span class="sd">                connected to all current outbounds. Defaults to [].</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">supported</span> <span class="o">:=</span> <span class="p">(</span><span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to add </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2"> to &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
-                            <span class="sa">f</span><span class="s2">&quot;Supported types: </span><span class="si">{</span><span class="n">supported</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Convert onnx.ModelProto into ir.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">onnx</span><span class="o">.</span><span class="n">ModelProto</span><span class="p">):</span>
-            <span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">check_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">full_check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-
-        <span class="c1"># Retrieve incoming_values from their names.</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inbound_names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">incoming_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">incoming_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_inbound_outputs_from_names</span><span class="p">(</span><span class="n">inbound_names</span><span class="p">)</span>
+        <span class="c1"># Search incoming and outgoing values.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">incoming_value</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tensors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">incoming_value_name</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">incoming_value_name</span><span class="si">}</span><span class="s2">&#39; not found in the model.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">outgoing_value</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tensors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">outgoing_value_name</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">outgoing_value_name</span><span class="si">}</span><span class="s2">&#39; not found in the model.&quot;</span><span class="p">)</span>
 
         <span class="c1"># Check if model is able to be added.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_model_integrity</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">incoming_values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_model_integrity</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">incoming_value</span><span class="p">,</span> <span class="n">outgoing_value</span><span class="p">)</span>
 
-        <span class="c1"># Update model inputs with the outputs from its inbounds.</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">incoming_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">model_inputs</span> <span class="o">=</span> <span class="n">_get_model_inputs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-                <span class="c1"># Replace inputs with inbound outputs.</span>
-                <span class="n">ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">replace_all_uses_with</span><span class="p">(</span><span class="n">model_inputs</span><span class="p">,</span> <span class="n">incoming_values</span><span class="p">)</span>
-                <span class="c1"># Overwrite model inputs to allow sub_model inference.</span>
-                <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">_inputs</span> <span class="o">=</span> <span class="n">incoming_values</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># Insert the first layer as new consumer of ir.Value</span>
-                <span class="n">incoming_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_add_usage</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="c1"># Create a outgoing value when model is an Akida one, used for incoming models.</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-            <span class="n">ak_layer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span><span class="p">[</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ir_Value</span><span class="p">(</span>
-                <span class="n">producer</span><span class="o">=</span><span class="n">ak_layer</span><span class="p">,</span>
-                <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="n">ir</span><span class="o">.</span><span class="n">SymbolicDim</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">),</span> <span class="o">*</span><span class="n">ak_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">)),</span>
-                <span class="nb">type</span><span class="o">=</span><span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">ak_layer</span><span class="p">))</span>
-
-        <span class="c1"># Append the new model in the list.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-
-        <span class="c1"># Reset output_names each time a model is added, as the model output may change.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output_layer_names</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Store the model.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="p">[(</span><span class="n">incoming_value_name</span><span class="p">,</span> <span class="n">outgoing_value_name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">model</span>
 
 <div class="viewcode-block" id="HybridModel.map">
 <a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.map">[docs]</a>
@@ -528,15 +518,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_inference_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dirpath</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates a unified ONNX inference model from all sub-models in the HybridModel.</span>
 
-<span class="sd">        This method combines all Akida and ONNX sub-models added to the HybridModel into a single</span>
-<span class="sd">        ONNX model suitable for inference. It handles the conversion of Akida models to ONNX</span>
+<span class="sd">        This method inject all Akida sub-models added to the HybridModel inside of the ONNX model</span>
+<span class="sd">        suitable for inference. It handles the conversion of Akida models to ONNX</span>
 <span class="sd">        and connects sub-models according to their inbounds.</span>
 
-<span class="sd">        The resulting model can be used for inferences based on ``AkidaExecutionProvider``:</span>
-
 <span class="sd">        &gt;&gt;&gt; inference_model = model.generate_inference_model()</span>
-<span class="sd">        &gt;&gt;&gt; sess = onnxruntime.InferenceSession(inference_model.SerializeToString(),</span>
-<span class="sd">        ...                                     providers=[&quot;AkidaExecutionProvider&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; sess = AkidaInferenceSession(inference_model.SerializeToString())</span>
 <span class="sd">        &gt;&gt;&gt; outputs = sess.run(None, feeds)</span>
 
 <span class="sd">        Args:</span>
@@ -546,78 +533,91 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            onnx.ModelProto: the combined ONNX model ready for inference.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_is_akida_op</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;AkidaOp&quot;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_added_by_conversion</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">metadata_props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;added on conversion&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;At least one model is required to generate the inference model.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
                 <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">akida_models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span> <span class="o">==</span> <span class="n">m</span><span class="o">.</span><span class="n">device</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">akida_models</span><span class="p">)):</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;All akida models must be mapped in the same device.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;All akida models must be mapped on the same device.&quot;</span><span class="p">)</span>
 
-        <span class="n">graph_params</span><span class="p">,</span> <span class="n">functions</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">sub_model_id</span><span class="p">,</span> <span class="n">sub_model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">):</span>
-            <span class="c1"># Akida model processing.</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-                <span class="c1"># Search the outgoing which contains the first layer as consumer (link value).</span>
-                <span class="k">if</span> <span class="n">sub_model_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">ak_ir_input</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">ak_ir_input</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span>
-                                   <span class="k">if</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">consumers</span><span class="p">()][</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">ak_ir_input</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="n">ak_ir_input</span><span class="o">.</span><span class="n">_producer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># Clone the original model to avoid modifying it.</span>
+        <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">))</span>
+        <span class="n">ak_outgoing_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">out_value</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">out_value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+        <span class="n">_all_outgoing_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">n</span><span class="o">.</span><span class="n">outputs</span><span class="p">]</span>
 
-                <span class="c1"># Convert the model to ONNX.</span>
-                <span class="c1"># Note we keep ir_output to correctly track it in the global model.</span>
-                <span class="n">program_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;program_</span><span class="si">{</span><span class="n">sub_model_id</span><span class="si">}</span><span class="s2">.bin&quot;</span><span class="p">)</span>
-                <span class="n">ir_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span><span class="p">[</span><span class="n">sub_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
-                <span class="n">sub_model</span> <span class="o">=</span> <span class="n">convert_ak_model_into_onnx</span><span class="p">(</span><span class="n">sub_model</span><span class="p">,</span>
-                                                       <span class="n">program_path</span><span class="p">,</span>
-                                                       <span class="n">ir_input</span><span class="o">=</span><span class="n">ak_ir_input</span><span class="p">,</span>
-                                                       <span class="n">ir_output</span><span class="o">=</span><span class="n">ir_output</span><span class="p">)</span>
+        <span class="c1"># Replace each akida segment by its ONNX equivalent.</span>
+        <span class="c1"># Note we sort models in reverse order to properly compute &#39;out_channel_last&#39;.</span>
+        <span class="n">_ak_models</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">_all_outgoing_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span>
+                            <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sub_model_id</span><span class="p">,</span> <span class="p">((</span><span class="n">in_name</span><span class="p">,</span> <span class="n">out_name</span><span class="p">),</span> <span class="n">ak_model</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">_ak_models</span><span class="p">):</span>
+            <span class="n">_tensors</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">create_value_mapping</span><span class="p">(</span><span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+            <span class="n">in_value</span> <span class="o">=</span> <span class="n">_tensors</span><span class="p">[</span><span class="n">in_name</span><span class="p">]</span>
+            <span class="n">out_value</span> <span class="o">=</span> <span class="n">_tensors</span><span class="p">[</span><span class="n">out_name</span><span class="p">]</span>
 
-            <span class="c1"># Rename sub_model outputs to avoid name collisions.</span>
-            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">v_output</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">):</span>
-                <span class="n">v_output</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">sub_model_id</span><span class="si">}</span><span class="s2">/output</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="c1"># Extract nodes between in_value and out_value.</span>
+            <span class="n">old_nodes</span> <span class="o">=</span> <span class="n">_find_nodes_between_values</span><span class="p">(</span><span class="n">in_value</span><span class="p">,</span> <span class="n">out_value</span><span class="p">)</span>
 
-            <span class="c1"># Remove graph in nodes/initializer/inputs/outputs since onnxscript does not support</span>
-            <span class="c1"># creating new graph with elements from other graphs.</span>
-            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># Model requires:</span>
+            <span class="c1"># * input transpose when input comes from an ONNX model (akida expects channel-last)</span>
+            <span class="c1"># * output transpose if there is at least one ONNX consumer</span>
+            <span class="c1"># * flat the output if it is 2D (Akida outs 4D tensors)</span>
+            <span class="n">in_channel_last</span> <span class="o">=</span> <span class="n">in_name</span> <span class="ow">in</span> <span class="n">ak_outgoing_names</span>
+            <span class="n">out_channel_last</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">_is_akida_op</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">out_value</span><span class="o">.</span><span class="n">consumers</span><span class="p">())</span>
+            <span class="n">flat_output</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">out_value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
 
-            <span class="k">for</span> <span class="n">initializer</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="n">initializer</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># Change in_channel_last if another branch has already transposed the input.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">in_channel_last</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">consumer</span> <span class="ow">in</span> <span class="n">in_value</span><span class="o">.</span><span class="n">consumers</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">_added_by_conversion</span><span class="p">(</span><span class="n">consumer</span><span class="p">):</span>
+                        <span class="n">in_channel_last</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="c1"># Link block nodes to the transpose output.</span>
+                        <span class="n">in_value</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">in_name</span> <span class="o">=</span> <span class="n">in_value</span><span class="o">.</span><span class="n">name</span>
+                        <span class="n">old_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace_input_with</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">in_value</span><span class="p">)</span>
+                        <span class="k">break</span>
 
-            <span class="k">for</span> <span class="n">input_</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
-                <span class="n">input_</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># Convert the model to ONNX.</span>
+            <span class="n">program_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;program_</span><span class="si">{</span><span class="n">sub_model_id</span><span class="si">}</span><span class="s2">.bin&quot;</span><span class="p">)</span>
+            <span class="n">sub_model</span> <span class="o">=</span> <span class="n">convert_ak_model_into_onnx</span><span class="p">(</span><span class="n">ak_model</span><span class="p">,</span>
+                                                   <span class="n">program_path</span><span class="p">,</span>
+                                                   <span class="n">ir_input</span><span class="o">=</span><span class="n">in_value</span><span class="p">,</span>
+                                                   <span class="n">in_channel_last</span><span class="o">=</span><span class="n">in_channel_last</span><span class="p">,</span>
+                                                   <span class="n">out_channel_last</span><span class="o">=</span><span class="n">out_channel_last</span><span class="p">,</span>
+                                                   <span class="n">flat_output</span><span class="o">=</span><span class="n">flat_output</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">initializer</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">initializers</span><span class="p">:</span>
+                <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">register_initializer</span><span class="p">(</span><span class="n">initializer</span><span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">outputs</span><span class="p">:</span>
-                <span class="n">output</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># Replace nodes in the original graph.</span>
+            <span class="c1"># Note we overwrite out_value.shape since ir helper replace it by the old one.</span>
+            <span class="n">new_out_value</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">out_value</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">new_out_value</span><span class="o">.</span><span class="n">shape</span>
+            <span class="n">ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">replace_nodes_and_values</span><span class="p">(</span>
+                <span class="n">ir_model</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span>
+                <span class="n">in_value</span><span class="o">.</span><span class="n">producer</span><span class="p">(),</span>
+                <span class="n">old_nodes</span><span class="p">,</span>
+                <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">out_value</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">new_out_value</span><span class="p">])</span>
 
-            <span class="c1"># Transfer sub_model parameters to global one:</span>
-            <span class="c1"># * graph inputs</span>
-            <span class="k">if</span> <span class="n">sub_model_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">graph_params</span><span class="p">[</span><span class="s2">&quot;inputs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">inputs</span>
-            <span class="c1"># * nodes and initializers</span>
-            <span class="n">graph_params</span><span class="p">[</span><span class="s2">&quot;nodes&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="p">))</span>
-            <span class="n">graph_params</span><span class="p">[</span><span class="s2">&quot;initializers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sub_model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="c1"># * functions</span>
-            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">functions</span><span class="p">:</span>
-                    <span class="n">functions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="c1"># * graph outputs and opset imports</span>
-        <span class="n">graph_params</span><span class="p">[</span><span class="s2">&quot;outputs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span>
-        <span class="n">graph_params</span><span class="p">[</span><span class="s2">&quot;opset_imports&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="n">ONNX_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
-                                         <span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">domain</span><span class="p">:</span> <span class="n">BRN_OPSET</span><span class="o">.</span><span class="n">version</span><span class="p">}</span>
-
-        <span class="c1"># Build graph and model.</span>
-        <span class="n">ir_model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="o">**</span><span class="n">graph_params</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
-                            <span class="n">ir_version</span><span class="o">=</span><span class="n">IR_VERSION</span><span class="p">,</span>
-                            <span class="n">functions</span><span class="o">=</span><span class="n">functions</span><span class="p">)</span>
+            <span class="c1"># Fix link between children that do not require transpose.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">out_channel_last</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">transpose_node</span> <span class="o">:=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s2">&quot;Flatten&quot;</span><span class="p">:</span>
+                    <span class="n">transpose_node</span> <span class="o">=</span> <span class="n">sub_model</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">consumer</span> <span class="ow">in</span> <span class="n">new_out_value</span><span class="o">.</span><span class="n">consumers</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">_is_akida_op</span><span class="p">(</span><span class="n">consumer</span><span class="p">):</span>
+                        <span class="c1"># Link node to the input of transpose input.</span>
+                        <span class="n">consumer</span><span class="o">.</span><span class="n">replace_input_with</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">transpose_node</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="c1"># Convert ir_model to onnx.ModelProto</span>
+        <span class="c1"># Note we use RemoveUnusedNodesPass to clean unused initializers.</span>
+        <span class="n">ir</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">RemoveUnusedNodesPass</span><span class="p">()(</span><span class="n">ir_model</span><span class="p">)</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="n">ir_model</span><span class="p">)</span>
-
-        <span class="c1"># Clean value info to avoid mismatch in batch size.</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">ClearField</span><span class="p">(</span><span class="s2">&quot;value_info&quot;</span><span class="p">)</span>
 
         <span class="c1"># Sanity check.</span>
         <span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">check_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">full_check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -638,7 +638,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            list of dict: a list of dictionaries, each containing :</span>
 <span class="sd">                - &quot;layer&quot;: the Akida layer involved in the data transfer.</span>
-<span class="sd">                - &quot;type&quot;: a string indicating the direction (&quot;CPU to Akida&quot; or &quot;Akida to CPU&quot;).</span>
+<span class="sd">                - &quot;type&quot;: a string indicating the direction (&quot;CPU -&gt; Akida&quot; or &quot;Akida -&gt; CPU&quot;).</span>
 <span class="sd">                - &quot;size&quot;: The size in bytes of the data movement.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_movement</span> <span class="o">=</span> <span class="p">[]</span>
@@ -649,91 +649,178 @@
                 <span class="n">input_layer</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">passes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">factor</span> <span class="o">=</span> <span class="n">get_ir_input_dtype</span><span class="p">(</span><span class="n">input_layer</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span>
                 <span class="n">data_movement</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer&quot;</span><span class="p">:</span> <span class="n">input_layer</span><span class="p">,</span>
-                                      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CPU to Akida&quot;</span><span class="p">,</span>
+                                      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CPU -&gt; Akida&quot;</span><span class="p">,</span>
                                       <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">input_layer</span><span class="o">.</span><span class="n">input_dims</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span><span class="p">})</span>
                 <span class="c1"># Last layer requires a data movement from Akida to CPU.</span>
                 <span class="n">output_layer</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">passes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
                 <span class="n">factor</span> <span class="o">=</span> <span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">output_layer</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span>
                 <span class="n">data_movement</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;layer&quot;</span><span class="p">:</span> <span class="n">output_layer</span><span class="p">,</span>
-                                      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Akida to CPU&quot;</span><span class="p">,</span>
+                                      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Akida -&gt; CPU&quot;</span><span class="p">,</span>
                                       <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">output_layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">)</span> <span class="o">*</span> <span class="n">factor</span><span class="p">})</span>
         <span class="k">return</span> <span class="n">data_movement</span></div>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_assign_outputs_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inbound_names</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Assigns a custom order to the outputs of the HybridModel.</span>
+<div class="viewcode-block" id="HybridModel.summary">
+<a class="viewcode-back" href="../../api_reference/onnx2akida_apis.html#onnx2akida.hybrid_model.HybridModel.summary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints a string summary of the hybrid model.</span>
 
-<span class="sd">        This method sets the order of model outputs based on the provided list of inbound names.</span>
+<span class="sd">        This method prints a summary with details for every layer:</span>
+<span class="sd">        - Layer name and type</span>
+<span class="sd">        - Backend (ONNX or Akida)</span>
+<span class="sd">        - Output shape</span>
+<span class="sd">        - Inbounds (list of inbound layer names)</span>
+<span class="sd">        - Data movement (in bytes, only for layers involved in data transfer)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Prepare headers</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Layer (type)&#39;</span><span class="p">,</span> <span class="s1">&#39;Output shape&#39;</span><span class="p">,</span> <span class="s1">&#39;Inbounds&#39;</span><span class="p">,</span> <span class="s1">&#39;Data movement&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Compute data movement and create a lookup dictionary</span>
+        <span class="n">data_movement_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_data_movement</span><span class="p">()</span>
+        <span class="n">data_movement_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">dm</span> <span class="ow">in</span> <span class="n">data_movement_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dm</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_movement_map</span><span class="p">:</span>
+                <span class="n">data_movement_map</span><span class="p">[</span><span class="n">dm</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If layer already exists, sum the sizes and change the type (for both directions)</span>
+                <span class="n">data_movement_map</span><span class="p">[</span><span class="n">dm</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dm</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+                <span class="n">data_movement_map</span><span class="p">[</span><span class="n">dm</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;CPU -&gt; Akida -&gt; CPU&quot;</span>
+
+        <span class="c1"># Build inbound and outbound mapping</span>
+        <span class="n">inbound_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">outbound_map</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">input_value</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+                <span class="c1"># Skip initializers (weights, biases, etc.)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">input_value</span><span class="o">.</span><span class="n">is_initializer</span><span class="p">():</span>
+                    <span class="n">inbound_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">input_value</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">outbound_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+
+        <span class="n">_tensors</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">convenience</span><span class="o">.</span><span class="n">create_value_mapping</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">ak_trigger</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">skip_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">in_value</span><span class="p">,</span> <span class="n">out_value</span><span class="p">),</span> <span class="n">ak_model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ak_models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="n">_find_nodes_between_values</span><span class="p">(</span><span class="n">_tensors</span><span class="p">[</span><span class="n">in_value</span><span class="p">],</span> <span class="n">_tensors</span><span class="p">[</span><span class="n">out_value</span><span class="p">])</span>
+            <span class="n">ak_trigger</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">ak_model</span><span class="p">})</span>
+            <span class="n">skip_nodes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+        <span class="c1"># Prepare table data</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="p">[</span><span class="n">headers</span><span class="p">]</span>
+        <span class="n">new_splits</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_add_layer_to_table</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">layer_idx</span><span class="p">,</span> <span class="n">layer_type</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">,</span> <span class="n">separator</span><span class="p">):</span>
+            <span class="n">layer_name_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">layer_type</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+            <span class="c1"># Inbounds</span>
+            <span class="n">inbounds</span> <span class="o">=</span> <span class="n">inbound_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">inbounds_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inbounds</span><span class="p">)</span> <span class="k">if</span> <span class="n">inbounds</span> <span class="k">else</span> <span class="s2">&quot;N/A&quot;</span>
+
+            <span class="c1"># Data movement</span>
+            <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">data_movement_map</span><span class="p">:</span>
+                <span class="n">dm</span> <span class="o">=</span> <span class="n">data_movement_map</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                <span class="c1"># Convert bytes to KB</span>
+                <span class="n">size_kb</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1024.0</span>
+                <span class="n">data_movement_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size_kb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> KB (</span><span class="si">{</span><span class="n">dm</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data_movement_str</span> <span class="o">=</span> <span class="s2">&quot;N/A&quot;</span>
+
+            <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">layer_name_str</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">,</span> <span class="n">inbounds_str</span><span class="p">,</span> <span class="n">data_movement_str</span><span class="p">]</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="c1"># Add separator only before first layer of each model</span>
+            <span class="n">new_splits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">separator</span> <span class="k">if</span> <span class="n">layer_idx</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_add_akida_model_to_table</span><span class="p">(</span><span class="n">ak_model</span><span class="p">,</span> <span class="n">model_idx</span><span class="p">):</span>
+            <span class="n">separator</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;--- Akida Sub-model </span><span class="si">{</span><span class="n">model_idx</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+            <span class="n">layers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ak_model</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span>
+            <span class="c1"># Remove InputData layers from Akida models</span>
+            <span class="k">if</span> <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">layer_type</span> <span class="o">==</span> <span class="n">akida</span><span class="o">.</span><span class="n">LayerType</span><span class="o">.</span><span class="n">InputData</span><span class="p">:</span>
+                <span class="n">layers</span> <span class="o">=</span> <span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+            <span class="k">for</span> <span class="n">layer_idx</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layers</span><span class="p">):</span>
+                <span class="n">layer_type</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">layer_type</span><span class="o">.</span><span class="n">name</span>
+                <span class="n">output_shape</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">output_dims</span><span class="p">))</span>
+
+                <span class="n">_add_layer_to_table</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">layer_idx</span><span class="p">,</span> <span class="n">layer_type</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">_add_onnx_sequence_to_table</span><span class="p">(</span><span class="n">onnx_sequence</span><span class="p">,</span> <span class="n">model_idx</span><span class="p">):</span>
+            <span class="n">separator</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;--- ONNX Sub-model </span><span class="si">{</span><span class="n">model_idx</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+            <span class="k">for</span> <span class="n">node_idx</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">onnx_sequence</span><span class="p">):</span>
+                <span class="n">layer_type</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">op_type</span>
+                <span class="n">output_shape</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">outputs</span> <span class="k">else</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)</span>
+
+                <span class="n">_add_layer_to_table</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">node_idx</span><span class="p">,</span> <span class="n">layer_type</span><span class="p">,</span> <span class="n">output_shape</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+
+        <span class="n">onnx_sequence</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">model_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">skip_nodes</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ak_trigger</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">onnx_sequence</span><span class="p">:</span>
+                    <span class="n">_add_onnx_sequence_to_table</span><span class="p">(</span><span class="n">onnx_sequence</span><span class="p">,</span> <span class="n">model_idx</span><span class="p">)</span>
+                    <span class="n">model_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">onnx_sequence</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">_add_akida_model_to_table</span><span class="p">(</span><span class="n">ak_trigger</span><span class="p">[</span><span class="n">node</span><span class="p">],</span> <span class="n">model_idx</span><span class="p">)</span>
+                <span class="n">model_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">onnx_sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">onnx_sequence</span><span class="p">:</span>
+            <span class="n">_add_onnx_sequence_to_table</span><span class="p">(</span><span class="n">onnx_sequence</span><span class="p">,</span> <span class="n">model_idx</span><span class="p">)</span>
+
+        <span class="c1"># Print the table</span>
+        <span class="n">_print_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;HybridModel Summary: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">new_splits</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_model_integrity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">incoming_value</span><span class="p">,</span> <span class="n">outgoing_value</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_check_match</span><span class="p">(</span><span class="n">ak_type</span><span class="p">,</span> <span class="n">ak_shape</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">ak_type</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Type mismatch. Expected </span><span class="si">{</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">ak_type</span><span class="si">}</span><span class="s2">.&quot;</span>
+
+            <span class="c1"># Check if value shape matches with akida expected format (4D channel last).</span>
+            <span class="c1"># Note that the nodes required to perform this transformation are added</span>
+            <span class="c1"># by generate_inference_model.</span>
+            <span class="n">v_shape</span> <span class="o">=</span> <span class="n">_get_ir_dimensions</span><span class="p">([</span><span class="n">value</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v_shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ak_shape</span><span class="p">):</span>
+                <span class="c1"># Fill missing dimensions to match with akida shape.</span>
+                <span class="n">v_shape</span> <span class="o">=</span> <span class="n">v_shape</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ak_shape</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">v_shape</span><span class="p">))</span>
+
+            <span class="c1"># Convert v_shape to channel-last format for comparison.</span>
+            <span class="n">v_shape</span> <span class="o">=</span> <span class="n">v_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">v_shape</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="k">assert</span> <span class="n">v_shape</span> <span class="o">==</span> <span class="n">ak_shape</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Shape mismatch. Expected </span><span class="si">{</span><span class="n">v_shape</span><span class="si">}</span><span class="s2">, got </span><span class="si">{</span><span class="n">ak_shape</span><span class="si">}</span><span class="s2">.&quot;</span>
+
+        <span class="c1"># For a model to be compatible, it must:</span>
+        <span class="c1"># * input model match with incoming value info.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_check_match</span><span class="p">(</span><span class="n">get_ir_input_dtype</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">model</span><span class="o">.</span><span class="n">input_shape</span><span class="p">,</span> <span class="n">incoming_value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to connect </span><span class="si">{</span><span class="n">incoming_value</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="c1"># * output model match with outgoing value info.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_check_match</span><span class="p">(</span><span class="n">get_ir_output_dtype</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">model</span><span class="o">.</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">outgoing_value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to connect </span><span class="si">{</span><span class="n">outgoing_value</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">sess_options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">providers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">provider_options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs inference on the hybrid model.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            inbound_names (list of str): list of names to define the desired output order.</span>
+<span class="sd">            inputs (np.ndarray): input data for the model.</span>
+<span class="sd">            sess_options (onnxruntime.SessionOptions, optional): options for the ORT session.</span>
+<span class="sd">                Defaults to None.</span>
+<span class="sd">            providers (list, optional): list of execution providers for ORT. Defaults to None.</span>
+<span class="sd">            provider_options (list, optional): list of provider options for ORT.</span>
+<span class="sd">                Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">prev_output_layer_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ly</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_layers</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">prev_output_layer_names</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">inbound_names</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">inbound_names</span><span class="si">}</span><span class="s2"> must exactly contain &quot;</span>
-                             <span class="sa">f</span><span class="s2">&quot;the following names: </span><span class="si">{</span><span class="n">prev_output_layer_names</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output_layer_names</span> <span class="o">=</span> <span class="n">inbound_names</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_inbound_outputs_from_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Inbounds must be a list. Receives: </span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2">.&quot;</span>
-        <span class="n">expected_bound_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">producer</span><span class="p">()</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outgoing</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">expected_bound_names</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid inbounds provided: </span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2">. &quot;</span>
-                             <span class="s2">&quot;It can only add a model to one of the following layers: &quot;</span>
-                             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">expected_bound_names</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_layer_outputs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_layer</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_model_integrity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">incoming_values</span><span class="p">):</span>
-        <span class="c1"># For a model to be compatible, it must:</span>
-        <span class="c1"># * has unique and non-empty names</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">new_layers</span> <span class="o">=</span> <span class="n">_get_layers</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="n">new_layer_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ly</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="n">new_layers</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dup_names</span> <span class="o">:=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Counter</span><span class="p">(</span><span class="n">new_layer_names</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are some duplicate names in model: </span><span class="si">{</span><span class="n">dup_names</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">wrong_layers</span> <span class="o">:=</span> <span class="p">[</span><span class="n">ly</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="n">new_layers</span> <span class="k">if</span> <span class="n">ly</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model has node/layers with empty names: </span><span class="si">{</span><span class="n">wrong_layers</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to add </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-
-        <span class="c1"># * there are no previously saved layers with the same name.</span>
-        <span class="n">layer_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ly</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span>
-        <span class="n">new_layer_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">new_layer_names</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unsupported_layers</span> <span class="o">:=</span> <span class="n">new_layer_names</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">layer_names</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to add </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">: it contains layers with the same name &quot;</span>
-                             <span class="sa">f</span><span class="s2">&quot;as those already stored: </span><span class="si">{</span><span class="n">unsupported_layers</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># * model has the same inputs than required inbounds.</span>
-            <span class="n">model_inputs</span> <span class="o">=</span> <span class="n">_get_model_inputs</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">model_num</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_inputs</span><span class="p">))</span> <span class="o">!=</span> <span class="p">(</span><span class="n">inbound_num</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">incoming_values</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of inbounds provided (</span><span class="si">{</span><span class="n">model_num</span><span class="si">}</span><span class="s2">) does not match with &quot;</span>
-                                 <span class="sa">f</span><span class="s2">&quot;the number of model inputs (</span><span class="si">{</span><span class="n">inbound_num</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
-
-            <span class="c1"># * input shape and type correspond to values to be linked.</span>
-            <span class="k">for</span> <span class="n">i_value</span><span class="p">,</span> <span class="n">o_value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">incoming_values</span><span class="p">,</span> <span class="n">model_inputs</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o_value</span><span class="p">,</span> <span class="n">akida</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
-                    <span class="c1"># Build a fake ir.Value to compare.</span>
-                    <span class="n">o_value</span> <span class="o">=</span> <span class="n">ir</span><span class="o">.</span><span class="n">Value</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">o_value</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                                       <span class="n">shape</span><span class="o">=</span><span class="n">ir</span><span class="o">.</span><span class="n">Shape</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">o_value</span><span class="o">.</span><span class="n">input_dims</span><span class="p">)),</span>
-                                       <span class="nb">type</span><span class="o">=</span><span class="n">get_ir_input_dtype</span><span class="p">(</span><span class="n">o_value</span><span class="p">))</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">i_value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">o_value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape mismatch. Expected: </span><span class="si">{</span><span class="n">i_value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">, &quot;</span>
-                                         <span class="sa">f</span><span class="s2">&quot;got: </span><span class="si">{</span><span class="n">o_value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="n">i_value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">o_value</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
-                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Type mismatch. Expected: </span><span class="si">{</span><span class="n">i_value</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">, &quot;</span>
-                                         <span class="sa">f</span><span class="s2">&quot;got: </span><span class="si">{</span><span class="n">o_value</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to connect </span><span class="si">{</span><span class="n">i_value</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> with &quot;</span>
-                                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">o_value</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_layer_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ak_output_layers_map</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">ir</span><span class="o">.</span><span class="n">Node</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impossible to find outputs for </span><span class="si">{</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+        <span class="n">sess</span> <span class="o">=</span> <span class="n">onnxruntime</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="n">ir</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">(),</span>
+                                            <span class="n">sess_options</span><span class="o">=</span><span class="n">sess_options</span><span class="p">,</span> <span class="n">providers</span><span class="o">=</span><span class="n">providers</span><span class="p">,</span>
+                                            <span class="n">provider_options</span><span class="o">=</span><span class="n">provider_options</span><span class="p">)</span>
+        <span class="n">ort_inputs</span> <span class="o">=</span> <span class="p">{</span><span class="n">sess</span><span class="o">.</span><span class="n">get_inputs</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">inputs</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">ort_inputs</span><span class="p">)</span></div>
 
 </pre></div>
 
@@ -744,7 +831,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, BrainChip Holdings Ltd. All Rights Reserved.</p>
+    <p>&#169; Copyright 2026, BrainChip Holdings Ltd. All Rights Reserved.</p>
   </div>
 
    
