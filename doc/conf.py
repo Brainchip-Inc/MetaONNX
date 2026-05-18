@@ -75,7 +75,10 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     'logo_only': True,
     'collapse_navigation': False,
-    'style_nav_header_background': '#000000'
+    'style_nav_header_background': '#000000',
+    "analytics": {
+        "google_analytics_id": "G-T6Y7X9D33L",
+    }
 }
 
 # Hide undesired components
@@ -99,9 +102,6 @@ html_static_path = ['_static']
 html_css_files = [
     'custom.css',
 ]
-
-# Add Leadlander tag for activity tracking
-html_js_files = ['leadlander_tag.js']
 
 # -- Exported variables -----------------------------------------------------
 from importlib.metadata import version as importlib_version
