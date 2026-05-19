@@ -229,8 +229,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.92it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.90it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.41it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.39it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
@@ -326,7 +326,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00, 10.20it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.21it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.19it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
@@ -355,12 +356,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.51it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.50it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.07it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.06it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.56it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.55it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.54it/s]
 [INFO]: Percentage of nodes compatible with akida: 100.0000 %
 
 [INFO]: Number of mappable sequences on akida: 1
@@ -383,8 +384,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.07it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.05it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.61it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.60it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
@@ -442,11 +443,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00, 10.11it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.82it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.81it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.05it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.05it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.03it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  3.03it/s]
 
 Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;]
 List of incompatibilities:
@@ -497,11 +499,11 @@ Layer (type)                                                                    
 
 ========================================================================================================= --- ONNX Sub-model 0 --- ========================================================================================================
 
-017eec71-6e80-4a42-86e7-a81c72c96f9f/quantizer_0 (InputQuantizer)                                      [3, 224, 224]   input                                                                                N/A
+b847e801-95c8-4804-bd06-478a9ea86aa9/quantizer_0 (InputQuantizer)                                      [3, 224, 224]   input                                                                                N/A
 
 ======================================================================================================== --- Akida Sub-model 1 --- ========================================================================================================
 
-node_Conv_1 (InputConv2D)                                                                              [112, 112, 32]  017eec71-6e80-4a42-86e7-a81c72c96f9f/quantize_0                                      147.00 KB (CPU -&gt; Akida)
+node_Conv_1 (InputConv2D)                                                                              [112, 112, 32]  b847e801-95c8-4804-bd06-478a9ea86aa9/quantize_0                                      147.00 KB (CPU -&gt; Akida)
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D (Conv2D)                                  [112, 112, 64]  StatefulPartitionedCall/akidanet_1.00_160_1000/conv_0/relu/clip_by_value:0           784.00 KB (Akida -&gt; CPU)
 
@@ -557,7 +559,7 @@ StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion
 
 ========================================================================================================= --- ONNX Sub-model 4 --- ========================================================================================================
 
-137c3313-de6a-49e7-a7c9-25fc1845f680/dequantizer_0 (Dequantizer)                                       [1000]          classifier/to_dequantize                                                             N/A
+0b476a79-15e2-4598-b7cb-434cffdb2512/dequantizer_0 (Dequantizer)                                       [1000]          classifier/to_dequantize                                                             N/A
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 </pre></div>
 </div>
@@ -582,12 +584,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.58it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.57it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.13it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.12it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.94it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.94it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.90it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.90it/s]
 
 Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;, &#39;GlobalAveragePool&#39;]
 List of incompatibilities:
@@ -676,11 +678,11 @@ Layer (type)                                                                    
 
 ===================================================================================================================== --- ONNX Sub-model 0 --- ====================================================================================================================
 
-dcb4c5bd-e275-4240-b3d6-d68134aa310d/quantizer_0 (InputQuantizer)                                                            [3, 224, 224]   input                                                                                N/A
+2d89df2e-df9d-4bfa-b9d1-8a8525db6cdf/quantizer_0 (InputQuantizer)                                                            [3, 224, 224]   input                                                                                N/A
 
 ==================================================================================================================== --- Akida Sub-model 1 --- ====================================================================================================================
 
-node_Conv_1 (InputConv2D)                                                                                                    [112, 112, 32]  dcb4c5bd-e275-4240-b3d6-d68134aa310d/quantize_0                                      147.00 KB (CPU -&gt; Akida)
+node_Conv_1 (InputConv2D)                                                                                                    [112, 112, 32]  2d89df2e-df9d-4bfa-b9d1-8a8525db6cdf/quantize_0                                      147.00 KB (CPU -&gt; Akida)
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 StatefulPartitionedCall/akidanet_1.00_160_1000/conv_1/Conv2D (Conv2D)                                                        [112, 112, 64]  StatefulPartitionedCall/akidanet_1.00_160_1000/conv_0/relu/clip_by_value:0           784.00 KB (Akida -&gt; CPU)
 
@@ -764,7 +766,7 @@ StatefulPartitionedCall/akidanet_1.00_160_1000/classifier/MatMul/MatMulAddFusion
 
 ==================================================================================================================== --- ONNX Sub-model 18 --- ====================================================================================================================
 
-1514d6b4-41e6-4f9a-bbc2-2c48bd6aa6ff/dequantizer_0 (Dequantizer)                                                             [1000]          classifier/to_dequantize                                                             N/A
+320a1b4d-fe49-4f79-a066-b72c23a867fc/dequantizer_0 (Dequantizer)                                                             [1000]          classifier/to_dequantize                                                             N/A
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 </pre></div>
 </div>
@@ -827,8 +829,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.16it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.14it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.51it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.50it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
@@ -892,8 +894,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.09it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.08it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.87it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.86it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.53it/s]
@@ -973,12 +975,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.61it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.59it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.24it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  8.23it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.03s/it]
-Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.03s/it]
+Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.04s/it]
+Converting: 100%|██████████| 1/1 [00:01&lt;00:00,  1.04s/it]
 
 Set of incompatible op_types: [&#39;Clip&#39;, &#39;Conv&#39;, &#39;GlobalAveragePool&#39;]
 List of incompatibilities:
@@ -1126,8 +1128,8 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.41it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.39it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.29it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  9.28it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.58it/s]
@@ -1152,12 +1154,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.74it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.72it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.59it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  7.58it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.52it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.52it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.53it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  1.53it/s]
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;device input buffer memory: &quot;</span>
@@ -1192,7 +1194,7 @@ is being used at its maximum (50 KB) so it remains unchanged.</p>
 </ul>
 </dd>
 </dl>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 11.024 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 2.690 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-1-detailed-convert-usage-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/f07e7fc14525bc19e6ec4872aa563bca/plot_1_detailed_convert_usage.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_1_detailed_convert_usage.ipynb</span></code></a></p>
@@ -1236,13 +1238,13 @@ is being used at its maximum (50 KB) so it remains unchanged.</p>
       });
   </script>
     <!-- Theme Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T6Y7X9D33L"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BCC12XREVY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-T6Y7X9D33L', {
+      gtag('config', 'G-BCC12XREVY', {
           'anonymize_ip': false,
       });
     </script> 
