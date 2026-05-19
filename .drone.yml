@@ -103,7 +103,7 @@ steps:
   - cp -R ../build/* .
   - rm -rf _sources/
   - cd ..
-  - rm -Rf doc/ build/
+  - rm -Rf doc/ build/ examples/general/mbv4/
   - git add .
   - git diff --quiet && git diff --staged --quiet || git commit -am "Automated - Push to beta"
   - git push origin gh-pages
