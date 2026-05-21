@@ -247,12 +247,12 @@ Applied 1 of general pattern rewrite rules.
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.54it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.54it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.11it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.10it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
 Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.89it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.88it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  2.89it/s]
 </pre></div>
 </div>
 </section>
@@ -306,11 +306,11 @@ Layer (type)                                                       Output shape 
 
 ================================================================================================== --- ONNX Sub-model 0 --- =================================================================================================
 
-9d8f6d91-e56e-46f8-91db-1a1d169f555a/quantizer_0 (InputQuantizer)  [3, 224, 224]   pixel_values                                                                                                    N/A
+0bb4915a-baed-403a-baf8-e65f111f7d67/quantizer_0 (InputQuantizer)  [3, 224, 224]   pixel_values                                                                                                    N/A
 
 ================================================================================================= --- Akida Sub-model 1 --- =================================================================================================
 
-/conv_stem/Conv (InputConv2D)                                      [112, 112, 32]  9d8f6d91-e56e-46f8-91db-1a1d169f555a/quantize_0                                                                 147.00 KB (CPU -&gt; Akida)
+/conv_stem/Conv (InputConv2D)                                      [112, 112, 32]  0bb4915a-baed-403a-baf8-e65f111f7d67/quantize_0                                                                 147.00 KB (CPU -&gt; Akida)
 _____________________________________________________________________________________________________________________________________________________________________________________________________________________________
 /blocks/blocks.0/blocks.0.0/conv/Conv (Conv2D)                     [56, 56, 32]    /bn1/act/Relu_output_0                                                                                          N/A
 _____________________________________________________________________________________________________________________________________________________________________________________________________________________________
@@ -428,7 +428,7 @@ ________________________________________________________________________________
 
 ================================================================================================== --- ONNX Sub-model 2 --- =================================================================================================
 
-9156a18b-97dd-43a1-9d58-81fd6e5dac7d/dequantizer_0 (Dequantizer)   [1000]          logits/to_dequantize                                                                                            N/A
+57dad447-33f3-4f73-96bc-907d630b7b0b/dequantizer_0 (Dequantizer)   [1000]          logits/to_dequantize                                                                                            N/A
 _____________________________________________________________________________________________________________________________________________________________________________________________________________________________
 None
 </pre></div>
@@ -441,8 +441,8 @@ quantization</strong> impact on accuracy even before generating a deployable inf
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Example output of the hybrid model: </span><span class="si">{</span><span class="n">hybrid_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Example output of the hybrid model: [-17.113913 -17.93097  -17.880804 -17.812668 -18.447968 -17.60414
- -18.051432 -17.021399 -16.94248  -17.778887]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Example output of the hybrid model: [-16.961279 -17.556597 -18.059267 -17.889608 -18.155535 -17.218287
+ -18.151829 -17.101648 -17.382477 -18.262962]
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -500,12 +500,12 @@ device as a <a class="reference external" href="../../api_reference/onnx2akida_a
 Calibrating with 1/1.0 samples
 
 Quantizing:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.09it/s]
-Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  4.09it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.83it/s]
+Quantizing: 100%|██████████| 1/1 [00:00&lt;00:00,  3.83it/s]
 
 Converting:   0%|          | 0/1 [00:00&lt;?, ?it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  4.96it/s]
-Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  4.95it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  4.83it/s]
+Converting: 100%|██████████| 1/1 [00:00&lt;00:00,  4.83it/s]
 </pre></div>
 </div>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">print_report</span><span class="p">(</span><span class="n">hybrid_model</span><span class="p">,</span> <span class="n">compatibility_info</span><span class="p">)</span>
@@ -582,7 +582,7 @@ conventions (NCHW for ONNX, NHWC for Akida).</p>
 </ol>
 <p>This approach maximizes hardware acceleration while maintaining full model functionality,
 even when only portions of the model are Akida-compatible.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 20.253 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 26.670 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-general-plot-0-global-workflow-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/760d542b3c76090266d36acf0a686630/plot_0_global_workflow.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_0_global_workflow.ipynb</span></code></a></p>
